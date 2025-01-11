@@ -1,4 +1,4 @@
-import type { Project } from "@db/schema";
+import type { Project } from "./data";
 
 interface ProjectInsights {
   technicalAnalysis: string;

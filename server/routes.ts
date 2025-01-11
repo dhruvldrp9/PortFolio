@@ -12,11 +12,6 @@ import {
   type Certification
 } from "./data";
 import { generateProjectInsights, generateTechnicalSuggestions } from "./ai-projects";
-import { db } from "@db";
-import { projects, blogPosts, certifications, contacts, insertContactSchema } from "@db/schema";
-import { desc, eq } from "drizzle-orm";
-import { z } from "zod";
-
 
 export function registerRoutes(app: Express): Server {
   // Projects
@@ -74,33 +69,6 @@ export function registerRoutes(app: Express): Server {
       res.json(data);
     } catch (error) {
       res.status(500).json({ message: "Failed to fetch certifications" });
-    }
-  });
-
-  // Contacts
-  app.post("/api/contacts", async (req, res) => {
-    try {
-      const validatedData = insertContactSchema.parse(req.body);
-      await db.insert(contacts).values({
-        name: validatedData.name,
-        email: validatedData.email,
-        subject: validatedData.subject,
-        message: validatedData.message,
-      });
-      res.status(201).json({ message: "Message sent successfully" });
-    } catch (error) {
-      console.error("Contact form error:", error);
-      if (error instanceof z.ZodError) {
-        res.status(400).json({
-          message: "Invalid form data",
-          errors: error.errors.map((e) => ({
-            field: e.path.join("."),
-            message: e.message,
-          })),
-        });
-        return;
-      }
-      res.status(500).json({ message: "Failed to send message. Please try again later." });
     }
   });
 

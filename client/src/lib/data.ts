@@ -1,4 +1,4 @@
-import type { Project, BlogPost, Certification } from "@db/schema";
+import type { Project, BlogPost, Certification } from "@/types";
 
 export async function getProjects(): Promise<Project[]> {
   const response = await fetch('/data/projects.json');
