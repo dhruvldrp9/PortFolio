@@ -1,0 +1,19 @@
+{
+  "education": [
+    {
+      "id": 1,
+      "institution": "Stanford University",
+      "degree": "MS in Computer Science",
+      "dates": "2022-2024",
+      "achievements": [
+        "Published research paper on reinforcement learning",
+        "Teaching Assistant for AI courses"
+      ],
+      "coursework": [
+        "Advanced Machine Learning",
+        "Natural Language Processing",
+        "Computer Vision"
+      ]
+    }
+  ]
+}

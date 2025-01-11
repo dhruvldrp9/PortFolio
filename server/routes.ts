@@ -1,56 +1,80 @@
 import type { Express } from "express";
 import { createServer, type Server } from "http";
+import {
+  getProjects,
+  getBlogPosts,
+  getCertifications,
+  addProject,
+  addBlogPost,
+  addCertification,
+  type Project,
+  type BlogPost,
+  type Certification
+} from "./data";
+import { generateProjectInsights, generateTechnicalSuggestions } from "./ai-projects";
 import { db } from "@db";
 import { projects, blogPosts, certifications, contacts, insertContactSchema } from "@db/schema";
 import { desc, eq } from "drizzle-orm";
 import { z } from "zod";
-import { generateProjectInsights, generateTechnicalSuggestions } from "./ai-projects";
+
 
 export function registerRoutes(app: Express): Server {
   // Projects
   app.get("/api/projects", async (_req, res) => {
-    const data = await db.query.projects.findMany({
-      orderBy: desc(projects.created_at),
-    });
-    res.json(data);
+    try {
+      const data = await getProjects();
+      res.json(data);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch projects" });
+    }
   });
 
   app.get("/api/projects/:id", async (req, res) => {
-    const data = await db.query.projects.findFirst({
-      where: eq(projects.id, parseInt(req.params.id)),
-    });
-    if (!data) {
-      res.status(404).send("Project not found");
-      return;
+    try {
+      const projects = await getProjects();
+      const project = projects.find(p => p.id === parseInt(req.params.id));
+      if (!project) {
+        res.status(404).send("Project not found");
+        return;
+      }
+      res.json(project);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch project" });
     }
-    res.json(data);
   });
 
   // Blog Posts
   app.get("/api/blog-posts", async (_req, res) => {
-    const data = await db.query.blogPosts.findMany({
-      orderBy: desc(blogPosts.created_at),
-    });
-    res.json(data);
+    try {
+      const data = await getBlogPosts();
+      res.json(data);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch blog posts" });
+    }
   });
 
   app.get("/api/blog-posts/:id", async (req, res) => {
-    const data = await db.query.blogPosts.findFirst({
-      where: eq(blogPosts.id, parseInt(req.params.id)),
-    });
-    if (!data) {
-      res.status(404).send("Blog post not found");
-      return;
+    try {
+      const posts = await getBlogPosts();
+      const post = posts.find(p => p.id === parseInt(req.params.id));
+      if (!post) {
+        res.status(404).send("Blog post not found");
+        return;
+      }
+      res.json(post);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch blog post" });
     }
-    res.json(data);
   });
 
   // Certifications
   app.get("/api/certifications", async (_req, res) => {
-    const data = await db.query.certifications.findMany({
-      orderBy: desc(certifications.date_achieved),
-    });
-    res.json(data);
+    try {
+      const data = await getCertifications();
+      res.json(data);
+    } catch (error) {
+      res.status(500).json({ message: "Failed to fetch certifications" });
+    }
   });
 
   // Contacts
@@ -83,9 +107,8 @@ export function registerRoutes(app: Express): Server {
   // AI-powered project insights
   app.get("/api/projects/:id/insights", async (req, res) => {
     try {
-      const project = await db.query.projects.findFirst({
-        where: eq(projects.id, parseInt(req.params.id)),
-      });
+      const projects = await getProjects();
+      const project = projects.find(p => p.id === parseInt(req.params.id));
 
       if (!project) {
         res.status(404).send("Project not found");
@@ -103,9 +126,8 @@ export function registerRoutes(app: Express): Server {
   // AI-powered technical suggestions
   app.get("/api/projects/:id/suggestions", async (req, res) => {
     try {
-      const project = await db.query.projects.findFirst({
-        where: eq(projects.id, parseInt(req.params.id)),
-      });
+      const projects = await getProjects();
+      const project = projects.find(p => p.id === parseInt(req.params.id));
 
       if (!project) {
         res.status(404).send("Project not found");
