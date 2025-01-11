@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
+import Heading from "@/components/ui/heading";
 import {
   Form,
   FormControl,
@@ -90,9 +91,9 @@ export default function Contact() {
   });
 
   return (
-    <div className="container py-12">
-      <div className="mx-auto max-w-2xl">
-        <h1 className="text-4xl font-bold mb-8">Contact Me</h1>
+    <div className="min-h-[calc(100vh-4rem)] flex items-center justify-center px-4 py-12 sm:px-6 lg:px-8">
+      <div className="w-full max-w-2xl mx-auto bg-card rounded-lg border p-8">
+        <Heading>Contact Me</Heading>
         <div className="mb-8">
           <h2 className="text-xl font-semibold mb-4">Get in Touch</h2>
           <p className="text-muted-foreground">
