@@ -6,35 +6,6 @@ import { useQuery } from "@tanstack/react-query";
 import type { Project, BlogPost } from "@db/schema";
 import ProjectCard from "@/components/projects/project-card";
 import BlogCard from "@/components/blog/blog-card";
-import SkillMatrix from "@/components/skills/skill-matrix";
-
-const SKILLS = [
-  {
-    category: "Programming Languages",
-    skills: [
-      { name: "Python", proficiency: 90 },
-      { name: "JavaScript", proficiency: 80 },
-      { name: "TypeScript", proficiency: 75 },
-    ],
-  },
-  {
-    category: "Machine Learning",
-    skills: [
-      { name: "TensorFlow", proficiency: 85 },
-      { name: "PyTorch", proficiency: 80 },
-      { name: "Scikit-learn", proficiency: 70 },
-    ],
-  },
-  {
-    category: "Cloud Platforms",
-    skills: [
-      { name: "AWS", proficiency: 70 },
-      { name: "GCP", proficiency: 60 },
-      { name: "Azure", proficiency: 50 },
-    ],
-  },
-];
-
 
 export default function Home() {
   const { data: projects } = useQuery<Project[]>({
@@ -57,7 +28,7 @@ export default function Home() {
         <div className="container relative z-10 flex min-h-screen items-center py-20">
           <div className="grid gap-16 md:grid-cols-2 md:items-center">
             <div className="space-y-8 px-4 md:px-8">
-              <div
+              <div 
                 className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm text-primary"
               >
                 <Brain className="mr-2 h-5 w-5" />
@@ -76,8 +47,8 @@ export default function Home() {
               </div>
               <div className="flex flex-col gap-4 sm:flex-row">
                 <Link href="/contact">
-                  <Button
-                    size="lg"
+                  <Button 
+                    size="lg" 
                     className="group w-full bg-primary/90 hover:bg-primary sm:w-auto"
                   >
                     Get in Touch
@@ -85,9 +56,9 @@ export default function Home() {
                   </Button>
                 </Link>
                 <Link href="/projects">
-                  <Button
-                    size="lg"
-                    variant="outline"
+                  <Button 
+                    size="lg" 
+                    variant="outline" 
                     className="group w-full border-primary/20 hover:bg-primary/10 sm:w-auto"
                   >
                     View AI Projects
@@ -100,7 +71,7 @@ export default function Home() {
                   { icon: Github, href: PROFILE.github },
                   { icon: Linkedin, href: PROFILE.linkedin },
                   { icon: Twitter, href: PROFILE.twitter },
-                  { icon: Mail, href: `mailto:${PROFILE.email}` },
+                  { icon: Mail, href: `mailto:${PROFILE.email}` }
                 ].map(({ icon: Icon, href }) => (
                   <a
                     key={href}
@@ -128,30 +99,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section className="relative py-32">
-        <div className="container">
-          <div className="mx-auto max-w-3xl text-center mb-16">
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-              Technical Expertise
-            </h2>
-            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-              Comprehensive skillset in AI/ML development, from model architecture to production deployment.
-            </p>
-          </div>
-          <div className="mx-auto max-w-5xl">
-            <SkillMatrix
-              skills={SKILLS.flatMap((category) =>
-                category.skills.map((skill) => ({
-                  ...skill,
-                  category: category.category,
-                }))
-              )}
-            />
-          </div>
-        </div>
-      </section>
-
       {/* AI Workspace Section */}
       <section className="relative py-32">
         <div className="container">
@@ -160,7 +107,7 @@ export default function Home() {
               AI Development Environment
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-              Equipped with high-performance GPUs and cutting-edge tools for training
+              Equipped with high-performance GPUs and cutting-edge tools for training 
               and deploying state-of-the-art machine learning models.
             </p>
           </div>
@@ -174,8 +121,8 @@ export default function Home() {
               />
               <div className="absolute bottom-0 left-0 right-0 p-8">
                 <div className="flex flex-wrap justify-center gap-4">
-                  {["TensorFlow", "PyTorch", "NVIDIA CUDA", "Python"].map((tech) => (
-                    <div
+                  {['TensorFlow', 'PyTorch', 'NVIDIA CUDA', 'Python'].map((tech) => (
+                    <div 
                       key={tech}
                       className="inline-flex items-center space-x-2 rounded-full bg-primary/10 px-4 py-2 text-sm text-primary"
                     >
