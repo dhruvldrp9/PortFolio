@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { NAVIGATION_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Brain } from "lucide-react";
+import { Brain, Cpu } from "lucide-react";
 
 export default function Navbar() {
   const [location] = useLocation();
@@ -18,14 +18,20 @@ export default function Navbar() {
           >
             <motion.div
               className="rounded-lg bg-primary/10 p-2"
+              initial={{ backgroundColor: "rgba(26, 35, 126, 0.1)" }}
               whileHover={{ 
-                backgroundColor: "hsl(var(--primary))",
-                color: "hsl(var(--primary-foreground))"
+                backgroundColor: "rgb(26, 35, 126)",
+                color: "#ffffff"
               }}
             >
-              <Brain className="h-6 w-6" />
+              <div className="relative">
+                <Brain className="h-6 w-6" />
+                <Cpu className="absolute -bottom-1 -right-1 h-4 w-4 text-accent" />
+              </div>
             </motion.div>
-            <span className="text-xl font-bold">AI Engineer</span>
+            <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+              AI Engineer
+            </span>
           </motion.a>
         </Link>
         <div className="flex gap-6">
