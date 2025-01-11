@@ -17,19 +17,18 @@ export default function Navbar() {
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
-              className="rounded-lg bg-primary/10 p-2"
-              initial={{ backgroundColor: "rgba(245, 247, 250, 0.1)" }}
+              className="rounded-lg bg-accent/20 p-2 text-accent"
               whileHover={{ 
-                backgroundColor: "rgb(245, 247, 250)",
+                backgroundColor: "rgb(0, 188, 212)",
                 color: "#102235"
               }}
             >
               <div className="relative">
                 <Brain className="h-6 w-6" />
-                <Cpu className="absolute -bottom-1 -right-1 h-4 w-4 text-accent" />
+                <Cpu className="absolute -bottom-1 -right-1 h-4 w-4 text-foreground" />
               </div>
             </motion.div>
-            <span className="text-xl font-bold bg-gradient-to-r from-foreground via-foreground/90 to-accent bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-gradient-to-r from-accent via-foreground to-foreground/90 bg-clip-text text-transparent">
               AI Engineer
             </span>
           </motion.a>
