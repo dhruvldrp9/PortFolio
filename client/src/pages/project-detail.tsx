@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Skeleton } from "@/components/ui/skeleton";
 import { Github, Globe, ArrowLeft } from "lucide-react";
 import Heading from "@/components/ui/heading";
+import ProjectAIInsights from "@/components/projects/project-ai-insights";
 import type { Project } from "@db/schema";
 
 export default function ProjectDetail() {
@@ -136,6 +137,9 @@ export default function ProjectDetail() {
             </div>
           </div>
         </div>
+
+        {/* AI Insights Section */}
+        <ProjectAIInsights project={project} />
       </div>
     </div>
   );

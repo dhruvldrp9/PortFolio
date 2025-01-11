@@ -4,6 +4,7 @@ import { db } from "@db";
 import { projects, blogPosts, certifications, contacts, insertContactSchema } from "@db/schema";
 import { desc, eq } from "drizzle-orm";
 import { z } from "zod";
+import { generateProjectInsights, generateTechnicalSuggestions } from "./ai-projects";
 
 export function registerRoutes(app: Express): Server {
   // Projects
@@ -60,17 +61,57 @@ export function registerRoutes(app: Express): Server {
       console.error("Contact form error:", error);
 
       if (error instanceof z.ZodError) {
-        res.status(400).json({ 
-          message: "Invalid form data", 
-          errors: error.errors.map(e => ({
-            field: e.path.join('.'),
-            message: e.message
-          }))
+        res.status(400).json({
+          message: "Invalid form data",
+          errors: error.errors.map((e) => ({
+            field: e.path.join("."),
+            message: e.message,
+          })),
         });
         return;
       }
 
       res.status(500).json({ message: "Failed to send message. Please try again later." });
+    }
+  });
+
+  // AI-powered project insights
+  app.get("/api/projects/:id/insights", async (req, res) => {
+    try {
+      const project = await db.query.projects.findFirst({
+        where: eq(projects.id, parseInt(req.params.id)),
+      });
+
+      if (!project) {
+        res.status(404).send("Project not found");
+        return;
+      }
+
+      const insights = await generateProjectInsights(project);
+      res.json(insights);
+    } catch (error) {
+      console.error("Failed to generate project insights:", error);
+      res.status(500).json({ message: "Failed to generate insights" });
+    }
+  });
+
+  // AI-powered technical suggestions
+  app.get("/api/projects/:id/suggestions", async (req, res) => {
+    try {
+      const project = await db.query.projects.findFirst({
+        where: eq(projects.id, parseInt(req.params.id)),
+      });
+
+      if (!project) {
+        res.status(404).send("Project not found");
+        return;
+      }
+
+      const suggestions = await generateTechnicalSuggestions(project);
+      res.json(suggestions);
+    } catch (error) {
+      console.error("Failed to generate technical suggestions:", error);
+      res.status(500).json({ message: "Failed to generate suggestions" });
     }
   });
 
