@@ -17,6 +17,10 @@ import BlogDetail from "@/pages/blog-detail";
 import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
 
+// Get base URL from environment variable or default to '/'
+// Remove trailing slash if present and ensure leading slash
+const base = import.meta.env.VITE_BASE_URL?.replace(/\/$/, '') || '';
+
 function Router() {
   const [location] = useLocation();
 
@@ -26,43 +30,43 @@ function Router() {
       <Navbar />
       <main className="flex-1">
         <AnimatePresence mode="wait">
-          <Switch location={location} key={location}>
-            <Route path="/">
+          <Switch>
+            <Route path={`${base}/`}>
               <PageTransition>
                 <Home />
               </PageTransition>
             </Route>
-            <Route path="/education">
+            <Route path={`${base}/education`}>
               <PageTransition>
                 <Education />
               </PageTransition>
             </Route>
-            <Route path="/projects">
+            <Route path={`${base}/projects`}>
               <PageTransition>
                 <Projects />
               </PageTransition>
             </Route>
-            <Route path="/projects/:id">
+            <Route path={`${base}/projects/:id`}>
               <PageTransition>
                 <ProjectDetail />
               </PageTransition>
             </Route>
-            <Route path="/certifications">
+            <Route path={`${base}/certifications`}>
               <PageTransition>
                 <Certifications />
               </PageTransition>
             </Route>
-            <Route path="/blog">
+            <Route path={`${base}/blog`}>
               <PageTransition>
                 <Blog />
               </PageTransition>
             </Route>
-            <Route path="/blog/:id">
+            <Route path={`${base}/blog/:id`}>
               <PageTransition>
                 <BlogDetail />
               </PageTransition>
             </Route>
-            <Route path="/contact">
+            <Route path={`${base}/contact`}>
               <PageTransition>
                 <Contact />
               </PageTransition>
