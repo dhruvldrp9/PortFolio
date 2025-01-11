@@ -46,8 +46,21 @@ export default function Contact() {
       });
 
       if (!res.ok) {
-        throw new Error(await res.text());
+        const errorData = await res.json();
+
+        // Handle validation errors
+        if (res.status === 400 && errorData.errors) {
+          const fieldErrors = errorData.errors.reduce((acc: any, curr: any) => {
+            acc[curr.field] = curr.message;
+            return acc;
+          }, {});
+          throw new Error(JSON.stringify({ fieldErrors }));
+        }
+
+        throw new Error(errorData.message || "Failed to send message");
       }
+
+      return res.json();
     },
     onSuccess: () => {
       toast({
@@ -56,12 +69,23 @@ export default function Contact() {
       });
       form.reset();
     },
-    onError: (error) => {
-      toast({
-        title: "Error",
-        description: error.message,
-        variant: "destructive",
-      });
+    onError: (error: Error) => {
+      try {
+        // Try to parse field errors
+        const { fieldErrors } = JSON.parse(error.message);
+        Object.entries(fieldErrors).forEach(([field, message]) => {
+          form.setError(field as keyof ContactForm, {
+            message: message as string,
+          });
+        });
+      } catch {
+        // If not field errors, show general error
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      }
     },
   });
 
