@@ -2,14 +2,25 @@ import { Link, useLocation } from "wouter";
 import { NAVIGATION_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Brain, Cpu } from "lucide-react";
+import { Brain, Cpu, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 export default function Navbar() {
   const [location] = useLocation();
+  const [isOpen, setIsOpen] = useState(false);
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container flex h-16 items-center justify-between">
+        {/* Logo */}
         <Link href="/">
           <motion.a 
             className="flex items-center space-x-3"
@@ -36,7 +47,9 @@ export default function Navbar() {
             </span>
           </motion.a>
         </Link>
-        <div className="flex gap-6">
+
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex gap-6">
           {NAVIGATION_ITEMS.map((item) => (
             <Link key={item.path} href={item.path}>
               <motion.a
@@ -60,6 +73,39 @@ export default function Navbar() {
               </motion.a>
             </Link>
           ))}
+        </div>
+
+        {/* Mobile Navigation */}
+        <div className="md:hidden">
+          <Sheet open={isOpen} onOpenChange={setIsOpen}>
+            <SheetTrigger asChild>
+              <Button variant="ghost" size="icon" className="md:hidden">
+                <Menu className="h-6 w-6" />
+              </Button>
+            </SheetTrigger>
+            <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+              <SheetHeader>
+                <SheetTitle>Navigation</SheetTitle>
+              </SheetHeader>
+              <div className="flex flex-col gap-4 mt-8">
+                {NAVIGATION_ITEMS.map((item) => (
+                  <Link key={item.path} href={item.path}>
+                    <a
+                      className={cn(
+                        "text-lg font-medium transition-colors hover:text-foreground px-4 py-2 rounded-md",
+                        location === item.path
+                          ? "bg-accent/10 text-foreground"
+                          : "text-muted-foreground"
+                      )}
+                      onClick={() => setIsOpen(false)}
+                    >
+                      {item.label}
+                    </a>
+                  </Link>
+                ))}
+              </div>
+            </SheetContent>
+          </Sheet>
         </div>
       </div>
     </nav>
