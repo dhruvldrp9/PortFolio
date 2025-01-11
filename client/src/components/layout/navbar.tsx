@@ -2,13 +2,32 @@ import { Link, useLocation } from "wouter";
 import { NAVIGATION_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { Brain } from "lucide-react";
 
 export default function Navbar() {
   const [location] = useLocation();
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
+      <div className="container flex h-16 items-center justify-between">
+        <Link href="/">
+          <motion.a 
+            className="flex items-center space-x-3 text-primary"
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <motion.div
+              className="rounded-lg bg-primary/10 p-2"
+              whileHover={{ 
+                backgroundColor: "hsl(var(--primary))",
+                color: "hsl(var(--primary-foreground))"
+              }}
+            >
+              <Brain className="h-6 w-6" />
+            </motion.div>
+            <span className="text-xl font-bold">AI Engineer</span>
+          </motion.a>
+        </Link>
         <div className="flex gap-6">
           {NAVIGATION_ITEMS.map((item) => (
             <Link key={item.path} href={item.path}>
