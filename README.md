@@ -10,12 +10,15 @@ A cutting-edge professional portfolio platform designed for AI and machine learn
 - 🎓 Education & Certifications: Highlight academic achievements
 - 📱 Adaptive UI: Seamless experience across all screen sizes
 - 🔧 Modern Tech Stack: Built with the latest web technologies
+- 🤖 AI-Powered Insights: Automatic analysis of projects and technical suggestions
+- 📊 Content Management: Easy-to-use script for managing content
 
 ## Prerequisites
 
 - Node.js 18+ or newer
 - PostgreSQL database
 - NPM or Yarn package manager
+- Python 3.11+ (for content management)
 
 ## Installation
 
@@ -55,6 +58,26 @@ http://localhost:5000
 
 The application will be running in development mode with hot-reload enabled.
 
+## Content Management
+
+The platform includes a Python-based management script for easy content updates:
+
+1. Ensure Python and required packages are installed:
+```bash
+pip install psycopg2-binary
+```
+
+2. Run the management script:
+```bash
+python manage.py
+```
+
+This interactive script allows you to:
+- Add new projects
+- Create blog posts
+- Add certifications
+- List existing content
+
 ## Project Structure
 
 ```
@@ -66,8 +89,10 @@ The application will be running in development mode with hot-reload enabled.
 │   │   └── hooks/      # Custom React hooks
 ├── server/             # Backend Express application
 │   ├── routes.ts       # API routes
+│   ├── ai-projects.ts  # AI-powered project analysis
 │   └── db/            # Database configuration
-└── db/                # Database schema and migrations
+├── db/                # Database schema and migrations
+└── manage.py         # Content management script
 ```
 
 ## Technologies Used
@@ -84,6 +109,7 @@ The application will be running in development mode with hot-reload enabled.
 - Express.js
 - PostgreSQL with Drizzle ORM
 - TypeScript
+- AI-powered project analysis
 
 ## Building for Production
 
@@ -104,6 +130,7 @@ npm start
 - Check `server/routes.ts` for available API endpoints
 - See `db/schema.ts` for database schema
 - Refer to `client/src/lib/constants.ts` for configuration
+- Read `CONTRIBUTING.md` for detailed contribution guidelines
 
 ## Contributing
 
@@ -135,6 +162,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 1. Express server code is in `server/`
 2. API routes are defined in `server/routes.ts`
 3. Database schema is in `db/schema.ts`
+4. AI features are implemented in `server/ai-projects.ts`
 
 ### 4. Development Workflow
 1. Start development server: `npm run dev`
@@ -143,7 +171,12 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 4. Check console for any errors
 5. Run build before deployment: `npm run build`
 
-### 5. Common Issues & Solutions
+### 5. Content Management
+1. Use `manage.py` for content updates
+2. Follow the interactive prompts
+3. Changes reflect immediately in the application
+
+### 6. Common Issues & Solutions
 
 #### Database Connection Issues
 - Verify PostgreSQL is running
@@ -160,3 +193,8 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Check if port 5000 is available
 - Verify all environment variables are set
 - Check for console errors
+
+#### Content Management Issues
+- Ensure Python 3.11+ is installed
+- Install required packages: `pip install psycopg2-binary`
+- Verify database connection parameters
