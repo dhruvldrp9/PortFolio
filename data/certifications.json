@@ -1,0 +1,12 @@
+{
+  "certifications": [
+    {
+      "id": 1,
+      "name": "Machine Learning Specialization",
+      "organization": "Stanford Online",
+      "date_achieved": "2024-01-01T00:00:00Z",
+      "description": "Comprehensive machine learning certification covering supervised learning, neural networks, and more",
+      "verification_url": "https://verify.stanford.edu/cert/123"
+    }
+  ]
+}

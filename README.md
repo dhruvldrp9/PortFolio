@@ -1,6 +1,6 @@
 # AI/ML Professional Portfolio
 
-A cutting-edge professional portfolio platform designed for AI and machine learning professionals to showcase technical achievements through a fully responsive and adaptive web application, deployable as a static site on GitHub Pages.
+A cutting-edge professional portfolio platform designed for AI and machine learning professionals to showcase technical achievements through a fully responsive and adaptive web application.
 
 ## Features
 
@@ -10,8 +10,8 @@ A cutting-edge professional portfolio platform designed for AI and machine learn
 - 🎓 Education & Certifications: Highlight academic achievements
 - 📱 Adaptive UI: Seamless experience across all screen sizes
 - 🔧 Modern Tech Stack: Built with the latest web technologies
+- 🤖 AI-Powered Insights: Automatic analysis of projects and technical suggestions
 - 📊 Content Management: Easy-to-use script for managing content
-- 🚀 Static Site: Deployable on GitHub Pages
 
 ## Prerequisites
 
@@ -46,9 +46,9 @@ http://localhost:5000
 
 The platform uses JSON files for content management. Use the provided Python script:
 
-1. Install required Python packages:
+1. Install required Python package:
 ```bash
-pip install -r requirements.txt
+pip install psycopg2-binary
 ```
 
 2. Run the management script:
@@ -60,10 +60,7 @@ This interactive script allows you to:
 - Add new projects
 - Create blog posts
 - Add certifications
-- Add education details
 - List existing content
-
-All content is stored in JSON files located in `client/public/data/`.
 
 ## Deploying to GitHub Pages
 
@@ -71,13 +68,11 @@ All content is stored in JSON files located in `client/public/data/`.
 
 2. Update the repository settings:
    - Go to Settings > Pages
-   - Set the source to "Deploy from a branch"
-   - Select the branch (usually `gh-pages`)
-   - Set the folder to `/` (root)
+   - Set the source to "GitHub Actions"
 
 3. Configure your deployment:
    - If your repository is at `username.github.io`, no additional configuration is needed
-   - For project repositories (e.g., `username.github.io/portfolio`), update `base` in `vite.config.ts`:
+   - For project repositories (e.g., `username.github.io/portfolio`), update `vite.config.ts`:
      ```typescript
      base: '/<repository-name>/'
      ```
@@ -87,26 +82,23 @@ All content is stored in JSON files located in `client/public/data/`.
 git push origin main
 ```
 
-5. Build and deploy:
-```bash
-npm run build
-npm run deploy
-```
-
-The site will be available at `https://username.github.io` or `https://username.github.io/repository-name`
+GitHub Actions will automatically:
+1. Build your project
+2. Deploy it to GitHub Pages
+3. Make it available at `https://username.github.io` or `https://username.github.io/repository-name`
 
 ## Project Structure
 
 ```
 ├── client/              # Frontend React application
 │   ├── public/
-│   │   └── data/       # JSON data files for content
+│   │   └── data/       # JSON data files
 │   └── src/
 │       ├── components/ # Reusable UI components
 │       ├── pages/      # Page components
 │       ├── lib/        # Utilities and constants
 │       └── hooks/      # Custom React hooks
-└── manage.py           # Content management script
+└── manage.py          # Content management script
 ```
 
 ## Additional Documentation

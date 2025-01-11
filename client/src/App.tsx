@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import PageTransition from "@/components/layout/page-transition";
+import NeuralNetwork from "@/components/ui/neural-network";
 import Home from "@/pages/home";
 import Education from "@/pages/education";
 import Projects from "@/pages/projects";
@@ -21,6 +22,7 @@ function Router() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <NeuralNetwork />
       <Navbar />
       <main className="flex-1">
         <AnimatePresence mode="wait">

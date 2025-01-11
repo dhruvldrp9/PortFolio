@@ -1,4 +1,4 @@
-import type { Project, BlogPost, Certification, Education } from './types';
+import type { Project, BlogPost, Certification } from "@db/schema";
 
 export async function getProjects(): Promise<Project[]> {
   const response = await fetch('/data/projects.json');
@@ -18,18 +18,8 @@ export async function getCertifications(): Promise<Certification[]> {
   return data.certifications;
 }
 
-export async function getEducation(): Promise<Education[]> {
+export async function getEducation() {
   const response = await fetch('/data/education.json');
   const data = await response.json();
   return data.education;
-}
-
-export async function getProjectById(id: number): Promise<Project | undefined> {
-  const projects = await getProjects();
-  return projects.find(project => project.id === id);
-}
-
-export async function getBlogPostById(id: number): Promise<BlogPost | undefined> {
-  const posts = await getBlogPosts();
-  return posts.find(post => post.id === id);
 }
