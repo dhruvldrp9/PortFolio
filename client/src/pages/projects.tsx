@@ -19,30 +19,28 @@ export default function Projects() {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div className="max-w-7xl mx-auto">
-        <h1 className="text-4xl font-bold mb-8 text-center">Projects</h1>
-        <div className="flex justify-center mb-8">
-          <Input
-            placeholder="Search projects..."
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            className="max-w-sm w-full"
-          />
-        </div>
-        {isLoading ? (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[...Array(6)].map((_, i) => (
-              <Skeleton key={i} className="h-[300px] rounded-lg" />
-            ))}
-          </div>
-        ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {filteredProjects?.map((project) => (
-              <ProjectCard key={project.id} project={project} />
-            ))}
-          </div>
-        )}
+      <h1 className="text-4xl font-bold mb-8">Projects</h1>
+      <div className="mb-8">
+        <Input
+          placeholder="Search projects..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          className="max-w-sm"
+        />
       </div>
+      {isLoading ? (
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {[...Array(6)].map((_, i) => (
+            <Skeleton key={i} className="h-[300px] rounded-lg" />
+          ))}
+        </div>
+      ) : (
+        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          {filteredProjects?.map((project) => (
+            <ProjectCard key={project.id} project={project} />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

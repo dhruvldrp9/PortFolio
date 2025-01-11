@@ -46,7 +46,7 @@ export default function Home() {
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-5" />
         </div>
 
-        <div className="container relative min-h-[calc(100vh-4rem)] flex items-center py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex items-center py-20">
           <motion.div 
             className="grid gap-16 md:grid-cols-2 md:items-center"
             variants={containerVariants}
@@ -154,15 +154,15 @@ export default function Home() {
 
       {/* Skills Section */}
       <section className="py-24 relative overflow-hidden">
-        <div className="container">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="text-center mb-16"
+            className="mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold mb-4">AI & ML Expertise</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl">
               Specialized in developing cutting-edge AI solutions with a focus on scalability and innovation
             </p>
           </motion.div>
@@ -219,15 +219,15 @@ export default function Home() {
 
       {/* Featured Work */}
       <section className="py-24 relative overflow-hidden">
-        <div className="container">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div 
-            className="text-center mb-16"
+            className="mb-16"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
             <h2 className="text-3xl font-bold mb-4">Featured Work</h2>
-            <p className="text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-muted-foreground max-w-2xl">
               Explore my latest projects and insights in AI and machine learning
             </p>
           </motion.div>
@@ -244,7 +244,7 @@ export default function Home() {
                   </Button>
                 </Link>
               </div>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {projects?.slice(0, 3).map((project, index) => (
                   <motion.div
                     key={project.id}
@@ -270,7 +270,7 @@ export default function Home() {
                   </Button>
                 </Link>
               </div>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
                 {blogPosts?.slice(0, 3).map((post, index) => (
                   <motion.div
                     key={post.id}
