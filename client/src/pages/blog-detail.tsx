@@ -1,0 +1,130 @@
+import { useQuery } from "@tanstack/react-query";
+import { useParams, Link } from "wouter";
+import { motion } from "framer-motion";
+import { format } from "date-fns";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Skeleton } from "@/components/ui/skeleton";
+import { ArrowLeft, Calendar, User, Clock, Tag } from "lucide-react";
+import type { BlogPost } from "@db/schema";
+
+export default function BlogDetail() {
+  const { id } = useParams();
+  const { data: post, isLoading } = useQuery<BlogPost>({
+    queryKey: [`/api/blog-posts/${id}`],
+  });
+
+  if (isLoading) {
+    return (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-4xl mx-auto space-y-8">
+          <Skeleton className="h-8 w-64" />
+          <Skeleton className="h-4 w-32" />
+          <Skeleton className="h-[400px] w-full" />
+        </div>
+      </div>
+    );
+  }
+
+  if (!post) {
+    return (
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-4xl mx-auto text-center">
+          <h2 className="text-2xl font-bold">Blog post not found</h2>
+          <p className="mt-2 text-muted-foreground">
+            The blog post you're looking for doesn't exist or has been removed.
+          </p>
+          <Link href="/blog">
+            <Button className="mt-4">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Blog
+            </Button>
+          </Link>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="min-h-screen bg-background">
+      <article className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="max-w-4xl mx-auto">
+          {/* Back Button */}
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="mb-8"
+          >
+            <Link href="/blog">
+              <Button variant="ghost" size="sm">
+                <ArrowLeft className="mr-2 h-4 w-4" />
+                Back to Blog
+              </Button>
+            </Link>
+          </motion.div>
+
+          {/* Blog Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="space-y-4 mb-12"
+          >
+            <h1 className="text-4xl font-bold tracking-tight">{post.title}</h1>
+            
+            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+              <div className="flex items-center">
+                <User className="mr-2 h-4 w-4" />
+                {post.author}
+              </div>
+              <div className="flex items-center">
+                <Calendar className="mr-2 h-4 w-4" />
+                {format(new Date(post.created_at), 'MMMM d, yyyy')}
+              </div>
+              <div className="flex items-center">
+                <Clock className="mr-2 h-4 w-4" />
+                {post.read_time} min read
+              </div>
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {post.tags.split(',').map((tag) => (
+                <Badge key={tag} variant="secondary" className="text-sm">
+                  <Tag className="mr-1 h-3 w-3" />
+                  {tag.trim()}
+                </Badge>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Featured Image */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="relative aspect-video mb-12"
+          >
+            <img
+              src={post.image_url}
+              alt={post.title}
+              className="rounded-lg object-cover w-full h-full"
+            />
+          </motion.div>
+
+          {/* Content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+          >
+            <Card className="p-8">
+              <div className="prose prose-lg dark:prose-invert max-w-none">
+                <div dangerouslySetInnerHTML={{ __html: post.content }} />
+              </div>
+            </Card>
+          </motion.div>
+        </div>
+      </article>
+    </div>
+  );
+}

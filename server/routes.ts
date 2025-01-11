@@ -34,6 +34,17 @@ export function registerRoutes(app: Express): Server {
     res.json(data);
   });
 
+  app.get("/api/blog-posts/:id", async (req, res) => {
+    const data = await db.query.blogPosts.findFirst({
+      where: eq(blogPosts.id, parseInt(req.params.id)),
+    });
+    if (!data) {
+      res.status(404).send("Blog post not found");
+      return;
+    }
+    res.json(data);
+  });
+
   // Certifications
   app.get("/api/certifications", async (_req, res) => {
     const data = await db.query.certifications.findMany({
@@ -45,21 +56,16 @@ export function registerRoutes(app: Express): Server {
   // Contacts
   app.post("/api/contacts", async (req, res) => {
     try {
-      // Validate request body against schema
       const validatedData = insertContactSchema.parse(req.body);
-
-      // Insert the validated data
       await db.insert(contacts).values({
         name: validatedData.name,
         email: validatedData.email,
         subject: validatedData.subject,
         message: validatedData.message,
       });
-
       res.status(201).json({ message: "Message sent successfully" });
     } catch (error) {
       console.error("Contact form error:", error);
-
       if (error instanceof z.ZodError) {
         res.status(400).json({
           message: "Invalid form data",
@@ -70,7 +76,6 @@ export function registerRoutes(app: Express): Server {
         });
         return;
       }
-
       res.status(500).json({ message: "Failed to send message. Please try again later." });
     }
   });
