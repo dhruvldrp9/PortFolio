@@ -1,11 +1,11 @@
 export const PROFILE = {
   name: "John Doe",
-  title: "Full Stack Developer",
+  title: "AI/ML Engineer",
   email: "john.doe@example.com",
   github: "https://github.com/johndoe",
   linkedin: "https://linkedin.com/in/johndoe",
   twitter: "https://twitter.com/johndoe",
-  bio: "Passionate full stack developer with 5+ years of experience building modern web applications. Specializing in React, Node.js, and cloud technologies."
+  bio: "Passionate AI/ML engineer specializing in deep learning, computer vision, and natural language processing. Experienced in developing and deploying production-ready machine learning models using PyTorch and TensorFlow."
 };
 
 export const NAVIGATION_ITEMS = [
@@ -18,29 +18,45 @@ export const NAVIGATION_ITEMS = [
 ];
 
 export const STOCK_IMAGES = {
-  profile: "https://images.unsplash.com/photo-1522071820081-009f0129c71c",
-  workspace: "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5",
+  profile: "https://images.unsplash.com/photo-1597733336794-12d05021d510", // AI researcher image
+  workspace: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485", // AI workspace with multiple monitors
   projects: [
-    "https://images.unsplash.com/photo-1508873535684-277a3cbcc4e8",
-    "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40",
-    "https://images.unsplash.com/photo-1510759395231-72b17d622279",
-    "https://images.unsplash.com/photo-1660592868727-858d28c3ba52"
+    "https://images.unsplash.com/photo-1677442136019-21780ecad995", // Neural network visualization
+    "https://images.unsplash.com/photo-1620712943543-bcc4688e7485", // Data visualization
+    "https://images.unsplash.com/photo-1501159599894-155982264a55", // Computer vision
+    "https://images.unsplash.com/photo-1555949963-aa79dcee981c"  // Robot arm
   ]
 };
 
 export const EDUCATION = [
   {
     institution: "University of Technology",
-    degree: "Master of Computer Science",
+    degree: "Master of Science in Artificial Intelligence",
     dates: "2018 - 2020",
-    achievements: ["Graduated with Honors", "Published 2 research papers"],
-    coursework: ["Advanced Algorithms", "Distributed Systems", "Machine Learning"]
+    achievements: [
+      "Published research on Deep Reinforcement Learning",
+      "Best Thesis Award in AI Applications"
+    ],
+    coursework: [
+      "Deep Learning",
+      "Computer Vision",
+      "Natural Language Processing",
+      "Reinforcement Learning"
+    ]
   },
   {
     institution: "Tech College",
     degree: "Bachelor of Computer Science",
     dates: "2014 - 2018",
-    achievements: ["Dean's List", "Best Project Award"],
-    coursework: ["Data Structures", "Web Development", "Database Systems"]
+    achievements: [
+      "AI/ML Research Assistant",
+      "Published paper on Neural Networks"
+    ],
+    coursework: [
+      "Machine Learning Fundamentals",
+      "Statistical Learning",
+      "Python for Data Science",
+      "Mathematics for ML"
+    ]
   }
 ];
