@@ -8,22 +8,21 @@ export async function generateAIPalette() {
     messages: [
       {
         role: "system",
-        content: "You are a professional UI/UX designer specializing in AI/ML portfolios."
+        content: "You are a professional UI/UX designer specializing in tech portfolios."
       },
       {
         role: "user",
         content: `Generate a modern color palette for an AI/ML engineer portfolio website. The palette should:
-        1. Reflect technological sophistication and machine learning themes
+        1. Reflect technological sophistication and innovation
         2. Be accessible and professional
-        3. Have a dark mode focus
-        4. Include colors suitable for data visualization
-
+        3. Include colors suitable for dark mode
+        4. Have colors appropriate for data visualization
+        
         Return only the hexadecimal color codes in a JSON format with keys:
         primary (main accent color)
         background (dark background)
         foreground (text color)
         accent (secondary accent)
-        muted (subtle text/borders)
         `
       }
     ],
