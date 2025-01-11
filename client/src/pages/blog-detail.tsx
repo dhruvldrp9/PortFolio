@@ -71,44 +71,32 @@ export default function BlogDetail() {
             className="space-y-4 mb-12"
           >
             <h1 className="text-4xl font-bold tracking-tight">{post.title}</h1>
-            
+
             <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center">
-                <User className="mr-2 h-4 w-4" />
-                {post.author}
-              </div>
               <div className="flex items-center">
                 <Calendar className="mr-2 h-4 w-4" />
                 {format(new Date(post.created_at), 'MMMM d, yyyy')}
               </div>
               <div className="flex items-center">
                 <Clock className="mr-2 h-4 w-4" />
-                {post.read_time} min read
+                {post.reading_time} min read
               </div>
             </div>
 
             <div className="flex flex-wrap gap-2">
-              {post.tags.split(',').map((tag) => (
-                <Badge key={tag} variant="secondary" className="text-sm">
+              {post.category && (
+                <Badge variant="secondary" className="text-sm">
                   <Tag className="mr-1 h-3 w-3" />
-                  {tag.trim()}
+                  {post.category}
+                </Badge>
+              )}
+              {post.tags?.map((tag, index) => (
+                <Badge key={index} variant="secondary" className="text-sm">
+                  <Tag className="mr-1 h-3 w-3" />
+                  {tag}
                 </Badge>
               ))}
             </div>
-          </motion.div>
-
-          {/* Featured Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="relative aspect-video mb-12"
-          >
-            <img
-              src={post.image_url}
-              alt={post.title}
-              className="rounded-lg object-cover w-full h-full"
-            />
           </motion.div>
 
           {/* Content */}
