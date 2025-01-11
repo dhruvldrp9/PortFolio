@@ -6,7 +6,7 @@ import { Link } from "wouter";
 export default function Footer() {
   return (
     <footer className="w-full border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container py-12">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
           {/* Contact Information */}
           <div>
