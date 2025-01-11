@@ -1,10 +1,10 @@
 export const PROFILE = {
-  name: "John Doe",
+  name: "AI Engineer Portfolio",
   title: "AI/ML Engineer",
-  email: "john.doe@example.com",
-  github: "https://github.com/johndoe",
-  linkedin: "https://linkedin.com/in/johndoe",
-  twitter: "https://twitter.com/johndoe",
+  email: "contact@ai-portfolio.com",
+  github: "https://github.com/ai-portfolio",
+  linkedin: "https://linkedin.com/in/ai-portfolio",
+  twitter: "https://twitter.com/ai-portfolio",
   bio: "Passionate AI/ML engineer specializing in deep learning, computer vision, and natural language processing. Experienced in developing and deploying production-ready machine learning models using PyTorch and TensorFlow."
 };
 
