@@ -1,6 +1,6 @@
 # AI/ML Professional Portfolio
 
-A cutting-edge professional portfolio platform designed for AI and machine learning professionals to showcase technical achievements through a fully responsive and adaptive web application.
+A cutting-edge professional portfolio platform designed for AI and machine learning professionals to showcase technical achievements through a fully responsive and adaptive web application, optimized for GitHub Pages deployment.
 
 ## Features
 
@@ -11,13 +11,12 @@ A cutting-edge professional portfolio platform designed for AI and machine learn
 - 📱 Adaptive UI: Seamless experience across all screen sizes
 - 🔧 Modern Tech Stack: Built with the latest web technologies
 - 🤖 AI-Powered Insights: Automatic analysis of projects and technical suggestions
-- 📊 Content Management: Easy-to-use script for managing content
+- 📊 Content Management: Easy-to-use JSON-based content management
 
 ## Prerequisites
 
 - Node.js 18+ or newer
 - NPM or Yarn package manager
-- Python 3.11+ (for content management)
 
 ## Local Development
 
@@ -44,23 +43,49 @@ http://localhost:5000
 
 ## Content Management
 
-The platform uses JSON files for content management. Use the provided Python script:
+The platform uses JSON files for content management. These files are located in the `data` directory:
 
-1. Install required Python package:
-```bash
-pip install psycopg2-binary
+- `projects.json`: Portfolio projects
+- `blog-posts.json`: Blog articles
+- `certifications.json`: Professional certifications
+- `education.json`: Educational background
+
+To update content, modify the corresponding JSON files following their schema:
+
+### Projects Schema
+```json
+{
+  "projects": [
+    {
+      "id": number,
+      "title": string,
+      "description": string,
+      "technologies": string,
+      "image_url": string,
+      "github_url": string (optional),
+      "live_url": string (optional),
+      "created_at": string (ISO date)
+    }
+  ]
+}
 ```
 
-2. Run the management script:
-```bash
-python manage.py
+### Blog Posts Schema
+```json
+{
+  "posts": [
+    {
+      "id": number,
+      "title": string,
+      "content": string,
+      "category": string,
+      "tags": string[],
+      "reading_time": number,
+      "created_at": string (ISO date)
+    }
+  ]
+}
 ```
-
-This interactive script allows you to:
-- Add new projects
-- Create blog posts
-- Add certifications
-- List existing content
 
 ## Deploying to GitHub Pages
 
@@ -90,28 +115,26 @@ GitHub Actions will automatically:
 ## Project Structure
 
 ```
-├── client/              # Frontend React application
-│   ├── public/
-│   │   └── data/       # JSON data files
-│   └── src/
-│       ├── components/ # Reusable UI components
-│       ├── pages/      # Page components
-│       ├── lib/        # Utilities and constants
-│       └── hooks/      # Custom React hooks
-└── manage.py          # Content management script
+├── data/               # Content JSON files
+│   ├── projects.json
+│   ├── blog-posts.json
+│   ├── certifications.json
+│   └── education.json
+├── client/            # Frontend React application
+│   ├── src/
+│   │   ├── components/  # Reusable UI components
+│   │   ├── pages/      # Page components
+│   │   ├── lib/        # Utilities and constants
+│   │   └── hooks/      # Custom React hooks
+│   └── public/        # Static assets
+└── server/           # Development server
 ```
-
-## Additional Documentation
-
-- Check `client/src/lib/constants.ts` for configuration
-- Refer to `CONTRIBUTING.md` for detailed contribution guidelines
-- JSON data files are in `client/public/data/`
 
 ## Contributing
 
 1. Fork the repository
 2. Create your feature branch
-3. Update content using the management script
+3. Update content in the JSON files
 4. Commit your changes
 5. Push to the branch
 6. Create a new Pull Request

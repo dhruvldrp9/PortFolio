@@ -4,14 +4,11 @@ import {
   getProjects,
   getBlogPosts,
   getCertifications,
-  addProject,
-  addBlogPost,
-  addCertification,
+  getEducation,
   type Project,
   type BlogPost,
   type Certification
 } from "./data";
-import { generateProjectInsights, generateTechnicalSuggestions } from "./ai-projects";
 
 export function registerRoutes(app: Express): Server {
   // Projects
@@ -72,41 +69,13 @@ export function registerRoutes(app: Express): Server {
     }
   });
 
-  // AI-powered project insights
-  app.get("/api/projects/:id/insights", async (req, res) => {
+  // Education
+  app.get("/api/education", async (_req, res) => {
     try {
-      const projects = await getProjects();
-      const project = projects.find(p => p.id === parseInt(req.params.id));
-
-      if (!project) {
-        res.status(404).send("Project not found");
-        return;
-      }
-
-      const insights = await generateProjectInsights(project);
-      res.json(insights);
+      const data = await getEducation();
+      res.json(data);
     } catch (error) {
-      console.error("Failed to generate project insights:", error);
-      res.status(500).json({ message: "Failed to generate insights" });
-    }
-  });
-
-  // AI-powered technical suggestions
-  app.get("/api/projects/:id/suggestions", async (req, res) => {
-    try {
-      const projects = await getProjects();
-      const project = projects.find(p => p.id === parseInt(req.params.id));
-
-      if (!project) {
-        res.status(404).send("Project not found");
-        return;
-      }
-
-      const suggestions = await generateTechnicalSuggestions(project);
-      res.json(suggestions);
-    } catch (error) {
-      console.error("Failed to generate technical suggestions:", error);
-      res.status(500).json({ message: "Failed to generate suggestions" });
+      res.status(500).json({ message: "Failed to fetch education data" });
     }
   });
 

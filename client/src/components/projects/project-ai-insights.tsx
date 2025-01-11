@@ -5,7 +5,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Lightbulb, ChevronDown, ChevronUp, RefreshCw } from "lucide-react";
-import type { Project } from "@db/schema";
+import type { Project } from "@/types";
 
 interface ProjectAIInsightsProps {
   project: Project;
