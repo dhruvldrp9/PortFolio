@@ -12,16 +12,16 @@ export default function Navbar() {
       <div className="container flex h-16 items-center justify-between">
         <Link href="/">
           <motion.a 
-            className="flex items-center space-x-3 text-primary"
+            className="flex items-center space-x-3"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
               className="rounded-lg bg-primary/10 p-2"
-              initial={{ backgroundColor: "rgba(26, 35, 126, 0.1)" }}
+              initial={{ backgroundColor: "rgba(245, 247, 250, 0.1)" }}
               whileHover={{ 
-                backgroundColor: "rgb(26, 35, 126)",
-                color: "#ffffff"
+                backgroundColor: "rgb(245, 247, 250)",
+                color: "#102235"
               }}
             >
               <div className="relative">
@@ -29,7 +29,7 @@ export default function Navbar() {
                 <Cpu className="absolute -bottom-1 -right-1 h-4 w-4 text-accent" />
               </div>
             </motion.div>
-            <span className="text-xl font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <span className="text-xl font-bold bg-gradient-to-r from-foreground via-foreground/90 to-accent bg-clip-text text-transparent">
               AI Engineer
             </span>
           </motion.a>
@@ -39,9 +39,9 @@ export default function Navbar() {
             <Link key={item.path} href={item.path}>
               <motion.a
                 className={cn(
-                  "relative text-sm font-medium transition-colors hover:text-primary",
+                  "relative text-sm font-medium transition-colors hover:text-foreground",
                   location === item.path
-                    ? "text-primary"
+                    ? "text-foreground"
                     : "text-muted-foreground"
                 )}
                 whileHover={{ y: -2 }}
@@ -50,7 +50,7 @@ export default function Navbar() {
                 {item.label}
                 {location === item.path && (
                   <motion.div
-                    className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-primary"
+                    className="absolute -bottom-[1px] left-0 right-0 h-0.5 bg-accent"
                     layoutId="navbar-indicator"
                     transition={{ type: "spring", bounce: 0.25 }}
                   />
