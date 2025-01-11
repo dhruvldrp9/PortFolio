@@ -19,7 +19,7 @@ export default function ParticlesBackground() {
       id: i,
       x: Math.random() * window.innerWidth,
       y: Math.random() * window.innerHeight,
-      size: Math.random() * 3 + 1,
+      size: Math.random() * 2 + 1, // Smaller particles for subtlety
     }));
     setParticles(newParticles);
 
@@ -36,7 +36,7 @@ export default function ParticlesBackground() {
         particles[i]?.y ?? 0,
       ],
       transition: {
-        duration: 10 + Math.random() * 10,
+        duration: 15 + Math.random() * 15, // Slower, more subtle movement
         repeat: Infinity,
         ease: "linear",
       },
@@ -44,16 +44,18 @@ export default function ParticlesBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden">
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#0B192C]">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1E3E62]/20 to-[#0B192C]/40" />
       {particles.map((particle, index) => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full bg-primary/5"
+          className="absolute rounded-full bg-[#FF6500]"
           style={{
             width: particle.size,
             height: particle.size,
             left: particle.x,
             top: particle.y,
+            opacity: 0.15, // Very subtle opacity
           }}
           initial={{ opacity: 0 }}
           animate={controls}

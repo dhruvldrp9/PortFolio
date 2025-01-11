@@ -8,7 +8,9 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground;
+    @apply font-sans antialiased;
+    background-color: #0B192C;
+    color: #ffffff;
   }
 }
 
@@ -44,4 +46,15 @@
 
 .transform-style-3d {
   transform-style: preserve-3d;
+}
+
+/* Custom gradient backgrounds */
+.bg-gradient-custom {
+  background: linear-gradient(135deg, #0B192C 0%, #1E3E62 100%);
+}
+
+.text-gradient-custom {
+  background: linear-gradient(135deg, #FF6500 0%, #FF8533 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
