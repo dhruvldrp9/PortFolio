@@ -1,9 +1,10 @@
 {
   "variant": "professional",
-  "primary": "#1A237E",
+  "primary": "#6366F1",
+  "background": "#0A1020",
+  "foreground": "#E2E8F0",
+  "accent": "#06B6D4",
+  "muted": "#64748B",
   "appearance": "dark",
-  "radius": 0.5,
-  "background": "#102235",
-  "foreground": "#F5F7FA",
-  "accent": "#00BCD4"
+  "radius": 0.5
 }

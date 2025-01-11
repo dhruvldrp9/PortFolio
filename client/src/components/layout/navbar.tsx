@@ -2,7 +2,7 @@ import { Link, useLocation } from "wouter";
 import { NAVIGATION_ITEMS } from "@/lib/constants";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
-import { Brain } from "lucide-react";
+import { Brain, Sparkles } from "lucide-react";
 
 export default function Navbar() {
   const [location] = useLocation();
@@ -25,11 +25,17 @@ export default function Navbar() {
             >
               <Brain className="h-6 w-6" />
             </motion.div>
-            <span className="text-xl font-bold">AI Engineer</span>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold">AI Engineer</span>
+              <span className="flex items-center text-xs text-muted-foreground">
+                <Sparkles className="mr-1 h-3 w-3" />
+                Machine Learning Specialist
+              </span>
+            </div>
           </motion.a>
         </Link>
         <div className="flex gap-6">
-          {NAVIGATION_ITEMS.map((item) => (
+          {NAVIGATION_ITEMS.filter(item => item.label !== "Portfolio").map((item) => (
             <Link key={item.path} href={item.path}>
               <motion.a
                 className={cn(

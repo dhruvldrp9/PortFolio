@@ -1,4 +1,4 @@
-import { pgTable, text, serial, timestamp, integer } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, timestamp, integer, jsonb } from "drizzle-orm/pg-core";
 import { createInsertSchema, createSelectSchema } from "drizzle-zod";
 
 export const projects = pgTable("projects", {
@@ -9,7 +9,14 @@ export const projects = pgTable("projects", {
   image_url: text("image_url").notNull(),
   github_url: text("github_url"),
   live_url: text("live_url"),
-  created_at: timestamp("created_at").defaultNow().notNull()
+  created_at: timestamp("created_at").defaultNow().notNull(),
+  // GitHub specific fields
+  github_id: integer("github_id").unique(),
+  github_stars: integer("github_stars"),
+  github_forks: integer("github_forks"),
+  github_last_updated: timestamp("github_last_updated"),
+  github_languages: jsonb("github_languages"),
+  github_topics: text("github_topics").array(),
 });
 
 export const blogPosts = pgTable("blog_posts", {
