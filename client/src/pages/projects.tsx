@@ -3,6 +3,7 @@ import { useQuery } from "@tanstack/react-query";
 import ProjectCard from "@/components/projects/project-card";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
+import Heading from "@/components/ui/heading";
 import type { Project } from "@db/schema";
 
 export default function Projects() {
@@ -19,7 +20,7 @@ export default function Projects() {
 
   return (
     <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <h1 className="text-4xl font-bold mb-8">Projects</h1>
+      <Heading>Projects</Heading>
       <div className="mb-8">
         <Input
           placeholder="Search projects..."
