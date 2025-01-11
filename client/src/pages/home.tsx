@@ -99,38 +99,46 @@ export default function Home() {
         </div>
       </section>
 
-      {/* AI Workspace Section */}
+      {/* Skills & Expertise Section */}
       <section className="relative py-32">
         <div className="container">
           <div className="mx-auto max-w-3xl text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
-              AI Development Environment
+              Skills & Expertise
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-              Equipped with high-performance GPUs and cutting-edge tools for training 
-              and deploying state-of-the-art machine learning models.
+              Specialized in artificial intelligence and machine learning, with a focus on 
+              developing scalable solutions for real-world problems.
             </p>
           </div>
           <div className="mt-20">
             <div className="relative rounded-xl overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent" />
-              <img
-                src={STOCK_IMAGES.workspace}
-                alt="AI Development Workspace"
-                className="h-[600px] w-full object-cover"
-              />
-              <div className="absolute bottom-0 left-0 right-0 p-8">
-                <div className="flex flex-wrap justify-center gap-4">
-                  {['TensorFlow', 'PyTorch', 'NVIDIA CUDA', 'Python'].map((tech) => (
-                    <div 
-                      key={tech}
-                      className="inline-flex items-center space-x-2 rounded-full bg-primary/10 px-4 py-2 text-sm text-primary"
-                    >
-                      <Code className="h-4 w-4" />
-                      <span>{tech}</span>
-                    </div>
-                  ))}
-                </div>
+              <div className="relative z-10 grid gap-8 p-8 md:grid-cols-2 lg:grid-cols-4">
+                {[
+                  { name: 'Machine Learning', skills: ['TensorFlow', 'PyTorch', 'Scikit-learn'] },
+                  { name: 'Deep Learning', skills: ['CNN', 'RNN', 'Transformers'] },
+                  { name: 'Computer Vision', skills: ['OpenCV', 'Image Processing', 'Object Detection'] },
+                  { name: 'NLP', skills: ['BERT', 'GPT', 'Text Analysis'] },
+                ].map((category) => (
+                  <div 
+                    key={category.name}
+                    className="rounded-lg bg-card p-6 shadow-lg transition-all hover:scale-105"
+                  >
+                    <h3 className="mb-4 text-lg font-semibold">{category.name}</h3>
+                    <ul className="space-y-2">
+                      {category.skills.map((skill) => (
+                        <li 
+                          key={skill}
+                          className="flex items-center text-sm text-muted-foreground"
+                        >
+                          <Code className="mr-2 h-4 w-4 text-primary" />
+                          {skill}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
