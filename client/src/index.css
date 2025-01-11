@@ -9,8 +9,8 @@
 
   body {
     @apply font-sans antialiased;
-    background-color: #0B192C;
-    color: #ffffff;
+    background-color: #32012F;
+    color: #E2DFD0;
   }
 }
 
@@ -50,11 +50,11 @@
 
 /* Custom gradient backgrounds */
 .bg-gradient-custom {
-  background: linear-gradient(135deg, #0B192C 0%, #1E3E62 100%);
+  background: linear-gradient(135deg, #32012F 0%, #524C42 100%);
 }
 
 .text-gradient-custom {
-  background: linear-gradient(135deg, #FF6500 0%, #FF8533 100%);
+  background: linear-gradient(135deg, #F97300 0%, #E2DFD0 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
