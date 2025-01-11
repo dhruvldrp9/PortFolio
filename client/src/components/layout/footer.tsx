@@ -1,5 +1,5 @@
 import { PROFILE } from "@/lib/constants";
-import { Github, Linkedin, Twitter, Mail, MapPin, Clock } from "lucide-react";
+import { Github, Linkedin, Mail, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 
@@ -23,11 +23,11 @@ export default function Footer() {
               </li>
               <li className="flex items-center text-sm text-muted-foreground">
                 <MapPin className="mr-2 h-4 w-4" />
-                San Francisco, CA
+                {PROFILE.location}
               </li>
               <li className="flex items-center text-sm text-muted-foreground">
                 <Clock className="mr-2 h-4 w-4" />
-                PST (UTC-8)
+                IST (UTC+5:30)
               </li>
             </ul>
           </div>
@@ -56,17 +56,6 @@ export default function Footer() {
                 >
                   <Linkedin className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
                   LinkedIn
-                </a>
-              </li>
-              <li>
-                <a
-                  href={PROFILE.twitter}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center text-sm text-muted-foreground hover:text-accent"
-                >
-                  <Twitter className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                  Twitter
                 </a>
               </li>
             </ul>

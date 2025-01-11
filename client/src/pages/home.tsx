@@ -1,7 +1,16 @@
 import { PROFILE, STOCK_IMAGES } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
-import { Github, Linkedin, Twitter, Mail, Brain, Network, Database, Code } from "lucide-react";
+import { 
+  Github, 
+  Linkedin, 
+  Mail, 
+  Brain, 
+  Network, 
+  Database, 
+  Code, 
+  BrainCircuit
+} from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
 import type { Project, BlogPost } from "@db/schema";
 import ProjectCard from "@/components/projects/project-card";
@@ -59,7 +68,7 @@ export default function Home() {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                <Brain className="mr-2 h-5 w-5" />
+                <BrainCircuit className="mr-2 h-5 w-5" />
                 {PROFILE.title}
               </motion.div>
 
@@ -103,7 +112,6 @@ export default function Home() {
                 {[
                   { icon: Github, href: PROFILE.github },
                   { icon: Linkedin, href: PROFILE.linkedin },
-                  { icon: Twitter, href: PROFILE.twitter },
                   { icon: Mail, href: `mailto:${PROFILE.email}` }
                 ].map(({ icon: Icon, href }, index) => (
                   <motion.a

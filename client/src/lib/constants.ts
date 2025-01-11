@@ -1,11 +1,13 @@
 export const PROFILE = {
   name: "Dhruv Patel",
   title: "AI/ML Engineer",
-  email: "dhruv.patel@example.com",
-  github: "https://github.com/dhruvpatel",
-  linkedin: "https://linkedin.com/in/dhruvpatel",
-  twitter: "https://twitter.com/dhruvpatel",
-  bio: "Passionate AI/ML engineer specializing in deep learning, computer vision, and natural language processing. Experienced in developing and deploying production-ready machine learning models using PyTorch and TensorFlow."
+  email: "dhruv.ldrp9@gmail.com",
+  github: "https://github.com/dhruvldrp9",
+  linkedin: "https://www.linkedin.com/in/dhruvp9/",
+  twitter: undefined,
+  bio: "Passionate AI/ML engineer specializing in deep learning, computer vision, and natural language processing. Experienced in developing and deploying production-ready machine learning models using PyTorch and TensorFlow.",
+  location: "Gandhinagar, India",
+  timezone: "Asia/Kolkata"
 };
 
 export const NAVIGATION_ITEMS = [
