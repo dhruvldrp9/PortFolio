@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import PageTransition from "@/components/layout/page-transition";
+import ParticlesBackground from "@/components/ui/particles";
 import Home from "@/pages/home";
 import Education from "@/pages/education";
 import Projects from "@/pages/projects";
@@ -20,6 +21,7 @@ function Router() {
 
   return (
     <div className="min-h-screen flex flex-col">
+      <ParticlesBackground />
       <Navbar />
       <main className="flex-1">
         <AnimatePresence mode="wait">
