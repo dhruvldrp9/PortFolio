@@ -48,21 +48,21 @@ export default function Home() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="bg-background">
       {/* Hero Section */}
-      <section className="relative min-h-[calc(100vh-4rem)] flex items-center justify-center">
+      <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <div className="absolute inset-0 bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-5" />
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex items-center py-20">
           <motion.div 
-            className="grid gap-12 md:grid-cols-2 md:items-center max-w-6xl mx-auto"
+            className="grid gap-16 md:grid-cols-2 md:items-center"
             variants={containerVariants}
             initial="hidden"
             animate="visible"
           >
-            <motion.div className="space-y-8 text-center md:text-left" variants={itemVariants}>
+            <motion.div className="space-y-8 relative z-10" variants={itemVariants}>
               <motion.div 
                 className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary"
                 whileHover={{ scale: 1.05 }}
@@ -80,7 +80,7 @@ export default function Home() {
                   {PROFILE.name}
                 </motion.h1>
                 <motion.p 
-                  className="text-xl text-muted-foreground max-w-xl mx-auto md:mx-0"
+                  className="text-xl text-muted-foreground max-w-2xl"
                   variants={itemVariants}
                 >
                   {PROFILE.bio}
@@ -88,47 +88,50 @@ export default function Home() {
               </div>
 
               <motion.div 
-                className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start"
+                className="flex flex-col sm:flex-row gap-4 relative z-20"
                 variants={itemVariants}
               >
                 <Link href="/contact">
-                  <Button size="lg" className="group w-full sm:w-auto">
-                    Get in Touch
-                    <Network className="ml-2 transition-transform group-hover:scale-110" />
-                  </Button>
+                  <a className="block w-full sm:w-auto">
+                    <Button size="lg" className="group w-full">
+                      Get in Touch
+                      <Network className="ml-2 transition-transform group-hover:scale-110" />
+                    </Button>
+                  </a>
                 </Link>
                 <Link href="/projects">
-                  <Button size="lg" variant="outline" className="group w-full sm:w-auto">
-                    View Projects
-                    <Database className="ml-2 transition-transform group-hover:scale-110" />
-                  </Button>
+                  <a className="block w-full sm:w-auto">
+                    <Button size="lg" variant="outline" className="group w-full">
+                      View Projects
+                      <Database className="ml-2 transition-transform group-hover:scale-110" />
+                    </Button>
+                  </a>
                 </Link>
               </motion.div>
 
               <motion.div 
-                className="flex gap-4 justify-center md:justify-start"
+                className="flex gap-4"
                 variants={itemVariants}
               >
                 {[
                   { icon: Github, href: PROFILE.github },
                   { icon: Linkedin, href: PROFILE.linkedin },
                   { icon: Mail, href: `mailto:${PROFILE.email}` }
-                ].map(({ icon: Icon, href }) => (
-                  <Button
+                ].map(({ icon: Icon, href }, index) => (
+                  <motion.a
                     key={href}
-                    variant="ghost"
-                    size="icon"
-                    className="rounded-full hover:bg-primary/20"
-                    asChild
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-full bg-primary/10 p-3 text-primary transition-colors hover:bg-primary/20"
+                    whileHover={{ scale: 1.1, rotate: 5 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: index * 0.1 }}
                   >
-                    <a 
-                      href={href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <Icon className="h-6 w-6" />
-                    </a>
-                  </Button>
+                    <Icon className="h-6 w-6" />
+                  </motion.a>
                 ))}
               </motion.div>
             </motion.div>
@@ -164,66 +167,64 @@ export default function Home() {
       {/* Skills Section */}
       <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <motion.div 
-              className="mb-16 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl font-bold mb-4">AI & ML Expertise</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Specialized in developing cutting-edge AI solutions with a focus on scalability and innovation
-              </p>
-            </motion.div>
+          <motion.div 
+            className="mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold mb-4">AI & ML Expertise</h2>
+            <p className="text-muted-foreground max-w-2xl">
+              Specialized in developing cutting-edge AI solutions with a focus on scalability and innovation
+            </p>
+          </motion.div>
 
-            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
-              {[
-                {
-                  title: "Machine Learning",
-                  icon: Brain,
-                  skills: ["TensorFlow", "PyTorch", "Scikit-learn"],
-                },
-                {
-                  title: "Deep Learning",
-                  icon: Network,
-                  skills: ["Neural Networks", "CNN", "Transformers"],
-                },
-                {
-                  title: "Computer Vision",
-                  icon: Code,
-                  skills: ["OpenCV", "Object Detection", "Image Processing"],
-                },
-                {
-                  title: "MLOps",
-                  icon: Database,
-                  skills: ["CI/CD", "Model Monitoring", "Deployment"],
-                },
-              ].map((category, index) => (
-                <motion.div
-                  key={category.title}
-                  className="relative group"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent rounded-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
-                  <div className="p-6 rounded-lg border bg-card">
-                    <category.icon className="h-12 w-12 mb-4 text-primary" />
-                    <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
-                    <ul className="space-y-2">
-                      {category.skills.map((skill) => (
-                        <li key={skill} className="flex items-center text-muted-foreground">
-                          <Code className="h-4 w-4 mr-2 text-primary" />
-                          {skill}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+          <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+            {[
+              {
+                title: "Machine Learning",
+                icon: Brain,
+                skills: ["TensorFlow", "PyTorch", "Scikit-learn"],
+              },
+              {
+                title: "Deep Learning",
+                icon: Network,
+                skills: ["Neural Networks", "CNN", "Transformers"],
+              },
+              {
+                title: "Computer Vision",
+                icon: Code,
+                skills: ["OpenCV", "Object Detection", "Image Processing"],
+              },
+              {
+                title: "MLOps",
+                icon: Database,
+                skills: ["CI/CD", "Model Monitoring", "Deployment"],
+              },
+            ].map((category, index) => (
+              <motion.div
+                key={category.title}
+                className="relative group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+              >
+                <div className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent rounded-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="p-6 rounded-lg border bg-card">
+                  <category.icon className="h-12 w-12 mb-4 text-primary" />
+                  <h3 className="text-xl font-semibold mb-4">{category.title}</h3>
+                  <ul className="space-y-2">
+                    {category.skills.map((skill) => (
+                      <li key={skill} className="flex items-center text-muted-foreground">
+                        <Code className="h-4 w-4 mr-2 text-primary" />
+                        {skill}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </div>
       </section>
@@ -231,70 +232,68 @@ export default function Home() {
       {/* Featured Work */}
       <section className="py-24 relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-6xl mx-auto">
-            <motion.div 
-              className="mb-16 text-center"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-            >
-              <h2 className="text-3xl font-bold mb-4">Featured Work</h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Explore my latest projects and insights in AI and machine learning
-              </p>
-            </motion.div>
+          <motion.div 
+            className="mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl font-bold mb-4">Featured Work</h2>
+            <p className="text-muted-foreground max-w-2xl">
+              Explore my latest projects and insights in AI and machine learning
+            </p>
+          </motion.div>
 
-            <div className="space-y-16">
-              {/* Projects */}
-              <div>
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl font-semibold">Recent Projects</h3>
-                  <Button variant="ghost" className="group" asChild>
-                    <Link href="/projects">
-                      View All
-                      <Code className="ml-2 transition-transform group-hover:translate-x-1" />
-                    </Link>
+          <div className="space-y-16">
+            {/* Projects */}
+            <div>
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-2xl font-semibold">Recent Projects</h3>
+                <Link href="/projects">
+                  <Button variant="ghost" className="group">
+                    View All
+                    <Code className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
-                </div>
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                  {projects?.slice(0, 3).map((project, index) => (
-                    <motion.div
-                      key={project.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <ProjectCard project={project} />
-                    </motion.div>
-                  ))}
-                </div>
+                </Link>
               </div>
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {projects?.slice(0, 3).map((project, index) => (
+                  <motion.div
+                    key={project.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <ProjectCard project={project} />
+                  </motion.div>
+                ))}
+              </div>
+            </div>
 
-              {/* Blog Posts */}
-              <div>
-                <div className="flex items-center justify-between mb-8">
-                  <h3 className="text-2xl font-semibold">Latest Articles</h3>
-                  <Button variant="ghost" className="group" asChild>
-                    <Link href="/blog">
-                      Read More
-                      <Code className="ml-2 transition-transform group-hover:translate-x-1" />
-                    </Link>
+            {/* Blog Posts */}
+            <div>
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-2xl font-semibold">Latest Articles</h3>
+                <Link href="/blog">
+                  <Button variant="ghost" className="group">
+                    Read More
+                    <Code className="ml-2 transition-transform group-hover:translate-x-1" />
                   </Button>
-                </div>
-                <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                  {blogPosts?.slice(0, 3).map((post, index) => (
-                    <motion.div
-                      key={post.id}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <BlogCard post={post} />
-                    </motion.div>
-                  ))}
-                </div>
+                </Link>
+              </div>
+              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+                {blogPosts?.slice(0, 3).map((post, index) => (
+                  <motion.div
+                    key={post.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                  >
+                    <BlogCard post={post} />
+                  </motion.div>
+                ))}
               </div>
             </div>
           </div>
