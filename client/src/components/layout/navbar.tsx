@@ -21,8 +21,8 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="container mx-auto px-4">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
-          <div className="flex-shrink-0 ml-4"> {/* Added margin for logo */}
+          {/* Logo with half button spacing margin */}
+          <div className="flex-shrink-0 ml-4"> {/* Using ml-4 for half spacing */}
             <Link href="/">
               <motion.a 
                 className="flex items-center space-x-3"
@@ -51,8 +51,8 @@ export default function Navbar() {
             </Link>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex md:items-center">
+          {/* Desktop Navigation - Right aligned with half spacing for contact */}
+          <div className="hidden md:flex md:items-center md:ml-auto">
             <div className="flex items-center space-x-8">
               {NAVIGATION_ITEMS.map((item, index) => (
                 <Link 
@@ -63,8 +63,8 @@ export default function Navbar() {
                     location === item.path
                       ? "text-foreground"
                       : "text-muted-foreground",
-                    // Half spacing for the last item (Contact)
-                    index === NAVIGATION_ITEMS.length - 1 ? "mr-4" : "" // Adjusted margin for Contact button
+                    // Half right margin for Contact button
+                    index === NAVIGATION_ITEMS.length - 1 ? "mr-4" : "" // Using mr-4 for half spacing
                   )}
                 >
                   <motion.a
