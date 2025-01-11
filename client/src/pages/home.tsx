@@ -2,8 +2,25 @@ import { PROFILE, STOCK_IMAGES } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Github, Linkedin, Twitter, Mail, Brain, Network, Database, Code } from "lucide-react";
+import { useQuery } from "@tanstack/react-query";
+import type { Project, BlogPost, Certification } from "@db/schema";
+import ProjectCard from "@/components/projects/project-card";
+import BlogCard from "@/components/blog/blog-card";
+import CertCard from "@/components/certifications/cert-card";
 
 export default function Home() {
+  const { data: projects } = useQuery<Project[]>({
+    queryKey: ["/api/projects"],
+  });
+
+  const { data: blogPosts } = useQuery<BlogPost[]>({
+    queryKey: ["/api/blog-posts"],
+  });
+
+  const { data: certifications } = useQuery<Certification[]>({
+    queryKey: ["/api/certifications"],
+  });
+
   return (
     <div className="bg-background">
       {/* Hero Section */}
@@ -124,6 +141,76 @@ export default function Home() {
           </div>
         </div>
       </section>
-    </div>
+
+      {/* Highlights Section */}
+      <section className="relative py-32">
+        <div className="container">
+          <div className="mx-auto max-w-3xl text-center mb-16">
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl">
+              Latest Highlights
+            </h2>
+            <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
+              Check out my recent projects, blog posts, and certifications in AI and machine learning.
+            </p>
+          </div>
+
+          {/* Latest Projects */}
+          <div className="space-y-16">
+            <div>
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-2xl font-semibold">Featured Projects</h3>
+                <Link href="/projects">
+                  <Button variant="ghost" className="group">
+                    View All Projects
+                    <Code className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {projects?.slice(0, 3).map((project) => (
+                  <ProjectCard key={project.id} project={project} />
+                ))}
+              </div>
+            </div>
+
+            {/* Recent Blog Posts */}
+            <div>
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-2xl font-semibold">Latest Articles</h3>
+                <Link href="/blog">
+                  <Button variant="ghost" className="group">
+                    Read All Articles
+                    <Code className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {blogPosts?.slice(0, 3).map((post) => (
+                  <BlogCard key={post.id} post={post} />
+                ))}
+              </div>
+            </div>
+
+            {/* Recent Certifications */}
+            <div>
+              <div className="flex items-center justify-between mb-8">
+                <h3 className="text-2xl font-semibold">Recent Certifications</h3>
+                <Link href="/certifications">
+                  <Button variant="ghost" className="group">
+                    View All Certifications
+                    <Code className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Button>
+                </Link>
+              </div>
+              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {certifications?.slice(0, 3).map((cert) => (
+                  <CertCard key={cert.id} certification={cert} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      </div>
   );
 }
