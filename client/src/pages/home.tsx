@@ -62,7 +62,7 @@ export default function Home() {
             initial="hidden"
             animate="visible"
           >
-            <motion.div className="space-y-8" variants={itemVariants}>
+            <motion.div className="space-y-8 relative z-10" variants={itemVariants}>
               <motion.div 
                 className="inline-flex items-center rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary"
                 whileHover={{ scale: 1.05 }}
@@ -88,20 +88,24 @@ export default function Home() {
               </div>
 
               <motion.div 
-                className="flex flex-col gap-4 sm:flex-row"
+                className="flex flex-col sm:flex-row gap-4 relative z-20"
                 variants={itemVariants}
               >
                 <Link href="/contact">
-                  <Button size="lg" className="group w-full sm:w-auto">
-                    Get in Touch
-                    <Network className="ml-2 transition-transform group-hover:scale-110" />
-                  </Button>
+                  <a className="block w-full sm:w-auto">
+                    <Button size="lg" className="group w-full">
+                      Get in Touch
+                      <Network className="ml-2 transition-transform group-hover:scale-110" />
+                    </Button>
+                  </a>
                 </Link>
                 <Link href="/projects">
-                  <Button size="lg" variant="outline" className="group w-full sm:w-auto">
-                    View Projects
-                    <Database className="ml-2 transition-transform group-hover:scale-110" />
-                  </Button>
+                  <a className="block w-full sm:w-auto">
+                    <Button size="lg" variant="outline" className="group w-full">
+                      View Projects
+                      <Database className="ml-2 transition-transform group-hover:scale-110" />
+                    </Button>
+                  </a>
                 </Link>
               </motion.div>
 
