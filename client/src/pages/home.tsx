@@ -3,10 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { Github, Linkedin, Twitter, Mail, Brain, Network, Database, Code } from "lucide-react";
 import { useQuery } from "@tanstack/react-query";
-import type { Project, BlogPost, Certification } from "@db/schema";
+import type { Project, BlogPost } from "@db/schema";
 import ProjectCard from "@/components/projects/project-card";
 import BlogCard from "@/components/blog/blog-card";
-import CertCard from "@/components/certifications/cert-card";
 
 export default function Home() {
   const { data: projects } = useQuery<Project[]>({
@@ -15,10 +14,6 @@ export default function Home() {
 
   const { data: blogPosts } = useQuery<BlogPost[]>({
     queryKey: ["/api/blog-posts"],
-  });
-
-  const { data: certifications } = useQuery<Certification[]>({
-    queryKey: ["/api/certifications"],
   });
 
   return (
@@ -150,7 +145,7 @@ export default function Home() {
               Latest Highlights
             </h2>
             <p className="mt-6 text-lg leading-relaxed text-muted-foreground">
-              Check out my recent projects, blog posts, and certifications in AI and machine learning.
+              Check out my recent projects and articles in AI and machine learning.
             </p>
           </div>
 
@@ -190,27 +185,9 @@ export default function Home() {
                 ))}
               </div>
             </div>
-
-            {/* Recent Certifications */}
-            <div>
-              <div className="flex items-center justify-between mb-8">
-                <h3 className="text-2xl font-semibold">Recent Certifications</h3>
-                <Link href="/certifications">
-                  <Button variant="ghost" className="group">
-                    View All Certifications
-                    <Code className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
-                </Link>
-              </div>
-              <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {certifications?.slice(0, 3).map((cert) => (
-                  <CertCard key={cert.id} certification={cert} />
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>
-      </div>
+    </div>
   );
 }

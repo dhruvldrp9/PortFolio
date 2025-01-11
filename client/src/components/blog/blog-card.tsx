@@ -9,7 +9,7 @@ interface BlogCardProps {
 
 export default function BlogCard({ post }: BlogCardProps) {
   return (
-    <Card className="cursor-pointer transition-all hover:shadow-lg">
+    <Card className="cursor-pointer transition-all duration-300 hover:scale-[1.02] hover:shadow-2xl">
       <CardHeader>
         <div className="flex items-center justify-between">
           <Badge>{post.category}</Badge>
