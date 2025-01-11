@@ -17,11 +17,14 @@ export default function Navbar() {
             whileTap={{ scale: 0.95 }}
           >
             <motion.div
-              className="rounded-lg bg-accent/20 p-2 text-accent"
+              className="rounded-lg bg-accent/10 p-2 text-accent"
               whileHover={{ 
+                scale: 1.1,
+                rotate: 5,
                 backgroundColor: "rgb(0, 188, 212)",
-                color: "#102235"
+                color: "#102235",
               }}
+              transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <div className="relative">
                 <Brain className="h-6 w-6" />
