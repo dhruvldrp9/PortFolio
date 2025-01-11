@@ -19,8 +19,8 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 items-center">
-        <div className="flex flex-1 items-center justify-between md:justify-start">
+      <div className="container flex h-16 items-center px-3">
+        <div className="flex flex-1 items-center justify-between">
           {/* Logo */}
           <Link href="/">
             <motion.a 
@@ -50,8 +50,8 @@ export default function Navbar() {
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex md:flex-1 md:items-center md:justify-end">
-            <div className="flex items-center space-x-6 px-6">
+          <div className="hidden md:flex md:items-center">
+            <div className="flex items-center justify-end space-x-6 pr-3">
               {NAVIGATION_ITEMS.map((item) => (
                 <Link key={item.path} href={item.path}>
                   <motion.a
@@ -79,7 +79,7 @@ export default function Navbar() {
           </div>
 
           {/* Mobile Navigation */}
-          <div className="flex md:hidden">
+          <div className="md:hidden">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="ml-2">
