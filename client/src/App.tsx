@@ -1,9 +1,11 @@
-import { Switch, Route } from "wouter";
+import { Switch, Route, useLocation } from "wouter";
 import { QueryClientProvider } from "@tanstack/react-query";
 import { queryClient } from "./lib/queryClient";
+import { AnimatePresence } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
+import PageTransition from "@/components/layout/page-transition";
 import Home from "@/pages/home";
 import Education from "@/pages/education";
 import Projects from "@/pages/projects";
@@ -14,20 +16,56 @@ import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
 
 function Router() {
+  const [location] = useLocation();
+
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
       <main className="flex-1">
-        <Switch>
-          <Route path="/" component={Home} />
-          <Route path="/education" component={Education} />
-          <Route path="/projects" component={Projects} />
-          <Route path="/projects/:id" component={ProjectDetail} />
-          <Route path="/certifications" component={Certifications} />
-          <Route path="/blog" component={Blog} />
-          <Route path="/contact" component={Contact} />
-          <Route component={NotFound} />
-        </Switch>
+        <AnimatePresence mode="wait">
+          <Switch location={location} key={location}>
+            <Route path="/">
+              <PageTransition>
+                <Home />
+              </PageTransition>
+            </Route>
+            <Route path="/education">
+              <PageTransition>
+                <Education />
+              </PageTransition>
+            </Route>
+            <Route path="/projects">
+              <PageTransition>
+                <Projects />
+              </PageTransition>
+            </Route>
+            <Route path="/projects/:id">
+              <PageTransition>
+                <ProjectDetail />
+              </PageTransition>
+            </Route>
+            <Route path="/certifications">
+              <PageTransition>
+                <Certifications />
+              </PageTransition>
+            </Route>
+            <Route path="/blog">
+              <PageTransition>
+                <Blog />
+              </PageTransition>
+            </Route>
+            <Route path="/contact">
+              <PageTransition>
+                <Contact />
+              </PageTransition>
+            </Route>
+            <Route>
+              <PageTransition>
+                <NotFound />
+              </PageTransition>
+            </Route>
+          </Switch>
+        </AnimatePresence>
       </main>
       <Footer />
     </div>
