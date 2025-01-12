@@ -16,7 +16,7 @@ export default defineConfig({
     },
   },
   root: path.resolve(__dirname, "client"),
-  base: '/',
+  base: '/PortFolio/',
   build: {
     outDir: path.resolve(__dirname, "dist/public"),
     emptyOutDir: true,
