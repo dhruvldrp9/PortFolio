@@ -31,7 +31,7 @@ function Router() {
       <main className="flex-1">
         <AnimatePresence mode="wait">
           <Switch>
-            <Route path={`${base}/`}>
+            <Route path={`${base}/PortFolio`}>
               <PageTransition>
                 <Home />
               </PageTransition>
