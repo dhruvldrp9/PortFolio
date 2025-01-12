@@ -31,42 +31,42 @@ function Router() {
       <main className="flex-1">
         <AnimatePresence mode="wait">
           <Switch>
-            <Route path={`${base}/#/PortFolio`}>
+            <Route path={`${base}/PortFolio`}>
               <PageTransition>
                 <Home />
               </PageTransition>
             </Route>
-            <Route path={`${base}/#/education`}>
+            <Route path={`${base}/education`}>
               <PageTransition>
                 <Education />
               </PageTransition>
             </Route>
-            <Route path={`${base}/#/projects`}>
+            <Route path={`${base}/projects`}>
               <PageTransition>
                 <Projects />
               </PageTransition>
             </Route>
-            <Route path={`${base}/#/projects/:id`}>
+            <Route path={`${base}/projects/:id`}>
               <PageTransition>
                 <ProjectDetail />
               </PageTransition>
             </Route>
-            <Route path={`${base}/#/certifications`}>
+            <Route path={`${base}/certifications`}>
               <PageTransition>
                 <Certifications />
               </PageTransition>
             </Route>
-            <Route path={`${base}/#/blog`}>
+            <Route path={`${base}/blog`}>
               <PageTransition>
                 <Blog />
               </PageTransition>
             </Route>
-            <Route path={`${base}/#/blog/:id`}>
+            <Route path={`${base}/blog/:id`}>
               <PageTransition>
                 <BlogDetail />
               </PageTransition>
             </Route>
-            <Route path={`${base}/#/contact`}>
+            <Route path={`${base}/contact`}>
               <PageTransition>
                 <Contact />
               </PageTransition>
