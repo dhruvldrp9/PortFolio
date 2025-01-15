@@ -16,13 +16,23 @@ import Blog from "@/pages/blog";
 import BlogDetail from "@/pages/blog-detail";
 import Contact from "@/pages/contact";
 import NotFound from "@/pages/not-found";
+import React from 'react';
 
 // Get base URL from environment variable or default to '/'
 // Remove trailing slash if present and ensure leading slash
 const base = import.meta.env.VITE_BASE_URL?.replace(/\/$/, '') || '';
 
 function Router() {
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
+  // Check for redirect from 404.html
+  React.useEffect(() => {
+    const redirect = sessionStorage.getItem('redirect');
+    if (redirect) {
+      sessionStorage.removeItem('redirect');
+      // Navigate to the saved path
+      setLocation(redirect);
+    }
+  }, [setLocation]);
 
   return (
     <div className="min-h-screen flex flex-col">

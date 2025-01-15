@@ -2,10 +2,18 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Page Redirect</title>
-    <script type="text/javascript">
-      sessionStorage.redirect = window.location.href;
-      window.location.href = "/PortFolio/";
+    <title>Redirecting...</title>
+    <script>
+      // Get the current path and query string
+      const path = window.location.pathname.slice(1) + window.location.search;
+      // Remove the base path if present (for GitHub Pages project sites)
+      const repository = location.pathname.split('/')[1];
+      const cleanPath = path.startsWith(repository + '/') ? path.slice(repository.length + 1) : path;
+      // Save it in sessionStorage
+      sessionStorage.setItem('redirect', cleanPath);
+      // Redirect to the base URL
+      const baseUrl = location.pathname.includes(repository) ? '/' + repository : '/';
+      window.location.replace(baseUrl);
     </script>
   </head>
   <body>
