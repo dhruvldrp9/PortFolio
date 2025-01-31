@@ -1,0 +1,108 @@
+Create a professional portfolio website with the following pages and features:
+
+Site-wide requirements:
+
+
+Modern, clean design with consistent styling across all pages
+Responsive layout that works well on mobile and desktop
+Navigation menu with smooth transitions
+Footer on each page containing:
+
+Contact information
+Social media links
+Quick navigation links
+Copyright information
+
+
+
+
+Pages structure:
+
+Homepage/About:
+
+Professional headshot/profile image
+Brief compelling bio
+Key skills and expertise
+Professional summary
+Call-to-action for contacting or viewing projects
+
+Education:
+
+Timeline or cards showing educational background
+Institutions attended with dates
+Degrees/majors
+Notable achievements
+Relevant coursework
+
+Projects:
+
+Grid/tile layout for projects
+Each tile should include:
+
+Project thumbnail
+Title
+Brief description
+Technologies used
+
+
+Clicking a tile should open a dedicated project page with:
+
+Detailed project description
+Problem solved
+Technologies and methods used
+Screenshots/demos
+Links to live project/GitHub
+Implementation challenges and solutions
+Navigation back to main projects page
+
+
+
+Certifications:
+
+Grid/tile layout for certificates
+Each tile should contain:
+
+Certificate name
+Issuing organization
+Date achieved
+Brief description
+
+
+Tiles should link directly to certificate provider's verification page
+Add placeholder links that I can update later
+
+Blog:
+
+Clean, readable layout for blog posts
+Categories/tags for easy filtering
+Featured/recent posts section
+Reading time estimates
+Social sharing buttons
+
+Contact:
+
+Professional contact form with:
+
+Name
+Email
+Subject
+Message
+
+
+Direct email link
+Location/timezone information
+Professional social media links
+Expected response time
+
+Technical Requirements:
+
+Use modern web technologies (HTML5, CSS3, JavaScript)
+Implement SEO best practices
+Fast loading times
+Cross-browser compatibility
+Smooth animations/transitions
+Form validation
+Error handling
+Success messages for form submissions
+
+Please include comments in the code for easy customization and maintain a clean, modular structure for future updates.
