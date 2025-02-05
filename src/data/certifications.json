@@ -2,11 +2,35 @@
   "certifications": [
     {
       "id": 1,
-      "name": "Machine Learning Specialization",
-      "organization": "Stanford Online",
-      "date_achieved": "2024-01-01T00:00:00Z",
-      "description": "Comprehensive machine learning certification covering supervised learning, neural networks, and more",
-      "verification_url": "https://verify.stanford.edu/cert/123"
+      "name": "IBM Data Science Professional Certificate",
+      "organization": "Coursera",
+      "date_achieved": "2023-10-23T00:00:00Z",
+      "description": "Completed IBM Data Science Professional Certificate, mastering Python, SQL, and Machine Learning through hands-on projects and cloud-based implementations.",
+      "verification_url": "https://coursera.org/share/b863e033c3cde7b1899af030f177ae6b"
+    },
+    {
+      "id": 2,
+      "name": "IBM Machine Learning Specialization",
+      "organization": "Coursera",
+      "date_achieved": "2023-06-16T00:00:00Z",
+      "description": "IBM's 6-course Professional Certificate in Machine Learning equips learners with expertise in supervised, unsupervised, deep, and reinforcement learning—including time series and survival analysis—through hands-on practice, aligning with AI's 74% annual hiring growth.",
+      "verification_url": "https://coursera.org/share/3144f9679be8ca4ab01859eea0cb0b01"
+    },
+    {
+      "id": 3,
+      "name": "DeepLearning.AI TensorFlow Developer",
+      "organization": "Coursera",
+      "date_achieved": "2023-11-16T00:00:00Z",
+      "description": "DeepLearning.AI's 4-course TensorFlow Developer Professional Certificate hones expertise in neural networks, image recognition with convolutions, NLP systems, and TensorFlow frameworks—key skills for shaping AI-powered innovations.",
+      "verification_url": "https://coursera.org/share/64253777509da5ee42c89e604bc87ba5"
+    },
+    {
+      "id": 4,
+      "name": "DeepLearning.AI Natural Language Processing Specialization",
+      "organization": "Coursera",
+      "date_achieved": "2023-08-17T00:00:00Z",
+      "description": "DeepLearning.AI's 4-course NLP Specialization equips me with classical and cutting-edge deep learning techniques to build systems for translation, sentiment analysis, text summarization, and question-answering—critical skills for advancing AI-driven language innovations.",
+      "verification_url": "https://coursera.org/share/8d772cd312da03c14d11c902f2cfe9e4"
     }
   ]
 }

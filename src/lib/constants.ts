@@ -5,7 +5,7 @@ export const PROFILE = {
   github: "https://github.com/dhruvldrp9",
   linkedin: "https://www.linkedin.com/in/dhruvp9/",
   twitter: undefined,
-  bio: "Passionate AI/ML engineer specializing in deep learning, computer vision, and natural language processing. Experienced in developing and deploying production-ready machine learning models using PyTorch and TensorFlow.",
+  bio: "As an AI & Machine Learning Engineer, I bring a wealth of experience in crafting solutions that span LLM, chatbots, and NLP. My passion lies in unravelling complex data to create intuitive applications that truly resonate with users. From refining algorithms to deploying models, I thrive on transforming ideas into impactful realities. Continuously curious and committed to innovation, I stay ahead of industry trends to deliver scalable, efficient solutions that make a difference.",
   location: "Gandhinagar, India",
   timezone: "Asia/Kolkata"
 };
@@ -30,35 +30,35 @@ export const STOCK_IMAGES = {
   ]
 };
 
-export const EDUCATION = [
-  {
-    institution: "University of Technology",
-    degree: "Master of Science in Artificial Intelligence",
-    dates: "2018 - 2020",
-    achievements: [
-      "Published research on Deep Reinforcement Learning",
-      "Best Thesis Award in AI Applications"
-    ],
-    coursework: [
-      "Deep Learning",
-      "Computer Vision",
-      "Natural Language Processing",
-      "Reinforcement Learning"
-    ]
-  },
-  {
-    institution: "Tech College",
-    degree: "Bachelor of Computer Science",
-    dates: "2014 - 2018",
-    achievements: [
-      "AI/ML Research Assistant",
-      "Published paper on Neural Networks"
-    ],
-    coursework: [
-      "Machine Learning Fundamentals",
-      "Statistical Learning",
-      "Python for Data Science",
-      "Mathematics for ML"
-    ]
-  }
-];
+// export const EDUCATION = [
+//   {
+//     institution: "University of Technology",
+//     degree: "Master of Science in Artificial Intelligence",
+//     dates: "2018 - 2020",
+//     achievements: [
+//       "Published research on Deep Reinforcement Learning",
+//       "Best Thesis Award in AI Applications"
+//     ],
+//     coursework: [
+//       "Deep Learning",
+//       "Computer Vision",
+//       "Natural Language Processing",
+//       "Reinforcement Learning"
+//     ]
+//   },
+//   {
+//     institution: "Tech College",
+//     degree: "Bachelor of Computer Science",
+//     dates: "2014 - 2018",
+//     achievements: [
+//       "AI/ML Research Assistant",
+//       "Published paper on Neural Networks"
+//     ],
+//     coursework: [
+//       "Machine Learning Fundamentals",
+//       "Statistical Learning",
+//       "Python for Data Science",
+//       "Mathematics for ML"
+//     ]
+//   }
+// ];

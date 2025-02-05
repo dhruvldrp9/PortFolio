@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Contact Information */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-accent to-foreground bg-clip-text text-transparent">
+            <h3 className="text-lg font-semibold bg-gradient-to-r from-foreground to-foreground bg-clip-text text-transparent">
               Contact
             </h3>
             <ul className="space-y-3">
@@ -39,7 +39,7 @@ export default function Footer() {
 
           {/* Social Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-accent to-foreground bg-clip-text text-transparent">
+            <h3 className="text-lg font-semibold bg-gradient-to-r from-foreground to-foreground bg-clip-text text-transparent">
               Connect
             </h3>
             <ul className="space-y-3">
@@ -70,7 +70,7 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-accent to-foreground bg-clip-text text-transparent">
+            <h3 className="text-lg font-semibold bg-gradient-to-r from-foreground to-foreground bg-clip-text text-transparent">
               Quick Links
             </h3>
             <ul className="space-y-3">
@@ -94,7 +94,7 @@ export default function Footer() {
 
           {/* Call to Action */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-accent to-foreground bg-clip-text text-transparent">
+            <h3 className="text-lg font-semibold bg-gradient-to-r from-foreground to-foreground bg-clip-text text-transparent">
               Get in Touch
             </h3>
             <p className="text-sm text-muted-foreground">

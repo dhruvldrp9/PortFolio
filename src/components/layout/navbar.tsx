@@ -48,7 +48,7 @@ export default function Navbar() {
                       <Cpu className="absolute -bottom-1 -right-1 h-4 w-4 text-foreground" />
                     </div>
                   </motion.div>
-                  <span className="text-xl font-bold bg-gradient-to-r from-accent via-foreground to-foreground/90 bg-clip-text text-transparent">
+                  <span className="text-xl font-bold bg-gradient-to-r from-foreground via-foreground to-foreground/90 bg-clip-text text-transparent">
                     AI Engineer
                   </span>
                 </motion.div>

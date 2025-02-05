@@ -2,17 +2,51 @@
   "education": [
     {
       "id": 1,
-      "institution": "Stanford University",
-      "degree": "MS in Computer Science",
-      "dates": "2022-2024",
+      "institution": "National Forensic Sciences University, Goa",
+      "degree": "M. Tech in Artificial Intelligence and Data Science(Specialized in Cyber Security)",
+      "dates": "2024-2026(On-going)",
       "achievements": [
-        "Published research paper on reinforcement learning",
-        "Teaching Assistant for AI courses"
+        "Working on research paper 'Data Science Approch in Chemometrics and Spectroscopic Analysis of Cling Films'",
+        "AI assistant to FAQs for NFSU Students and Faculties"
       ],
       "coursework": [
-        "Advanced Machine Learning",
+        "Mathematical and Computational Foundation for Artificial Intelligence",
+        "Network Security and Forensic",
+        "Incident Response and Audit Compliances",
+        "Data Science and Machine learning",
+        "Forensic Science and Cyber Law",
+        "Advanced Machine Learning for Cyber Security and Forensics",
+        "Mobile Security and Forensic",
         "Natural Language Processing",
-        "Computer Vision"
+        "Intelligent System and Security",
+        "Blockchain Security and Investigation"
+      ]
+    },
+    {
+      "id": 2,
+      "institution": "LDRP Institute of Technology and Research, Gandhinagar",
+      "degree": "B.E. in Information Technology",
+      "dates": "2020-2024",
+      "achievements": [
+      "Led the technical team at Xenesis, LDRP's flagship technology event, demonstrating leadership and event management skills.",
+      "Developed DocuQuest - A document query system using vector embeddings and Supabase for efficient information retrieval from PDFs.",
+      "Created Google Meet Bot - An automated Python solution for meeting attendance, recording, and AI-powered analysis including summary generation and sentiment analysis."
+      ],
+      "coursework": [
+      "Data Structures & Algorithms",
+      "Database Management Systems",
+      "Computer Organization & Architecture",
+      "Operating Systems",
+      "Object Oriented Programming using Java",
+      "Software Engineering",
+      "Service Oriented Architecture",
+      "Data Communication and Networking",
+      "Artificial Intelligence",
+      "Information Security",
+      "Web Data Management",
+      "Cyber Security",
+      "Internet of Things",
+      "Distributed and Parallel Computing"
       ]
     }
   ]

@@ -45,7 +45,7 @@ export default function TimelineItem({
           </ul>
         </div>
         <div className="mt-4">
-          <h5 className="font-medium">Relevant Coursework</h5>
+          <h5 className="font-medium">Skills Gained</h5>
           <ul className="mt-2 list-inside list-disc">
             {coursework.map((course) => (
               <li key={course}>{course}</li>

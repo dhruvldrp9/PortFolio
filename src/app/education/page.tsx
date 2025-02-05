@@ -1,4 +1,4 @@
-import { EDUCATION } from "@/lib/constants";
+import { education } from "../../data/education.json";
 import TimelineItem from "@/components/education/timeline-item";
 import Heading from "@/components/ui/heading";
 
@@ -9,7 +9,7 @@ export default function Education() {
         <Heading>Education</Heading>
         <div className="relative">
           <div className="absolute left-4 top-0 h-full w-0.5 bg-border md:left-8" />
-          {EDUCATION.map((item) => (
+          {education.map((item) => (
             <TimelineItem
               key={item.institution}
               institution={item.institution}
