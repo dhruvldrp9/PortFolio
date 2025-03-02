@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -32,53 +33,52 @@ export default function BlogPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="mb-10"
+          className="mb-8"
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gradient-primary">Blog</h1>
           <p className="text-lg text-muted-foreground max-w-3xl">
-            Exploring the fascinating worlds of AI, cybersecurity, and the ever-evolving tech landscape.
+            Insights and articles on AI, cybersecurity, and technology trends.
           </p>
         </motion.div>
 
-        <div className="mb-10">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="relative flex-grow">
-              <Input
-                placeholder="Search articles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="pl-10"
-              />
-              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-            </div>
-            <div className="flex gap-2">
+        <div className="mb-10 flex flex-col md:flex-row gap-4">
+          <div className="relative flex-grow">
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
+            <Input
+              type="text"
+              placeholder="Search articles..."
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              className="pl-10 w-full bg-card/60 backdrop-blur-sm border-muted"
+            />
+          </div>
+          <div className="flex gap-2 flex-wrap">
+            <Button
+              variant={selectedCategory === null ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedCategory(null)}
+              className="flex items-center gap-1"
+            >
+              <Tag className="w-4 h-4" />
+              All
+            </Button>
+            {categories.map((category) => (
               <Button
-                variant={selectedCategory === null ? "default" : "outline"}
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
                 size="sm"
-                onClick={() => setSelectedCategory(null)}
-                className="flex items-center"
+                onClick={() => setSelectedCategory(category)}
+                className="flex items-center gap-1"
               >
-                <Book className="mr-2 h-4 w-4" />
-                All
+                {category === "AI" ? <Book className="w-4 h-4" /> : <Shield className="w-4 h-4" />}
+                {category}
               </Button>
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category)}
-                  className="flex items-center"
-                >
-                  <Tag className="mr-2 h-4 w-4" />
-                  {category}
-                </Button>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
 
         {filteredPosts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             {filteredPosts.map((post) => (
               <motion.div
                 key={post.id}
@@ -86,12 +86,12 @@ export default function BlogPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <BlogCard post={post} /> {/* Assuming BlogCard handles rendering without images */}
+                <BlogCard post={post} />
               </motion.div>
             ))}
           </div>
         ) : (
-          <div className="text-center py-20">
+          <div className="text-center py-20 bg-card/30 backdrop-blur-sm rounded-lg">
             <h3 className="text-xl font-medium mb-2">No articles found</h3>
             <p className="text-muted-foreground">Try adjusting your search or filters</p>
           </div>
