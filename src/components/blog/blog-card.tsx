@@ -1,56 +1,54 @@
 
 import React from "react";
 import Link from "next/link";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Calendar, Clock, Tag } from "lucide-react";
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { motion } from "framer-motion";
 
 interface BlogCardProps {
   post: {
-    id: string;
+    id: number;
     title: string;
     excerpt: string;
-    date: string;
-    readTime: string;
+    content: string;
     category: string;
+    tags: string[];
+    reading_time: number;
+    created_at: string;
     image?: string;
   };
 }
 
 export default function BlogCard({ post }: BlogCardProps) {
   return (
-    <Card className="overflow-hidden border border-border/40 bg-card/60 backdrop-blur-sm h-full flex flex-col group transition-all duration-300 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
-      <Link href={`/blog/${post.id}`} className="flex flex-col h-full">
-        <div className="h-48 sm:h-56 w-full overflow-hidden rounded-t-lg">
+    <Link href={`/blog/${post.id}`}>
+      <Card className="overflow-hidden h-full hover:shadow-lg transition-shadow duration-300 border-neutral-200 dark:border-neutral-800 bg-white/50 dark:bg-neutral-900/50 backdrop-blur-sm">
+        <div className="overflow-hidden h-48">
           <img
             src={post.image || "/attached_assets/GoogleMeetBot.jpeg"}
             alt={post.title}
-            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
           />
         </div>
-        <CardHeader className="p-5">
-          <div className="flex items-center gap-3 text-sm text-muted-foreground mb-2">
-            <div className="flex items-center">
-              <Calendar className="h-3 w-3 mr-1" />
-              {post.date}
-            </div>
-            <div className="flex items-center">
-              <Clock className="h-3 w-3 mr-1" />
-              {post.readTime}
-            </div>
+        <CardContent className="pt-6">
+          <div className="flex items-center mb-2">
+            <Tag className="w-4 h-4 mr-1 text-primary" />
+            <span className="text-xs text-primary font-medium">{post.category}</span>
           </div>
-          <CardTitle className="line-clamp-2 text-xl font-bold">
-            {post.title}
-          </CardTitle>
-          <CardDescription className="line-clamp-3 mt-2">
-            {post.excerpt}
-          </CardDescription>
-        </CardHeader>
-        <CardFooter className="mt-auto p-5 pt-0">
-          <span className="text-primary font-medium text-sm group-hover:underline">
-            Read more
-          </span>
+          <h3 className="font-bold text-xl mb-2 line-clamp-2">{post.title}</h3>
+          <p className="text-muted-foreground line-clamp-3">{post.excerpt}</p>
+        </CardContent>
+        <CardFooter className="flex justify-between text-xs text-muted-foreground pt-0">
+          <div className="flex items-center">
+            <Calendar className="w-3 h-3 mr-1" />
+            <span>{new Date(post.created_at).toLocaleDateString()}</span>
+          </div>
+          <div className="flex items-center">
+            <Clock className="w-3 h-3 mr-1" />
+            <span>{post.reading_time} min read</span>
+          </div>
         </CardFooter>
-      </Link>
-    </Card>
+      </Card>
+    </Link>
   );
 }

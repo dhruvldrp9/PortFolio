@@ -18,7 +18,7 @@ export default function BlogPostPage() {
 
   useEffect(() => {
     // Find the post with the matching ID
-    const foundPost = blogPosts.find(post => post.id === id);
+    const foundPost = blogPosts.find(post => post.id.toString() === id);
     setPost(foundPost);
     setIsLoading(false);
   }, [id]);
@@ -69,19 +69,19 @@ export default function BlogPostPage() {
               </Button>
             </Link>
 
-            <div className="flex flex-wrap gap-3 mb-6">
-              <span className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm flex items-center">
-                <Tag className="mr-1 h-3 w-3" />
-                {post.category}
-              </span>
-              <span className="px-3 py-1 bg-muted/30 text-muted-foreground rounded-full text-sm flex items-center">
-                <Calendar className="mr-1 h-3 w-3" />
-                {post.date}
-              </span>
-              <span className="px-3 py-1 bg-muted/30 text-muted-foreground rounded-full text-sm flex items-center">
-                <Clock className="mr-1 h-3 w-3" />
-                {post.readTime}
-              </span>
+            <div className="flex items-center mb-4 text-sm text-muted-foreground">
+              <div className="flex items-center mr-4">
+                <Calendar className="w-4 h-4 mr-1" />
+                <span>{new Date(post.created_at).toLocaleDateString()}</span>
+              </div>
+              <div className="flex items-center mr-4">
+                <Clock className="w-4 h-4 mr-1" />
+                <span>{post.reading_time} min read</span>
+              </div>
+              <div className="flex items-center">
+                <Tag className="w-4 h-4 mr-1" />
+                <span>{post.category}</span>
+              </div>
             </div>
 
             <div className="mb-10 rounded-xl overflow-hidden">
@@ -95,9 +95,23 @@ export default function BlogPostPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
 
             <div className="prose prose-lg dark:prose-invert max-w-none">
-              {post.content.split('\n\n').map((paragraph: string, idx: number) => (
-                <p key={idx} className="mb-4">{paragraph}</p>
+              {post.content.split('\n\n').map((paragraph: string, index: number) => (
+                <p key={index}>{paragraph}</p>
               ))}
+            </div>
+
+            <div className="mt-12 pt-8 border-t border-border">
+              <h3 className="text-xl font-bold mb-4">Tags</h3>
+              <div className="flex flex-wrap gap-2">
+                {post.tags.map((tag: string, index: number) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 bg-secondary text-secondary-foreground rounded-full text-sm"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
             </div>
           </motion.div>
         </div>

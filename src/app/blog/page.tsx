@@ -41,39 +41,40 @@ export default function BlogPage() {
           </p>
         </motion.div>
 
-        <div className="mb-10 flex flex-col md:flex-row gap-4 items-start">
-          <div className="relative w-full md:w-auto flex-1 mb-4 md:mb-0">
-            <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search articles..."
-              className="pl-10"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-            />
-          </div>
-          
-          <div className="flex flex-wrap gap-2">
-            <Button
-              variant={selectedCategory === null ? "default" : "outline"}
-              size="sm"
-              onClick={() => setSelectedCategory(null)}
-              className="flex items-center gap-1"
-            >
-              <Book className="h-4 w-4" />
-              All
-            </Button>
-            {categories.map((category) => (
+        <div className="mb-10">
+          <div className="flex flex-col md:flex-row gap-4">
+            <div className="relative flex-grow">
+              <Input
+                placeholder="Search articles..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10"
+              />
+              <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+            </div>
+            <div className="flex gap-2">
               <Button
-                key={category}
-                variant={selectedCategory === category ? "default" : "outline"}
+                variant={selectedCategory === null ? "default" : "outline"}
                 size="sm"
-                onClick={() => setSelectedCategory(category)}
-                className="flex items-center gap-1"
+                onClick={() => setSelectedCategory(null)}
+                className="flex items-center"
               >
-                <Tag className="h-4 w-4" />
-                {category}
+                <Book className="mr-2 h-4 w-4" />
+                All
               </Button>
-            ))}
+              {categories.map((category) => (
+                <Button
+                  key={category}
+                  variant={selectedCategory === category ? "default" : "outline"}
+                  size="sm"
+                  onClick={() => setSelectedCategory(category)}
+                  className="flex items-center"
+                >
+                  <Tag className="mr-2 h-4 w-4" />
+                  {category}
+                </Button>
+              ))}
+            </div>
           </div>
         </div>
 
