@@ -540,21 +540,45 @@ export default function Home() {
                   </Link>
                 </motion.div>
               </div>
-              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {projects?.slice(0, 3).map((project, index) => (
-                  <motion.div
-                    key={project.id}
-                    variants={scaleInVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-                  >
-                    <ProjectCard project={project} />
-                  </motion.div>
-                ))}
-              </div>
+              
+              {/* Projects Slider */}
+              <motion.div
+                className="overflow-hidden"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <motion.div
+                  className="flex space-x-6 py-4 px-2 overflow-x-auto pb-6 scrollbar-hide"
+                  initial={{ x: 100 }}
+                  whileInView={{ x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 60,
+                    damping: 20 
+                  }}
+                >
+                  {projects?.slice(0, 6).map((project, index) => (
+                    <motion.div
+                      key={project.id}
+                      className="w-full sm:w-[350px] flex-shrink-0"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ 
+                        scale: 1.03, 
+                        boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                        transition: { duration: 0.2 } 
+                      }}
+                    >
+                      <ProjectCard project={project} />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </motion.div>
             </div>
 
             {/* Blog Posts */}
@@ -583,21 +607,45 @@ export default function Home() {
                   </Link>
                 </motion.div>
               </div>
-              <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                {blogPosts?.slice(0, 3).map((post, index) => (
-                  <motion.div
-                    key={post.id}
-                    variants={scaleInVariants}
-                    initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ scale: 1.03, transition: { duration: 0.2 } }}
-                  >
-                    <BlogCard post={post} />
-                  </motion.div>
-                ))}
-              </div>
+              
+              {/* Articles Slider */}
+              <motion.div
+                className="overflow-hidden rounded-xl"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5 }}
+              >
+                <motion.div
+                  className="flex space-x-6 py-4 px-2 overflow-x-auto pb-6 scrollbar-hide"
+                  initial={{ x: -100 }}
+                  whileInView={{ x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ 
+                    type: "spring", 
+                    stiffness: 60,
+                    damping: 20 
+                  }}
+                >
+                  {blogPosts?.slice(0, 6).map((post, index) => (
+                    <motion.div
+                      key={post.id}
+                      className="w-full sm:w-[350px] flex-shrink-0"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ 
+                        scale: 1.03, 
+                        boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                        transition: { duration: 0.2 } 
+                      }}
+                    >
+                      <BlogCard post={post} />
+                    </motion.div>
+                  ))}
+                </motion.div>
+              </motion.div>
             </div>
           </div>
         </div>
