@@ -1,7 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ExternalLink, Github, Tag } from "lucide-react";
@@ -27,9 +26,8 @@ export default function ProjectDetails() {
         // Find related projects (same category, excluding current)
         const related = projects
           .filter(
-            (p) => 
-              p.id.toString() !== id.toString() && 
-              p.category === currentProject.category
+            (p) =>
+              p.id.toString() !== id.toString() && p.category === currentProject.category
           )
           .slice(0, 3);
 
@@ -58,10 +56,7 @@ export default function ProjectDetails() {
   return (
     <div className="bg-background min-h-screen pb-20">
       <div className="container mx-auto px-4 py-16">
-        <PageBackground 
-          title={project.title}
-          subtitle={project.summary}
-        />
+        <PageBackground title={project.title} subtitle={project.summary} />
 
         <div className="mt-16 space-y-12">
           {/* Back Button */}
@@ -73,17 +68,19 @@ export default function ProjectDetails() {
           </Link>
 
           {/* Project Image */}
-          <Card className="overflow-hidden relative border border-border/50 rounded-lg bg-card/60 backdrop-blur-sm">
-            <div className="aspect-video relative w-full overflow-hidden">
-              <Image
-                src={project.image}
-                alt={project.title}
-                fill
-                className="object-cover"
-                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              />
-            </div>
-          </Card>
+          {project.image && (
+            <Card className="overflow-hidden relative border border-border/50 rounded-lg bg-card/60 backdrop-blur-sm">
+              <div className="aspect-video relative w-full overflow-hidden">
+                <Image
+                  src={project.image}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                />
+              </div>
+            </Card>
+          )}
 
           {/* Project Content */}
           <div className="grid md:grid-cols-[2fr_1fr] gap-8">
@@ -97,17 +94,19 @@ export default function ProjectDetails() {
               </section>
 
               {/* Features */}
-              <section>
-                <h2 className="text-2xl font-bold mb-4">Key Features</h2>
-                <ul className="grid gap-3 text-muted-foreground">
-                  {project.features.map((feature: string, index: number) => (
-                    <li key={index} className="flex items-start gap-2">
-                      <span className="text-primary mt-1">•</span>
-                      <span>{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              </section>
+              {project.features && (
+                <section>
+                  <h2 className="text-2xl font-bold mb-4">Key Features</h2>
+                  <ul className="grid gap-3 text-muted-foreground">
+                    {project.features.map((feature: string, index: number) => (
+                      <li key={index} className="flex items-start gap-2">
+                        <span className="text-primary mt-1">•</span>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </section>
+              )}
 
               {/* Challenges */}
               {project.challenges && (
@@ -139,27 +138,25 @@ export default function ProjectDetails() {
                 )}
 
                 {/* Technologies */}
-                <div className="relative">
-                  <h3 className="text-sm font-medium text-muted-foreground mb-2">Technologies Used</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech: string, index: number) => (
-                      <Badge 
-                        key={index}
-                        variant="secondary"
-                        className="bg-muted/50"
-                      >
-                        {tech}
-                      </Badge>
-                    ))}
+                {project.technologies && (
+                  <div className="relative">
+                    <h3 className="text-sm font-medium text-muted-foreground mb-2">Technologies Used</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech: string, index: number) => (
+                        <Badge key={index} variant="secondary" className="bg-muted/50">
+                          {tech}
+                        </Badge>
+                      ))}
+                    </div>
                   </div>
-                </div>
+                )}
 
                 {/* Project Links */}
                 <div className="space-y-3 pt-2">
                   {project.github && (
-                    <a 
-                      href={project.github} 
-                      target="_blank" 
+                    <a
+                      href={project.github}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
@@ -170,9 +167,9 @@ export default function ProjectDetails() {
                   )}
 
                   {project.demo && (
-                    <a 
-                      href={project.demo} 
-                      target="_blank" 
+                    <a
+                      href={project.demo}
+                      target="_blank"
                       rel="noopener noreferrer"
                       className="flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground transition-colors"
                     >
@@ -192,9 +189,7 @@ export default function ProjectDetails() {
               <h2 className="text-2xl font-bold mb-8">Related Projects</h2>
               <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 relative z-0">
                 {relatedProjects.map((related) => (
-                  <div key={related.id}>
-                    <ProjectCard project={related} />
-                  </div>
+                  related && <div key={related.id}><ProjectCard project={related} /></div>
                 ))}
               </div>
             </section>
