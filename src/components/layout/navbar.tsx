@@ -1,4 +1,3 @@
-
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -12,7 +11,6 @@ import {
   Shield,
   X,
 } from "lucide-react";
-import { NAVIGATION_ITEMS, PROFILE } from "@/lib/constants";
 import {
   Sheet,
   SheetContent,
@@ -22,6 +20,7 @@ import {
 } from "@/components/ui/sheet";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { NAVIGATION_ITEMS, PROFILE } from "@/lib/constants";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -52,55 +51,57 @@ export default function Navbar() {
     >
       <div className="container px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
-          <Link
-            href="/"
-            className="flex items-center gap-2 transition-transform hover:scale-105"
-          >
-            <motion.div
-              className="rounded-full bg-primary/10 p-1"
-              animate={{
-                rotate: [0, 10, 0, -10, 0],
-              }}
-              transition={{
-                duration: 5,
-                repeat: Infinity,
-                repeatType: "loop",
-                ease: "easeInOut",
-              }}
+          <div className="flex items-center gap-6">
+            <Link
+              href="/"
+              className="flex items-center gap-2 transition-transform hover:scale-105"
             >
-              <Brain className="h-6 w-6 text-primary" />
-            </motion.div>
-            <span className="text-xl font-bold tracking-tight">
-              {PROFILE.name}
-            </span>
-          </Link>
-
-          <nav className="hidden md:flex items-center space-x-1 mx-4">
-            {NAVIGATION_ITEMS.map((item) => (
-              <Link
-                key={item.path}
-                href={item.path}
-                className={`relative px-3 py-2 text-sm font-medium ${
-                  pathname === item.path
-                    ? "text-foreground"
-                    : "text-muted-foreground"
-                } transition-colors hover:text-foreground`}
+              <motion.div
+                className="rounded-full bg-primary/10 p-1"
+                animate={{
+                  rotate: [0, 10, 0, -10, 0],
+                }}
+                transition={{
+                  duration: 5,
+                  repeat: Infinity,
+                  repeatType: "loop",
+                  ease: "easeInOut",
+                }}
               >
-                {item.label}
-                {pathname === item.path && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
-                    layoutId="navbar-indicator"
-                    transition={{
-                      type: "spring",
-                      stiffness: 500,
-                      damping: 30,
-                    }}
-                  />
-                )}
-              </Link>
-            ))}
-          </nav>
+                <Brain className="h-6 w-6 text-primary" />
+              </motion.div>
+              <span className="text-xl font-bold tracking-tight">
+                {PROFILE.name}
+              </span>
+            </Link>
+
+            <nav className="hidden md:flex items-center space-x-1">
+              {NAVIGATION_ITEMS.map((item) => (
+                <Link
+                  key={item.path}
+                  href={item.path}
+                  className={`relative px-3 py-2 text-sm font-medium ${
+                    pathname === item.path
+                      ? "text-foreground"
+                      : "text-muted-foreground"
+                  } transition-colors hover:text-foreground`}
+                >
+                  {item.label}
+                  {pathname === item.path && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary"
+                      layoutId="navbar-indicator"
+                      transition={{
+                        type: "spring",
+                        stiffness: 500,
+                        damping: 30,
+                      }}
+                    />
+                  )}
+                </Link>
+              ))}
+            </nav>
+          </div>
 
           <div className="flex items-center gap-2">
             <motion.a
@@ -158,14 +159,22 @@ export default function Navbar() {
                 <nav className="mt-8">
                   <ul className="grid gap-5">
                     {NAVIGATION_ITEMS.map((item) => (
-                      <motion.li 
+                      <motion.li
                         key={item.path}
                         whileHover={{ x: 5 }}
-                        transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                        transition={{
+                          type: "spring",
+                          stiffness: 300,
+                          damping: 30,
+                        }}
                       >
                         <Link
                           href={item.path}
-                          className={`text-base font-medium ${pathname === item.path ? 'text-foreground' : 'text-muted-foreground'} transition-colors hover:text-foreground`}
+                          className={`text-base font-medium ${
+                            pathname === item.path
+                              ? "text-foreground"
+                              : "text-muted-foreground"
+                          } transition-colors hover:text-foreground`}
                         >
                           {item.label}
                           {pathname === item.path && (

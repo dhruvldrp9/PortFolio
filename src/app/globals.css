@@ -61,25 +61,39 @@ code, pre {
   }
 
   :root {
-    --background: 240 10% 3.9%;
-    --foreground: 0 0% 98%;
-    --muted: 240 3.7% 15.9%;
-    --muted-foreground: 240 5% 64.9%;
-    --popover: 240 10% 3.9%;
-    --popover-foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
-    --card-foreground: 0 0% 98%;
-    --border: 240 3.7% 15.9%;
-    --input: 240 3.7% 15.9%;
-    --primary: 235 66% 30%;
-    --primary-foreground: 224 38% 98%;
-    --secondary: 240 3.7% 15.9%;
-    --secondary-foreground: 0 0% 98%;
-    --accent: 240 3.7% 15.9%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 0 0% 98%;
-    --ring: 240 4.9% 83.9%;
+    --background: #0c1220;
+    --foreground: #e2e8f0;
+
+    --card: #0f172a;
+    --card-foreground: #f8fafc;
+
+    --popover: #0f172a;
+    --popover-foreground: #f8fafc;
+
+    --primary: #0070f3;
+    --primary-foreground: #f8fafc;
+
+    --secondary: #1e293b;
+    --secondary-foreground: #94a3b8;
+
+    --muted: #1e293b;
+    --muted-foreground: #94a3b8;
+
+    --accent: #10b981;
+    --accent-foreground: #f8fafc;
+
+    --destructive: #ef4444;
+    --destructive-foreground: #f8fafc;
+
+    --border: #1e293b;
+    --input: #1e293b;
+    --ring: #4b5563;
+
+    --radius: 0.5rem;
+  }
+
+  .container {
+    max-width: 90rem;
   }
 }
 
