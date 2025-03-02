@@ -363,7 +363,7 @@ export default function Home() {
             </motion.h2>
           </motion.div>
 
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-7xl mx-auto">
             <motion.div
               className="bg-card/60 backdrop-blur-sm border border-border/50 rounded-xl p-10 shadow-lg"
               initial={{ opacity: 0, y: 20 }}
@@ -593,7 +593,7 @@ export default function Home() {
                 </motion.div>
               </div>
               
-              {/* Projects Grid - Fixed */}
+              {/* Projects Grid - Fixed - Single Row */}
               <motion.div
                 className="mt-6"
                 initial={{ opacity: 0 }}
@@ -601,8 +601,8 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {projects?.slice(0, 6).map((project, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {projects?.slice(0, 3).map((project, index) => (
                     <motion.div
                       key={`${project.id}-${index}`}
                       initial={{ opacity: 0, y: 20 }}
@@ -649,7 +649,7 @@ export default function Home() {
                 </motion.div>
               </div>
               
-              {/* Articles Grid - Fixed */}
+              {/* Articles Grid - Fixed - Single Row */}
               <motion.div
                 className="mt-6"
                 initial={{ opacity: 0 }}
@@ -657,8 +657,8 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {blogPosts?.slice(0, 6).map((post, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                  {blogPosts?.slice(0, 3).map((post, index) => (
                     <motion.div
                       key={`${post.id}-${index}`}
                       initial={{ opacity: 0, y: 20 }}
