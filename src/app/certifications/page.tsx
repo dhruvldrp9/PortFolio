@@ -1,99 +1,75 @@
-import CertCard from "@/components/certifications/cert-card";
-import { Skeleton } from "@/components/ui/skeleton";
-import Heading from "@/components/ui/heading";
-import { certifications } from "../../data/certifications.json";
-
-export default function Certifications() {
-  const isLoading = false;
-
-  return (
-    <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <Heading>Certifications</Heading>
-      {isLoading ? (
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {[...Array(6)].map((_, i) => (
-            <Skeleton key={i} className="h-[200px] rounded-lg" />
-          ))}
-        </div>
-      ) : (
-        <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          {certifications?.map((cert) => (
-            <CertCard key={cert.id} certification={cert} />
-          ))}
-        </div>
-      )}
-    </div>
-  );
-}
 "use client";
 import { motion } from "framer-motion";
 import PageBackground from "@/components/layout/page-background";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Award, Calendar, CheckCircle, ExternalLink, Shield } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { 
+  Award, 
+  Calendar, 
+  ExternalLink, 
+  Shield, 
+  Brain, 
+  Database, 
+  Globe 
+} from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const CERTIFICATIONS = [
   {
-    id: 1,
-    title: "AI Engineering Professional",
+    title: "AI Engineering and Large Language Models",
     issuer: "DeepLearning.AI",
     date: "2023",
-    description: "Advanced course covering all aspects of developing and deploying AI systems at scale.",
-    skills: ["Machine Learning", "Deep Learning", "NLP", "Computer Vision"],
-    category: "AI",
-    url: "#"
+    image: "/ai-cert.png",
+    type: "AI",
+    description: "Advanced concepts in LLM development, fine-tuning, and deployment strategies",
+    link: "#"
   },
   {
-    id: 2,
+    title: "TensorFlow Developer Certification",
+    issuer: "Google",
+    date: "2022",
+    image: "/tensorflow-cert.png",
+    type: "AI",
+    description: "Building and deploying machine learning models using TensorFlow",
+    link: "#"
+  },
+  {
+    title: "Certified Information Systems Security Professional (CISSP)",
+    issuer: "ISC²",
+    date: "2023",
+    image: "/cissp-cert.png",
+    type: "Security",
+    description: "Industry-leading certification for information security professionals",
+    link: "#"
+  },
+  {
     title: "Certified Ethical Hacker (CEH)",
     issuer: "EC-Council",
     date: "2022",
-    description: "Professional certification for security professionals focusing on ethical hacking techniques.",
-    skills: ["Penetration Testing", "Vulnerability Assessment", "Security Tools"],
-    category: "Cybersecurity",
-    url: "#"
+    image: "/ceh-cert.png",
+    type: "Security",
+    description: "Advanced skills in ethical hacking, penetration testing, and security assessments",
+    link: "#"
   },
   {
-    id: 3,
-    title: "Offensive Security Certified Professional (OSCP)",
-    issuer: "Offensive Security",
+    title: "Azure AI Fundamentals",
+    issuer: "Microsoft",
     date: "2022",
-    description: "Hands-on penetration testing certification requiring demonstration of skills in a lab environment.",
-    skills: ["Penetration Testing", "Exploit Development", "Network Security"],
-    category: "Cybersecurity",
-    url: "#"
+    image: "/azure-ai-cert.png",
+    type: "AI",
+    description: "AI concepts, Azure services for machine learning and cognitive services",
+    link: "#"
   },
   {
-    id: 4,
-    title: "TensorFlow Developer Certificate",
-    issuer: "Google",
-    date: "2021",
-    description: "Certification validating expertise in using TensorFlow to solve deep learning problems.",
-    skills: ["TensorFlow", "Neural Networks", "Computer Vision", "NLP"],
-    category: "AI",
-    url: "#"
-  },
-  {
-    id: 5,
     title: "CompTIA Security+",
     issuer: "CompTIA",
-    date: "2020",
-    description: "Foundation-level security certification covering network security, compliance, and operation security.",
-    skills: ["Network Security", "Threat Management", "Cryptography"],
-    category: "Cybersecurity",
-    url: "#"
-  },
-  {
-    id: 6,
-    title: "Microsoft Certified: Azure AI Engineer Associate",
-    issuer: "Microsoft",
     date: "2021",
-    description: "Certification for designing and implementing AI solutions on Microsoft Azure.",
-    skills: ["Azure Cognitive Services", "Machine Learning", "Bot Framework"],
-    category: "AI",
-    url: "#"
-  },
+    image: "/security-plus-cert.png",
+    type: "Security",
+    description: "Foundational cybersecurity skills with emphasis on hands-on practical security",
+    link: "#"
+  }
 ];
 
 export default function Certifications() {
@@ -118,88 +94,73 @@ export default function Certifications() {
     },
   };
 
-  // Group certifications by category
-  const groupedCertifications = CERTIFICATIONS.reduce((acc, cert) => {
-    acc[cert.category] = acc[cert.category] || [];
-    acc[cert.category].push(cert);
-    return acc;
-  }, {} as Record<string, typeof CERTIFICATIONS>);
-
   return (
     <div className="bg-background min-h-screen">
       <div className="container mx-auto px-4 py-16">
         <PageBackground 
-          title="Certifications & Achievements" 
-          subtitle="Professional credentials validating expertise in AI and Cybersecurity"
+          title="Certifications & Credentials" 
+          subtitle="Professional qualifications and industry certifications"
         />
-        
-        <motion.div
-          className="mt-16 space-y-16"
+
+        <motion.div 
+          className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
+          variants={containerVariants}
           initial="hidden"
           animate="visible"
-          variants={containerVariants}
         >
-          {Object.entries(groupedCertifications).map(([category, certifications]) => (
-            <motion.div key={category} variants={itemVariants}>
-              <h2 className="text-2xl font-bold mb-8 flex items-center">
-                {category === "AI" ? (
-                  <Award className="mr-2 h-6 w-6 text-primary" />
-                ) : (
-                  <Shield className="mr-2 h-6 w-6 text-accent" />
-                )}
-                <span className={category === "AI" ? "text-primary" : "text-accent"}>
-                  {category} Certifications
-                </span>
-              </h2>
-              
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-                {certifications.map((cert) => (
-                  <motion.div
-                    key={cert.id}
-                    whileHover={{ y: -5, transition: { duration: 0.2 } }}
-                    variants={itemVariants}
-                  >
-                    <Card className="h-full border border-border/50 bg-card/60 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 overflow-hidden flex flex-col">
-                      <CardHeader>
-                        <div className="flex items-start justify-between mb-2">
-                          <div className="rounded-full bg-primary/10 p-2">
-                            {category === "AI" ? (
-                              <Award className="h-5 w-5 text-primary" />
-                            ) : (
-                              <Shield className="h-5 w-5 text-accent" />
-                            )}
-                          </div>
-                          <Badge variant="outline" className="flex items-center">
-                            <Calendar className="mr-1 h-3 w-3" />
-                            {cert.date}
-                          </Badge>
-                        </div>
-                        <h3 className="text-xl font-medium">{cert.title}</h3>
-                        <p className="text-sm text-muted-foreground">{cert.issuer}</p>
-                      </CardHeader>
-                      <CardContent className="flex-grow">
-                        <p className="text-muted-foreground mb-4">{cert.description}</p>
-                        <div className="flex flex-wrap gap-2 mt-auto">
-                          {cert.skills.map((skill, index) => (
-                            <Badge key={index} variant="secondary" className="flex items-center">
-                              <CheckCircle className="mr-1 h-3 w-3" />
-                              {skill}
-                            </Badge>
-                          ))}
-                        </div>
-                      </CardContent>
-                      <CardFooter>
-                        <Button variant="ghost" asChild className="w-full">
-                          <a href={cert.url} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center">
-                            View Certificate
-                            <ExternalLink className="ml-2 h-4 w-4" />
-                          </a>
-                        </Button>
-                      </CardFooter>
-                    </Card>
-                  </motion.div>
-                ))}
-              </div>
+          {CERTIFICATIONS.map((cert, index) => (
+            <motion.div 
+              key={index}
+              variants={itemVariants} 
+              whileHover={{ y: -5 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Card className="h-full overflow-hidden border border-border/50 bg-card/60 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
+                <CardHeader className="relative pb-0">
+                  <div className="absolute top-4 right-4 rounded-full px-3 py-1 text-xs font-medium bg-muted/80 backdrop-blur-sm">
+                    {cert.type === "AI" ? (
+                      <span className="flex items-center text-primary">
+                        <Brain className="mr-1 h-3 w-3" />
+                        AI & ML
+                      </span>
+                    ) : (
+                      <span className="flex items-center text-accent">
+                        <Shield className="mr-1 h-3 w-3" />
+                        Security
+                      </span>
+                    )}
+                  </div>
+                  <div className="flex items-center justify-center py-6">
+                    <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
+                      {cert.type === "AI" ? (
+                        <Brain className="h-8 w-8 text-primary" />
+                      ) : (
+                        <Shield className="h-8 w-8 text-accent" />
+                      )}
+                    </div>
+                  </div>
+                  <h3 className="text-center text-lg font-semibold leading-tight">{cert.title}</h3>
+                  <div className="mt-2 flex items-center justify-center text-sm text-muted-foreground">
+                    <Globe className="mr-2 h-4 w-4" />
+                    {cert.issuer}
+                  </div>
+                </CardHeader>
+                <CardContent className="pt-4">
+                  <p className="text-sm text-muted-foreground">{cert.description}</p>
+                  <div className="mt-4 inline-flex items-center text-xs text-muted-foreground">
+                    <Calendar className="mr-1 h-3 w-3" />
+                    Issued: {cert.date}
+                  </div>
+                </CardContent>
+                <CardFooter>
+                  <Button asChild variant="outline" className="w-full" size="sm">
+                    <Link href={cert.link} target="_blank">
+                      <ExternalLink className="mr-2 h-4 w-4" />
+                      View Credential
+                    </Link>
+                  </Button>
+                </CardFooter>
+              </Card>
             </motion.div>
           ))}
         </motion.div>
