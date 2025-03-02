@@ -1,3 +1,4 @@
+
 {
   "projects": [
     {
@@ -9,7 +10,8 @@
       "image_url": "https://example.com/ai-image-gen.jpg",
       "github_url": "https://github.com/username/ai-image-gen",
       "live_url": "https://ai-image-gen.demo.com",
-      "created_at": "2024-01-10T10:00:00Z"
+      "category": "AI",
+      "is_live_demo": false
     },
     {
       "id": 2,
@@ -20,7 +22,8 @@
       "image_url": "https://example.com/ai-image-gen.jpg",
       "github_url": "https://github.com/username/ai-image-gen",
       "live_url": "https://ai-image-gen.demo.com",
-      "created_at": "2024-01-10T10:00:00Z"
+      "category": "AI",
+      "is_live_demo": false
     },
     {
       "id": 3,
@@ -31,7 +34,8 @@
       "image_url": "https://example.com/ai-image-gen.jpg",
       "github_url": "https://github.com/username/ai-image-gen",
       "live_url": "https://ai-image-gen.demo.com",
-      "created_at": "2024-01-10T10:00:00Z"
+      "category": "AI",
+      "is_live_demo": false
     },
     {
       "id": 4,
@@ -42,7 +46,8 @@
       "image_url": "https://example.com/ai-image-gen.jpg",
       "github_url": "https://github.com/username/ai-image-gen",
       "live_url": "https://ai-image-gen.demo.com",
-      "created_at": "2024-01-10T10:00:00Z"
+      "category": "Cybersecurity",
+      "is_live_demo": false
     },
     {
       "id": 5,
@@ -53,7 +58,8 @@
       "image_url": "https://example.com/ai-image-gen.jpg",
       "github_url": "https://github.com/username/ai-image-gen",
       "live_url": "https://ai-image-gen.demo.com",
-      "created_at": "2024-01-10T10:00:00Z"
+      "category": "AI",
+      "is_live_demo": false
     },
     {
       "id": 6,
@@ -64,7 +70,8 @@
       "image_url": "https://example.com/ai-image-gen.jpg",
       "github_url": "https://github.com/username/ai-image-gen",
       "live_url": "https://ai-image-gen.demo.com",
-      "created_at": "2024-01-10T10:00:00Z"
+      "category": "AI",
+      "is_live_demo": false
     },
     {
       "id": 7,
@@ -75,7 +82,8 @@
       "image_url": "https://example.com/ai-image-gen.jpg",
       "github_url": "https://github.com/username/ai-image-gen",
       "live_url": "https://ai-image-gen.demo.com",
-      "created_at": "2024-01-10T10:00:00Z"
+      "category": "AI",
+      "is_live_demo": false
     },
     {
       "id": 8,
@@ -86,7 +94,8 @@
       "image_url": "https://example.com/ai-image-gen.jpg",
       "github_url": "https://github.com/username/ai-image-gen",
       "live_url": "https://ai-image-gen.demo.com",
-      "created_at": "2024-01-10T10:00:00Z"
+      "category": "Web",
+      "is_live_demo": false
     },
     {
       "id": 9,
@@ -97,7 +106,8 @@
       "image_url": "https://example.com/ai-image-gen.jpg",
       "github_url": "https://github.com/username/ai-image-gen",
       "live_url": "https://ai-image-gen.demo.com",
-      "created_at": "2024-01-10T10:00:00Z"
+      "category": "Web",
+      "is_live_demo": false
     },
     {
       "id": 10,
@@ -108,7 +118,8 @@
       "image_url": "https://example.com/ai-image-gen.jpg",
       "github_url": "https://github.com/username/ai-image-gen",
       "live_url": "https://ai-image-gen.demo.com",
-      "created_at": "2024-01-10T10:00:00Z"
+      "category": "Cybersecurity",
+      "is_live_demo": false
     },
     {
       "id": 11,
@@ -119,7 +130,8 @@
       "image_url": "https://example.com/ai-image-gen.jpg",
       "github_url": "https://github.com/username/ai-image-gen",
       "live_url": "https://ai-image-gen.demo.com",
-      "created_at": "2024-01-10T10:00:00Z"
+      "category": "Web",
+      "is_live_demo": false
     }
   ]
 }

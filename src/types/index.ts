@@ -6,7 +6,8 @@ export interface Project {
   image_url: string;
   github_url?: string;
   live_url?: string;
-  created_at: string;
+  category: string;
+  is_live_demo: boolean;
 }
 
 export interface BlogPost {

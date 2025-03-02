@@ -122,7 +122,7 @@ export default function ProjectDetails() {
                         </Button>
                       </a>
                     )}
-                    {project.live_url && (
+                    {project.is_live_demo && project.live_url && (
                       <a
                         href={project.live_url}
                         target="_blank"
