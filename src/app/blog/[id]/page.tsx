@@ -16,9 +16,8 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
   useEffect(() => {
     // Find the post with the matching ID from the imported data
     const postId = parseInt(params.id);
-    const foundPost = Array.isArray(blogPostsData) 
-      ? blogPostsData.find(p => p.id === postId)
-      : blogPostsData.posts?.find(p => p.id === postId);
+    const posts = Array.isArray(blogPostsData) ? blogPostsData : [];
+    const foundPost = posts.find(p => p.id === postId);
     
     if (foundPost) {
       setPost(foundPost);
@@ -84,13 +83,11 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
             </div>
           </div>
 
-          <article className="prose prose-lg dark:prose-invert max-w-none">
-            {post.content.split('\n\n').map((paragraph: string, idx: number) => (
-              <p key={idx} className="mb-6 text-muted-foreground leading-relaxed">
-                {paragraph}
-              </p>
+          <div className="prose prose-lg dark:prose-invert max-w-full">
+            {post.content.split('\n\n').map((paragraph: string, index: number) => (
+              <p key={index} className="mb-4">{paragraph}</p>
             ))}
-          </article>
+          </div>
         </motion.div>
       </div>
     </div>
