@@ -17,9 +17,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={``}>
-        <div className="">
+    <html lang="en" className="scroll-smooth">
+      <body suppressHydrationWarning={true} className="antialiased">
+        <div className="relative min-h-screen">
           <NeuralNetwork />
           <Navbar />
           <PageTransition>{children}</PageTransition>
