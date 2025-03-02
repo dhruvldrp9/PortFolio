@@ -176,12 +176,17 @@ export default function Home() {
               {
                 title: "Machine Learning",
                 icon: Network,
-                skills: ["TensorFlow", "PyTorch", "Scikit-learn"],
+                skills: ["Pandas", "Numpy", "Scikit-learn"],
               },
               {
                 title: "Deep Learning",
                 icon: Brain,
-                skills: ["Neural Networks", "CNN", "Transformers"],
+                skills: ["TensorFlow", "PyTorch", "Transformers"],
+              },
+              {
+                title: "Natural Language Processing",
+                icon: Database,
+                skills: ["AI Agents", "RAG", "Custom Language Models"],
               },
               {
                 title: "Computer Vision",
@@ -189,29 +194,28 @@ export default function Home() {
                 skills: ["OpenCV", "Object Detection", "Image Processing"],
               },
               {
-                title: "MLOps",
-                icon: Database,
-                skills: ["CI/CD", "Model Monitoring", "Deployment"],
+                title: "Network Security",
+                icon: Code,
+                skills: ["Penetration Testing", "Firewall Config", "IDS/IPS"],
               },
               {
-                title: "MLOps",
-                icon: Database,
-                skills: ["CI/CD", "Model Monitoring", "Deployment"],
+                title: "SOC Operations",
+                icon: Brain,
+                skills: [
+                  "SIEM Tools",
+                  "Incident Response",
+                  "Threat Monitoring",
+                ],
               },
               {
-                title: "MLOps",
-                icon: Database,
-                skills: ["CI/CD", "Model Monitoring", "Deployment"],
+                title: "Threat Intelligence",
+                icon: Network,
+                skills: ["Malware Analysis", "Threat Hunting", "OSINT"],
               },
               {
-                title: "MLOps",
+                title: "Security Compliance",
                 icon: Database,
-                skills: ["CI/CD", "Model Monitoring", "Deployment"],
-              },
-              {
-                title: "MLOps",
-                icon: Database,
-                skills: ["CI/CD", "Model Monitoring", "Deployment"],
+                skills: ["GDPR", "ISO 27001", "Security Audits"],
               },
             ].map((category, index) => (
               <motion.div
