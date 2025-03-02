@@ -1,165 +1,114 @@
-/* eslint-disable react/no-unescaped-entities */
 "use client";
 import { PROFILE } from "@/lib/constants";
-import { Github, Linkedin, Mail, MapPin, Clock } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import React from "react";
+import { Github, Linkedin, Mail, Shield, Brain, Code } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-black">
+    <footer className="bg-card/50 border-t border-border/50 backdrop-blur-sm">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
-          {/* Contact Information */}
-          <div className="space-y-4"> 
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-foreground to-foreground bg-clip-text text-transparent">
-              Contact
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href={`mailto:${PROFILE.email}`}
-                  className="group flex items-center text-sm text-muted-foreground hover:text-accent"
-                >
-                  <Mail className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                  <span className="break-all">{PROFILE.email}</span>
-                </a>
-              </li>
-              <li className="flex items-center text-sm text-muted-foreground">
-                <MapPin className="mr-2 h-4 w-4 shrink-0" />
-                <span className="break-words">{PROFILE.location}</span>
-              </li>
-              <li className="flex items-center text-sm text-muted-foreground">
-                <Clock className="mr-2 h-4 w-4 shrink-0" />
-                IST (UTC+5:30)
-              </li>
-            </ul>
-          </div>
-
-          {/* Social Links */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          {/* Profile Section */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-foreground to-foreground bg-clip-text text-transparent">
-              Connect
-            </h3>
-            <ul className="space-y-3">
-              <li>
-                <a
-                  href={PROFILE.github}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center text-sm text-muted-foreground hover:text-accent"
+            <Link href="/" className="flex items-center space-x-2">
+              <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-primary to-accent">
+                <motion.div
+                  className="absolute inset-0 flex items-center justify-center"
+                  animate={{
+                    rotate: [0, 360],
+                  }}
+                  transition={{
+                    duration: 20,
+                    repeat: Infinity,
+                    ease: "linear",
+                  }}
                 >
-                  <Github className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <a
-                  href={PROFILE.linkedin}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group flex items-center text-sm text-muted-foreground hover:text-accent"
-                >
-                  <Linkedin className="mr-2 h-4 w-4 transition-transform group-hover:scale-110" />
-                  LinkedIn
-                </a>
-              </li>
-            </ul>
+                  <Shield className="h-4 w-4 text-white opacity-40" />
+                </motion.div>
+                <Brain className="h-4 w-4 text-white" />
+              </div>
+              <span className="text-lg font-bold">{PROFILE.name}</span>
+            </Link>
+            <p className="text-muted-foreground text-sm">
+              AI Engineer & Cybersecurity Specialist
+            </p>
+            <div className="flex space-x-4">
+              <a
+                href={PROFILE.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Github className="h-5 w-5" />
+                <span className="sr-only">GitHub</span>
+              </a>
+              <a
+                href={PROFILE.linkedin}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Linkedin className="h-5 w-5" />
+                <span className="sr-only">LinkedIn</span>
+              </a>
+              <a
+                href={`mailto:${PROFILE.email}`}
+                className="text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <Mail className="h-5 w-5" />
+                <span className="sr-only">Email</span>
+              </a>
+            </div>
           </div>
 
           {/* Quick Links */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-foreground to-foreground bg-clip-text text-transparent">
-              Quick Links
-            </h3>
-            <ul className="space-y-3">
-              {[
-                { label: "Projects", path: "/projects" },
-                { label: "Blog", path: "/blog" },
-                { label: "Education", path: "/education" },
-                { label: "Certifications", path: "/certifications" },
-              ].map((item) => (
-                <li key={item.path}>
-                  <Link
-                    href={item.path}
-                    className="text-sm text-muted-foreground hover:text-accent"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
+            <h3 className="text-lg font-semibold">Quick Links</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link href="/projects" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Blog
+                </Link>
+              </li>
+              <li>
+                <Link href="/education" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Education
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="text-muted-foreground hover:text-foreground transition-colors">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
-          {/* Call to Action */}
+          {/* Contact Information */}
           <div className="space-y-4">
-            <h3 className="text-lg font-semibold bg-gradient-to-r from-foreground to-foreground bg-clip-text text-transparent">
-              Get in Touch
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Looking for an AI/ML expert for your next project? Let's talk
-              about how I can help.
+            <h3 className="text-lg font-semibold">Contact</h3>
+            <p className="text-muted-foreground text-sm">
+              {PROFILE.location}
             </p>
-            <Link href="/contact">
-              <Button className="w-full sm:w-auto">Contact Me</Button>
-            </Link>
-          </div>
-        </div>
-
-        {/* Social Links */}
-        <div className="mt-10 flex justify-center space-x-6">
-          <motion.a
-            href={PROFILE.github}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-card/60 backdrop-blur-sm p-3 text-foreground transition-colors hover:bg-primary hover:text-white"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Github className="h-5 w-5" />
-          </motion.a>
-          <motion.a
-            href={PROFILE.linkedin}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="rounded-full bg-card/60 backdrop-blur-sm p-3 text-foreground transition-colors hover:bg-primary hover:text-white"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Linkedin className="h-5 w-5" />
-          </motion.a>
-          <motion.a
-            href={`mailto:${PROFILE.email}`}
-            className="rounded-full bg-card/60 backdrop-blur-sm p-3 text-foreground transition-colors hover:bg-primary hover:text-white"
-            whileHover={{ scale: 1.1, rotate: 5 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Mail className="h-5 w-5" />
-          </motion.a>
-        </div>
-
-        {/* Copyright */}
-        <div className="mt-12 border-t border-border/30 pt-8">
-          <div className="flex flex-col items-center justify-between gap-4 sm:flex-row text-center sm:text-left">
-            <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.
+            <p className="text-muted-foreground text-sm">
+              {PROFILE.email}
             </p>
-            <div className="flex flex-wrap justify-center gap-4">
-              <Link
-                href="/privacy"
-                className="text-sm text-muted-foreground hover:text-accent transition-colors duration-200"
-              >
-                Privacy Policy
-              </Link>
-              <Link
-                href="/terms"
-                className="text-sm text-muted-foreground hover:text-accent transition-colors duration-200"
-              >
-                Terms of Service
-              </Link>
+            <div className="pt-4">
+              <span className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent">
+                <Code className="mr-2 h-4 w-4" />
+                <span className="mr-1">Available for work</span>
+              </span>
             </div>
           </div>
+        </div>
+
+        <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+          <p>&copy; {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</p>
         </div>
       </div>
     </footer>
