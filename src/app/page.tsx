@@ -187,7 +187,7 @@ export default function Home() {
         </div>
 
         <motion.div 
-          className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex flex-col justify-center"
+          className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center"
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={containerVariants}
@@ -210,10 +210,8 @@ export default function Home() {
                   className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground"
                   variants={itemVariants}
                 >
-                  <span className="inline-block">
-                    <span className="inline-block bg-gradient-to-r from-primary via-accent to-primary bg-clip-text text-transparent">
-                      {PROFILE.name}
-                    </span>
+                  <span className="inline-block text-foreground">
+                    {PROFILE.name}
                   </span>
                 </motion.h1>
                 <motion.p
@@ -406,13 +404,13 @@ export default function Home() {
             </div>
           </motion.div>
 
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="sync">
             <motion.div
               key={activeSection}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ duration: 0.5 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
               className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
             >
               {(activeSection === 'ai' ? aiSkills : cyberSkills).map((category, index) => (
