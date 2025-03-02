@@ -374,7 +374,7 @@ export default function Home() {
               <motion.p className="text-xl leading-relaxed text-muted-foreground mb-8">
                 {PROFILE.bio}
               </motion.p>
-              
+
               <div className="flex flex-wrap gap-4 mt-6">
                 <div className="flex items-center text-primary-foreground bg-primary/10 px-4 py-2 rounded-full text-base">
                   <BrainCircuit className="w-5 h-5 mr-2" />
@@ -411,7 +411,7 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.2 }}
             >
-              Dual Expertise in AI & Cybersecurity
+              Expertise in AI & Cybersecurity
             </motion.h2>
             <motion.p
               className="text-muted-foreground max-w-2xl mx-auto"
@@ -592,7 +592,7 @@ export default function Home() {
                   </Link>
                 </motion.div>
               </div>
-              
+
               {/* Projects Grid - Fixed - Single Row */}
               <motion.div
                 className="mt-6"
@@ -609,10 +609,10 @@ export default function Home() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
-                      whileHover={{ 
-                        scale: 1.03, 
+                      whileHover={{
+                        scale: 1.03,
                         boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                        transition: { duration: 0.2 } 
+                        transition: { duration: 0.2 },
                       }}
                     >
                       <ProjectCard project={project} />
@@ -648,7 +648,7 @@ export default function Home() {
                   </Link>
                 </motion.div>
               </div>
-              
+
               {/* Articles Grid - Fixed - Single Row */}
               <motion.div
                 className="mt-6"
@@ -665,10 +665,10 @@ export default function Home() {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: index * 0.1 }}
-                      whileHover={{ 
-                        scale: 1.03, 
+                      whileHover={{
+                        scale: 1.03,
                         boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                        transition: { duration: 0.2 } 
+                        transition: { duration: 0.2 },
                       }}
                     >
                       <BlogCard post={post} />
