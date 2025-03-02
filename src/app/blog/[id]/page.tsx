@@ -1,32 +1,55 @@
-/* eslint-disable react/no-unescaped-entities */
-/* eslint-disable @typescript-eslint/no-explicit-any */
+
 "use client";
-import { motion } from "framer-motion";
-import { format } from "date-fns";
-import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Skeleton } from "@/components/ui/skeleton";
-import { ArrowLeft, Clock, Tag } from "lucide-react";
-import { posts } from "../../../data/blog-posts.json";
-import { useParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useParams, useRouter } from "next/navigation";
 import Link from "next/link";
+import { ArrowLeft, Clock, Tag, Calendar } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import PageBackground from "@/components/layout/page-background";
+import { posts } from "../../../data/blog-posts.json";
 
 export default function BlogDetail() {
-  const { id } = useParams();
-  const isLoading = false;
-  const post = getBlog(id);
-  function getBlog(id: any): any {
-    return posts.find((p: any) => p.id == id);
-  }
+  const { id } = useParams<{ id: string }>();
+  const router = useRouter();
+  const [post, setPost] = useState<any>(null);
+  const [relatedPosts, setRelatedPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
 
-  if (isLoading) {
+  useEffect(() => {
+    try {
+      if (id) {
+        // Find the current post
+        const currentPost = posts.find((p) => p.id && p.id.toString() === id.toString());
+        
+        if (currentPost) {
+          setPost(currentPost);
+          
+          // Find related posts (same category, excluding current)
+          const related = posts
+            .filter(
+              (p) => 
+                p.id && p.id.toString() !== id.toString() && 
+                p.category === currentPost.category
+            )
+            .slice(0, 3);
+            
+          setRelatedPosts(related);
+        }
+      }
+    } catch (error) {
+      console.error("Error loading post:", error);
+    } finally {
+      setLoading(false);
+    }
+  }, [id]);
+
+  if (loading) {
     return (
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-4xl mx-auto space-y-8">
-          <Skeleton className="h-8 w-64" />
-          <Skeleton className="h-4 w-32" />
-          <Skeleton className="h-[400px] w-full" />
+      <div className="container mx-auto px-4 py-16">
+        <div className="text-center">
+          <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]"></div>
+          <p className="mt-4">Loading article...</p>
         </div>
       </div>
     );
@@ -34,14 +57,12 @@ export default function BlogDetail() {
 
   if (!post) {
     return (
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-2xl font-bold">Blog post not found</h2>
-          <p className="mt-2 text-muted-foreground">
-            The blog post you're looking for doesn't exist or has been removed.
-          </p>
+      <div className="container mx-auto px-4 py-16">
+        <div className="flex flex-col items-center justify-center py-20">
+          <h1 className="text-3xl font-bold mb-4">Article Not Found</h1>
+          <p className="text-muted-foreground mb-8">The article you're looking for doesn't exist or has been removed.</p>
           <Link href="/blog">
-            <Button className="mt-4">
+            <Button>
               <ArrowLeft className="mr-2 h-4 w-4" />
               Back to Blog
             </Button>
@@ -51,73 +72,92 @@ export default function BlogDetail() {
     );
   }
 
+  const formattedDate = new Date(post.created_at).toLocaleDateString('en-US', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric'
+  });
+
   return (
-    <div className="min-h-screen bg-background">
-      <article className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="max-w-4xl mx-auto">
-          {/* Back Button */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="mb-8"
-          >
-            <Link href="/blog">
-              <Button variant="ghost" size="sm">
-                <ArrowLeft className="mr-2 h-4 w-4" />
-                Back to Blog
-              </Button>
-            </Link>
-          </motion.div>
+    <div className="bg-background min-h-screen">
+      <div className="container mx-auto px-4 py-16">
+        <PageBackground title={post.title} subtitle={`${post.category} • ${formattedDate}`} />
 
-          {/* Blog Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="space-y-4 mb-12"
-          >
-            <h1 className="text-4xl font-bold tracking-tight">{post.title}</h1>
+        <div className="mt-12">
+          <Link href="/blog">
+            <Button variant="ghost" className="mb-6">
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to all articles
+            </Button>
+          </Link>
 
-            <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
-              <div className="flex items-center">
-                {/* <Calendar className="mr-2 h-4 w-4" /> */}
-                {format(new Date(post.created_at), "MMMM d, yyyy")}
-              </div>
-              <div className="flex items-center">
-                <Clock className="mr-2 h-4 w-4" />
-                {post.reading_time} min read
+          <div className="grid gap-8 lg:grid-cols-3">
+            <div className="lg:col-span-2">
+              {/* Main Content */}
+              <div className="border border-border/50 rounded-lg overflow-hidden bg-card/60 backdrop-blur-sm">
+                <div className="p-8">
+                  <div className="flex flex-wrap gap-2 mb-6">
+                    <Badge variant="outline" className="bg-primary/10 text-primary border-primary/20">
+                      {post.category}
+                    </Badge>
+                    <div className="flex items-center text-muted-foreground text-sm">
+                      <Clock className="mr-1 h-4 w-4" />
+                      {post.reading_time} min read
+                    </div>
+                    <div className="flex items-center text-muted-foreground text-sm">
+                      <Calendar className="mr-1 h-4 w-4" />
+                      {formattedDate}
+                    </div>
+                  </div>
+
+                  <h1 className="text-3xl font-bold mb-6">{post.title}</h1>
+                  
+                  <div className="prose prose-lg prose-invert max-w-none">
+                    {post.content.split('\n\n').map((paragraph, idx) => (
+                      <p key={idx} className="mb-4 text-muted-foreground leading-relaxed">
+                        {paragraph}
+                      </p>
+                    ))}
+                  </div>
+
+                  {post.tags && post.tags.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-8 pt-6 border-t border-border/40">
+                      {post.tags.map((tag, index) => (
+                        <Badge key={index} variant="secondary">
+                          <Tag className="mr-1 h-3 w-3" />
+                          {tag}
+                        </Badge>
+                      ))}
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
 
-            <div className="flex flex-wrap gap-2">
-              {post.category && (
-                <Badge variant="secondary" className="text-sm">
-                  <Tag className="mr-1 h-3 w-3" />
-                  {post.category}
-                </Badge>
+            <div className="space-y-8">
+              {/* Related Posts */}
+              {relatedPosts.length > 0 && (
+                <section className="border border-border/50 rounded-lg p-6 bg-card/60 backdrop-blur-sm sticky top-24">
+                  <h3 className="text-lg font-semibold mb-4">Related Articles</h3>
+                  <div className="space-y-4">
+                    {relatedPosts.map((relatedPost) => (
+                      <div key={relatedPost.id} className="border-b border-border/30 pb-4 last:border-0 last:pb-0">
+                        <Link href={`/blog/${relatedPost.id}`} className="hover:text-primary transition-colors">
+                          <h4 className="font-medium mb-1">{relatedPost.title}</h4>
+                          <div className="flex items-center text-muted-foreground text-sm">
+                            <Clock className="mr-1 h-3 w-3" />
+                            {relatedPost.reading_time} min read
+                          </div>
+                        </Link>
+                      </div>
+                    ))}
+                  </div>
+                </section>
               )}
-              {post.tags?.map((tag: any, index: number) => (
-                <Badge key={index} variant="secondary" className="text-sm">
-                  <Tag className="mr-1 h-3 w-3" />
-                  {tag}
-                </Badge>
-              ))}
             </div>
-          </motion.div>
-
-          {/* Content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-          >
-            <Card className="p-8">
-              <div className="prose prose-lg dark:prose-invert max-w-none">
-                <div dangerouslySetInnerHTML={{ __html: post.content }} />
-              </div>
-            </Card>
-          </motion.div>
+          </div>
         </div>
-      </article>
+      </div>
     </div>
   );
 }

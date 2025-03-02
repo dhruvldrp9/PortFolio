@@ -1,18 +1,26 @@
-
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PageBackground from "@/components/layout/page-background";
 import BlogCard from "@/components/blog/blog-card";
-import { posts } from "../../data/blog-posts.json";
-import { Button } from "@/components/ui/button";
+import { Button, Input } from "@/components/ui/button"; // Assuming Button and Input are in the same directory. Adjust as needed.
 import { Book, Filter, Search, Tag } from "lucide-react";
+
+const categories = ["AI", "Cybersecurity"]; // Placeholder category data
+
+const posts = [
+  // Placeholder blog post data.  Replace with your actual data.
+  { id: 1, title: "AI Ethics", category: "AI", content: "Sample AI Ethics content" },
+  { id: 2, title: "Cybersecurity Threats", category: "Cybersecurity", content: "Sample Cybersecurity content" },
+  { id: 3, title: "Machine Learning", category: "AI", content: "Sample Machine Learning content" },
+  { id: 4, title: "Data Privacy", category: "Cybersecurity", content: "Sample Data Privacy content" }
+];
+
 
 export default function Blog() {
   const [filter, setFilter] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
 
-  // Filter blog posts based on category and search query
   const filteredPosts = posts.filter((post) => {
     const matchesCategory = filter === "all" || post.category === filter;
     const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase());
@@ -49,72 +57,82 @@ export default function Blog() {
         />
 
         <div className="mt-16">
-          {/* Search and Filter Controls */}
-          <div className="mb-12 grid gap-6 md:grid-cols-[1fr_auto]">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
-              <input
-                type="text"
-                placeholder="Search articles..."
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                className="h-10 w-full rounded-md border border-input bg-muted/50 pl-9 pr-4 text-sm focus:border-primary focus:outline-none focus:ring-1 focus:ring-primary"
-              />
+          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-6">
+            <div>
+              <h2 className="text-3xl font-bold">Latest Articles</h2>
+              <p className="text-muted-foreground mt-2">
+                Explore my thoughts and insights on AI and Cybersecurity
+              </p>
             </div>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                <Input
+                  placeholder="Search articles..."
+                  className="pl-10 w-full sm:w-64"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                />
+              </div>
+            </div>
+          </div>
 
+          <div className="mb-12">
             <div className="flex flex-wrap gap-2">
-              {["all", "AI", "Cybersecurity", "Programming"].map((category) => (
+              <Button
+                variant={filter === "all" ? "default" : "outline"}
+                size="sm"
+                onClick={() => setFilter("all")}
+                className="rounded-full"
+              >
+                All
+              </Button>
+              {categories.map((category) => (
                 <Button
                   key={category}
-                  size="sm"
                   variant={filter === category ? "default" : "outline"}
+                  size="sm"
                   onClick={() => setFilter(category)}
-                  className="flex items-center gap-1"
+                  className="rounded-full"
                 >
-                  {category === "all" ? (
-                    <Book className="h-4 w-4" />
-                  ) : category === "AI" ? (
-                    <Tag className="h-4 w-4" />
-                  ) : (
-                    <Filter className="h-4 w-4" />
-                  )}
-                  {category === "all" ? "All Articles" : category}
+                  {category}
                 </Button>
               ))}
             </div>
           </div>
 
-          {/* Blog Posts Grid */}
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-          >
-            <AnimatePresence>
+          {filteredPosts.length === 0 ? (
+            <div className="text-center py-20">
+              <Book className="h-16 w-16 mx-auto text-muted-foreground opacity-30" />
+              <h3 className="text-xl font-medium mt-4">No articles found</h3>
+              <p className="text-muted-foreground mt-2">Try adjusting your search or filter criteria</p>
+              <Button
+                variant="outline"
+                className="mt-4"
+                onClick={() => {
+                  setFilter("all");
+                  setSearchQuery("");
+                }}
+              >
+                Clear filters
+              </Button>
+            </div>
+          ) : (
+            <motion.div
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+              variants={containerVariants}
+              initial="hidden"
+              animate="visible"
+            >
               {filteredPosts.map((post, index) => (
                 <motion.div
                   key={post.id}
                   variants={itemVariants}
-                  layout
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  transition={{ duration: 0.3, delay: index * 0.05 }}
+                  transition={{ delay: index * 0.1 }}
                 >
                   <BlogCard post={post} />
                 </motion.div>
               ))}
-            </AnimatePresence>
-          </motion.div>
-
-          {filteredPosts.length === 0 && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              className="mt-12 text-center"
-            >
-              <p className="text-muted-foreground">No articles found matching your criteria.</p>
             </motion.div>
           )}
         </div>
