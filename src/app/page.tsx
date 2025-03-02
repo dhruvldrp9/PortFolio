@@ -217,7 +217,7 @@ export default function Home() {
                   className="text-xl text-muted-foreground max-w-2xl"
                   variants={itemVariants}
                 >
-                  {PROFILE.bio}
+                  {PROFILE.title}
                 </motion.p>
               </div>
 
@@ -340,6 +340,58 @@ export default function Home() {
             </motion.div>
           </div>
         </motion.div>
+      </section>
+
+      {/* About Me Section */}
+      <section className="py-12 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <motion.h2
+              className="text-3xl font-bold mb-4 inline-block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              About Me
+            </motion.h2>
+          </motion.div>
+
+          <div className="max-w-4xl mx-auto">
+            <motion.div
+              className="bg-card/60 backdrop-blur-sm border border-border/50 rounded-xl p-8 shadow-lg"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
+            >
+              <motion.p className="text-lg leading-relaxed text-muted-foreground mb-6">
+                {PROFILE.bio}
+              </motion.p>
+              
+              <div className="flex flex-wrap gap-3 mt-4">
+                <div className="flex items-center text-primary-foreground bg-primary/10 px-3 py-1 rounded-full text-sm">
+                  <BrainCircuit className="w-4 h-4 mr-2" />
+                  <span>AI Engineer</span>
+                </div>
+                <div className="flex items-center text-accent-foreground bg-accent/10 px-3 py-1 rounded-full text-sm">
+                  <Shield className="w-4 h-4 mr-2" />
+                  <span>Cybersecurity Specialist</span>
+                </div>
+                <div className="flex items-center text-muted-foreground bg-muted/50 px-3 py-1 rounded-full text-sm">
+                  <Server className="w-4 h-4 mr-2" />
+                  <span>{PROFILE.location}</span>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </section>
 
       {/* Skills Section */}
