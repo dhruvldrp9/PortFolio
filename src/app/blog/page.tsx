@@ -4,13 +4,13 @@ import React, { useState } from "react";
 import PageBackground from "@/components/layout/page-background";
 import BlogCard from "@/components/blog/blog-card";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input"; // Corrected import path
+import { Input } from "@/components/ui/input";
 import { Book, Filter, Search, Tag } from "lucide-react";
 import blogPosts from "@/data/blog-posts.json";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const categories = ["AI", "Cybersecurity"]; // Categories
+const categories = ["AI", "Cybersecurity"];
 
 export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");

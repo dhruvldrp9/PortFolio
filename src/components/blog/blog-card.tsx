@@ -1,4 +1,3 @@
-
 import React from "react";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -21,20 +20,13 @@ export default function BlogCard({ post }: BlogCardProps) {
   return (
     <Card className="overflow-hidden border border-border/40 bg-card/60 backdrop-blur-sm h-full flex flex-col group transition-all duration-300 hover:border-primary/20 hover:shadow-lg hover:shadow-primary/5">
       <Link href={`/blog/${post.id}`} className="flex flex-col h-full">
-        {post.image && (
-          <div className="aspect-video w-full overflow-hidden border-b border-border/50 relative">
-            <img
-              src={post.image}
-              alt={post.title}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
-            />
-            {post.category && (
-              <div className="absolute top-2 right-2 bg-background/80 backdrop-blur-sm px-3 py-1 rounded-full">
-                <span className="text-sm font-medium">{post.category}</span>
-              </div>
-            )}
-          </div>
-        )}
+        <div className="h-48 sm:h-56 w-full overflow-hidden rounded-t-lg">
+          <img
+            src={post.image || "/attached_assets/GoogleMeetBot.jpeg"}
+            alt={post.title}
+            className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-105"
+          />
+        </div>
         <CardHeader className="p-5">
           <div className="flex items-center gap-3 text-sm text-muted-foreground mb-2">
             <div className="flex items-center">

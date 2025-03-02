@@ -80,10 +80,8 @@ export default function BlogPostPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
 
             <div className="prose prose-lg dark:prose-invert max-w-none">
-              {post.content.split('\n\n').map((paragraph, index) => (
-                <p key={index} className="mb-6 text-lg leading-relaxed">
-                  {paragraph}
-                </p>
+              {post.content.split('\n\n').map((paragraph, idx) => (
+                <p key={idx} className="mb-4">{paragraph}</p>
               ))}
             </div>
           </motion.div>
