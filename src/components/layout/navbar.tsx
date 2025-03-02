@@ -1,3 +1,4 @@
+
 "use client";
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
@@ -21,10 +22,12 @@ import {
 } from "@/components/ui/sheet";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const pathname = usePathname();
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -49,48 +52,52 @@ export default function Navbar() {
         damping: 15
       }}
     >
-      <div className="container flex h-16 items-center px-4 sm:px-8">
-        <Link href="/" className="mr-8 flex items-center">
-          <motion.div 
-            className="flex items-center gap-2"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <div className="relative flex h-8 w-8 overflow-hidden items-center justify-center rounded-full bg-gradient-to-b from-primary to-accent/80">
-              <motion.div
-                animate={{
-                  rotate: [0, 10, 0],
-                  scale: [1, 1.1, 1]
-                }}
-                transition={{
-                  duration: 3,
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }}
-              >
-                <Brain className="h-5 w-5 text-primary-foreground" />
-              </motion.div>
-              <motion.div
-                animate={{
-                  rotate: [0, -10, 0],
-                  opacity: [0.4, 0.7, 0.4]
-                }}
-                transition={{
-                  duration: 4,
-                  repeat: Infinity,
-                  repeatType: "reverse"
-                }}
-              >
-                <Shield className="absolute h-4 w-4 text-primary-foreground opacity-40" />
-              </motion.div>
-            </div>
-            <span className="text-lg font-bold">
-              <span className="text-foreground">{PROFILE.name}</span>
-            </span>
-          </motion.div>
-        </Link>
-        <nav className="flex-1">
-          <ul className="hidden md:flex gap-6">
+      <div className="container flex h-16 items-center justify-between px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center">
+          <Link href="/" className="flex items-center">
+            <motion.div 
+              className="flex items-center gap-2"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="relative flex h-8 w-8 overflow-hidden items-center justify-center rounded-full bg-gradient-to-b from-primary to-accent/80">
+                <motion.div
+                  animate={{
+                    rotate: [0, 10, 0],
+                    scale: [1, 1.1, 1]
+                  }}
+                  transition={{
+                    duration: 3,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }}
+                >
+                  <Brain className="h-5 w-5 text-primary-foreground" />
+                </motion.div>
+                <motion.div
+                  animate={{
+                    rotate: [0, -10, 0],
+                    opacity: [0.4, 0.7, 0.4]
+                  }}
+                  transition={{
+                    duration: 4,
+                    repeat: Infinity,
+                    repeatType: "reverse"
+                  }}
+                >
+                  <Shield className="absolute h-4 w-4 text-primary-foreground opacity-40" />
+                </motion.div>
+              </div>
+              <span className="text-lg font-bold">
+                <span className="text-foreground">{PROFILE.name}</span>
+              </span>
+            </motion.div>
+          </Link>
+        </div>
+        
+        {/* Desktop Navigation */}
+        <nav className="hidden md:block">
+          <ul className="flex space-x-8">
             {NAVIGATION_ITEMS.map((item) => (
               <li key={item.path}>
                 <Link
@@ -110,8 +117,10 @@ export default function Navbar() {
             ))}
           </ul>
         </nav>
-        <div className="ml-auto flex items-center gap-4">
-          <div className="hidden md:flex gap-4">
+        
+        {/* Social & Contact Links */}
+        <div className="flex items-center gap-3">
+          <div className="hidden md:flex items-center gap-3">
             <motion.a
               href={PROFILE.github}
               target="_blank"
@@ -120,7 +129,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Github className="h-4 w-4" />
+              <Github className="h-5 w-5" />
               <span className="sr-only">GitHub</span>
             </motion.a>
             <motion.a
@@ -131,7 +140,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Linkedin className="h-4 w-4" />
+              <Linkedin className="h-5 w-5" />
               <span className="sr-only">LinkedIn</span>
             </motion.a>
             <motion.a
@@ -140,46 +149,48 @@ export default function Navbar() {
               whileHover={{ scale: 1.1, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >
-              <Mail className="h-4 w-4" />
+              <Mail className="h-5 w-5" />
               <span className="sr-only">Email</span>
             </motion.a>
           </div>
-          <Link href="/contact">
-            <Button size="sm" className="group relative overflow-hidden">
-              <span className="relative z-10">Contact</span>
-              <motion.span
-                className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-              />
+          
+          <Link href="/contact" className="hidden md:inline-block">
+            <Button variant="default" size="sm">
+              Contact
             </Button>
           </Link>
+          
+          {/* Mobile Menu */}
           <Sheet>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="icon">
+              <Button variant="ghost" size="icon" className="h-9 w-9 rounded-full">
                 <Menu className="h-5 w-5" />
-                <span className="sr-only">Toggle Menu</span>
+                <span className="sr-only">Toggle menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent className="w-80">
-              <SheetHeader>
-                <SheetTitle>Navigation</SheetTitle>
+            <SheetContent side="right" className="flex flex-col bg-background/95 backdrop-blur-lg border-l border-border/50">
+              <SheetHeader className="border-b pb-4 mb-4">
+                <SheetTitle className="text-left flex items-center gap-2">
+                  <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-primary to-accent/80">
+                    <Brain className="h-5 w-5 text-primary-foreground" />
+                  </div>
+                  <span>{PROFILE.name}</span>
+                </SheetTitle>
               </SheetHeader>
-              <nav className="mt-8">
-                <ul className="grid gap-5">
+              <nav className="flex-1">
+                <ul className="space-y-4">
                   {NAVIGATION_ITEMS.map((item) => (
-                    <motion.li 
+                    <motion.li
                       key={item.path}
-                      whileHover={{ x: 5 }}
-                      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                      whileTap={{ scale: 0.95 }}
                     >
                       <Link
                         href={item.path}
-                        className={`text-base font-medium ${pathname === item.path ? 'text-foreground' : 'text-muted-foreground'} transition-colors hover:text-foreground`}
+                        className={`flex items-center text-base font-medium ${pathname === item.path ? 'text-foreground' : 'text-muted-foreground'}`}
                       >
                         {item.label}
                         {pathname === item.path && (
-                          <motion.span
+                          <motion.span 
                             className="ml-2 inline-block h-1 w-1 rounded-full bg-primary"
                             layoutId="mobile-nav-dot"
                           />
@@ -189,8 +200,8 @@ export default function Navbar() {
                   ))}
                 </ul>
               </nav>
-              <div className="mt-10">
-                <div className="flex gap-4">
+              <div className="mt-auto pt-6 border-t">
+                <div className="flex gap-4 justify-center mb-4">
                   <motion.a
                     href={PROFILE.github}
                     target="_blank"
@@ -223,6 +234,9 @@ export default function Navbar() {
                     <span className="sr-only">Email</span>
                   </motion.a>
                 </div>
+                <Link href="/contact" className="block">
+                  <Button className="w-full">Contact</Button>
+                </Link>
               </div>
             </SheetContent>
           </Sheet>

@@ -22,7 +22,10 @@
   scrollbar-width: none;  /* Firefox */
 }
 
-/* Removed carousel styles */
+/* Mobile-friendly improvements */
+html {
+  scroll-behavior: smooth;
+}
 
 body {
   @apply font-sans antialiased text-base;
@@ -35,6 +38,30 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   @apply font-sans font-semibold tracking-tight;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* Improve spacing for navigation items */
+.nav-item {
+  @apply px-3 py-2;
+}
+
+/* Add transform-style utility since it's used in code */
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+
+/* Ensure buttons have proper touch targets on mobile */
+button, 
+a[role="button"],
+.button {
+  @apply min-h-[2.5rem] min-w-[2.5rem];
 }
 
 code, pre {
