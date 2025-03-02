@@ -107,8 +107,40 @@ export default function Footer() {
           </div>
         </div>
 
+        {/* Social Links */}
+        <div className="mt-10 flex justify-center space-x-6">
+          <motion.a
+            href={PROFILE.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-card/60 backdrop-blur-sm p-3 text-foreground transition-colors hover:bg-primary hover:text-white"
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Github className="h-5 w-5" />
+          </motion.a>
+          <motion.a
+            href={PROFILE.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="rounded-full bg-card/60 backdrop-blur-sm p-3 text-foreground transition-colors hover:bg-primary hover:text-white"
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Linkedin className="h-5 w-5" />
+          </motion.a>
+          <motion.a
+            href={`mailto:${PROFILE.email}`}
+            className="rounded-full bg-card/60 backdrop-blur-sm p-3 text-foreground transition-colors hover:bg-primary hover:text-white"
+            whileHover={{ scale: 1.1, rotate: 5 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <Mail className="h-5 w-5" />
+          </motion.a>
+        </div>
+
         {/* Copyright */}
-        <div className="mt-12 border-t pt-8">
+        <div className="mt-12 border-t border-border/30 pt-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row text-center sm:text-left">
             <p className="text-sm text-muted-foreground">
               © {new Date().getFullYear()} {PROFILE.name}. All rights reserved.
@@ -116,13 +148,13 @@ export default function Footer() {
             <div className="flex flex-wrap justify-center gap-4">
               <Link
                 href="/privacy"
-                className="text-sm text-muted-foreground hover:text-accent"
+                className="text-sm text-muted-foreground hover:text-accent transition-colors duration-200"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-sm text-muted-foreground hover:text-accent"
+                className="text-sm text-muted-foreground hover:text-accent transition-colors duration-200"
               >
                 Terms of Service
               </Link>
