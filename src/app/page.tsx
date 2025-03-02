@@ -1,4 +1,3 @@
-
 /* eslint-disable @next/next/no-img-element */
 "use client";
 import { PROFILE, STOCK_IMAGES } from "@/lib/constants";
@@ -61,38 +60,38 @@ export default function Home() {
 
   const fadeInVariants = {
     hidden: { opacity: 0 },
-    visible: { 
+    visible: {
       opacity: 1,
       transition: {
-        duration: 0.8 
-      }
-    }
+        duration: 0.8,
+      },
+    },
   };
-  
+
   const scaleInVariants = {
     hidden: { scale: 0.8, opacity: 0 },
-    visible: { 
-      scale: 1, 
+    visible: {
+      scale: 1,
       opacity: 1,
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 15
-      }
-    }
+        damping: 15,
+      },
+    },
   };
 
   const slideInVariants = {
     hidden: { x: -50, opacity: 0 },
-    visible: { 
-      x: 0, 
+    visible: {
+      x: 0,
       opacity: 1,
       transition: {
         type: "spring",
         stiffness: 100,
-        damping: 10
-      }
-    }
+        damping: 10,
+      },
+    },
   };
 
   const aiSkills = [
@@ -150,9 +149,9 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-10">
+      <section className="relative overflow-hidden py-2">
         <div className="absolute inset-0">
-          <motion.div 
+          <motion.div
             className="absolute inset-0 opacity-10"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.1 }}
@@ -186,7 +185,7 @@ export default function Home() {
           </motion.div>
         </div>
 
-        <motion.div 
+        <motion.div
           className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center"
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
@@ -227,9 +226,12 @@ export default function Home() {
                 variants={itemVariants}
               >
                 <Link href="/contact">
-                  <Button size="lg" className="group w-full relative overflow-hidden">
+                  <Button
+                    size="lg"
+                    className="group w-full relative overflow-hidden"
+                  >
                     <span className="relative z-10">Get in Touch</span>
-                    <motion.span 
+                    <motion.span
                       className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                       initial={{ opacity: 0 }}
                       whileHover={{ opacity: 1 }}
@@ -301,9 +303,9 @@ export default function Home() {
                   alt={PROFILE.name}
                   className="h-full w-full rounded-full object-cover"
                 />
-                
+
                 {/* Animated Elements */}
-                <motion.div 
+                <motion.div
                   className="absolute -top-4 -right-4 h-16 w-16 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center"
                   animate={{
                     scale: [1, 1.2, 1],
@@ -318,8 +320,8 @@ export default function Home() {
                 >
                   <Shield className="h-8 w-8 text-primary" />
                 </motion.div>
-                
-                <motion.div 
+
+                <motion.div
                   className="absolute -bottom-4 -left-4 h-16 w-16 rounded-full bg-accent/20 backdrop-blur-sm flex items-center justify-center"
                   animate={{
                     scale: [1, 1.2, 1],
@@ -350,7 +352,7 @@ export default function Home() {
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
-            <motion.h2 
+            <motion.h2
               className="text-3xl font-bold mb-4 inline-block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -359,24 +361,25 @@ export default function Home() {
             >
               Dual Expertise in AI & Cybersecurity
             </motion.h2>
-            <motion.p 
+            <motion.p
               className="text-muted-foreground max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              Specialized in developing cutting-edge AI solutions while ensuring robust security measures
+              Specialized in developing cutting-edge AI solutions while ensuring
+              robust security measures
             </motion.p>
-            
+
             <div className="flex justify-center mt-8 space-x-4">
               <motion.button
                 className={`px-6 py-2 rounded-full ${
-                  activeSection === 'ai' 
-                    ? 'bg-primary text-white' 
-                    : 'bg-muted text-muted-foreground'
+                  activeSection === "ai"
+                    ? "bg-primary text-white"
+                    : "bg-muted text-muted-foreground"
                 } transition-all duration-300`}
-                onClick={() => setActiveSection('ai')}
+                onClick={() => setActiveSection("ai")}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -385,14 +388,14 @@ export default function Home() {
                   AI & ML
                 </span>
               </motion.button>
-              
+
               <motion.button
                 className={`px-6 py-2 rounded-full ${
-                  activeSection === 'cyber' 
-                    ? 'bg-accent text-white' 
-                    : 'bg-muted text-muted-foreground'
+                  activeSection === "cyber"
+                    ? "bg-accent text-white"
+                    : "bg-muted text-muted-foreground"
                 } transition-all duration-300`}
-                onClick={() => setActiveSection('cyber')}
+                onClick={() => setActiveSection("cyber")}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -413,78 +416,80 @@ export default function Home() {
               transition={{ duration: 0.2 }}
               className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
             >
-              {(activeSection === 'ai' ? aiSkills : cyberSkills).map((category, index) => (
-                <motion.div
-                  key={category.title}
-                  className="relative group perspective-1000"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  whileHover={{ z: 30 }}
-                >
-                  <motion.div 
-                    className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent rounded-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity"
-                    whileHover={{ 
-                      scale: 1.05,
-                      transition: { duration: 0.3 }
-                    }}
-                  />
-                  
-                  <motion.div 
-                    className="p-6 rounded-lg border border-border bg-card transform-style-3d"
-                    whileHover={{ 
-                      rotateX: 5,
-                      rotateY: 10,
-                      transition: { duration: 0.3 }
-                    }}
+              {(activeSection === "ai" ? aiSkills : cyberSkills).map(
+                (category, index) => (
+                  <motion.div
+                    key={category.title}
+                    className="relative group perspective-1000"
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ delay: index * 0.1 }}
+                    whileHover={{ z: 30 }}
                   >
                     <motion.div
-                      animate={{
-                        y: [0, -10, 0],
+                      className="absolute inset-0 bg-gradient-to-b from-primary/10 to-transparent rounded-lg -z-10 opacity-0 group-hover:opacity-100 transition-opacity"
+                      whileHover={{
+                        scale: 1.05,
+                        transition: { duration: 0.3 },
                       }}
-                      transition={{
-                        duration: 2,
-                        repeat: Infinity,
-                        repeatType: "reverse",
-                        delay: index * 0.2,
+                    />
+
+                    <motion.div
+                      className="p-6 rounded-lg border border-border bg-card transform-style-3d"
+                      whileHover={{
+                        rotateX: 5,
+                        rotateY: 10,
+                        transition: { duration: 0.3 },
                       }}
                     >
-                      <category.icon className="h-12 w-12 mb-4 text-primary" />
-                    </motion.div>
-                    
-                    <h3 className="text-xl font-semibold mb-4">
-                      {category.title}
-                    </h3>
-                    
-                    <ul className="space-y-2">
-                      {category.skills.map((skill, idx) => (
-                        <motion.li
-                          key={skill}
-                          className="flex items-center text-muted-foreground"
-                          initial={{ opacity: 0, x: -20 }}
-                          whileInView={{ opacity: 1, x: 0 }}
-                          viewport={{ once: true }}
-                          transition={{ delay: (index * 0.1) + (idx * 0.05) }}
-                        >
-                          <motion.span
-                            animate={{ scale: [1, 1.2, 1] }}
-                            transition={{
-                              duration: 2,
-                              repeat: Infinity,
-                              delay: idx * 0.3,
-                            }}
-                            className="mr-2 text-primary"
+                      <motion.div
+                        animate={{
+                          y: [0, -10, 0],
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: Infinity,
+                          repeatType: "reverse",
+                          delay: index * 0.2,
+                        }}
+                      >
+                        <category.icon className="h-12 w-12 mb-4 text-primary" />
+                      </motion.div>
+
+                      <h3 className="text-xl font-semibold mb-4">
+                        {category.title}
+                      </h3>
+
+                      <ul className="space-y-2">
+                        {category.skills.map((skill, idx) => (
+                          <motion.li
+                            key={skill}
+                            className="flex items-center text-muted-foreground"
+                            initial={{ opacity: 0, x: -20 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: index * 0.1 + idx * 0.05 }}
                           >
-                            <Code className="h-4 w-4" />
-                          </motion.span>
-                          {skill}
-                        </motion.li>
-                      ))}
-                    </ul>
+                            <motion.span
+                              animate={{ scale: [1, 1.2, 1] }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                delay: idx * 0.3,
+                              }}
+                              className="mr-2 text-primary"
+                            >
+                              <Code className="h-4 w-4" />
+                            </motion.span>
+                            {skill}
+                          </motion.li>
+                        ))}
+                      </ul>
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              ))}
+                ),
+              )}
             </motion.div>
           </AnimatePresence>
         </div>
@@ -512,7 +517,7 @@ export default function Home() {
             {/* Projects */}
             <div>
               <div className="flex items-center justify-between mb-8">
-                <motion.h3 
+                <motion.h3
                   className="text-2xl font-semibold"
                   variants={slideInVariants}
                   initial="hidden"
@@ -555,7 +560,7 @@ export default function Home() {
             {/* Blog Posts */}
             <div>
               <div className="flex items-center justify-between mb-8">
-                <motion.h3 
+                <motion.h3
                   className="text-2xl font-semibold"
                   variants={slideInVariants}
                   initial="hidden"
