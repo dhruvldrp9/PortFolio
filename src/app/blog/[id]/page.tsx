@@ -67,15 +67,13 @@ export default function BlogPostPage() {
               </span>
             </div>
 
-            {post.image && (
-              <div className="mb-10 rounded-xl overflow-hidden">
-                <img 
-                  src={post.image} 
-                  alt={post.title}
-                  className="w-full h-auto object-cover"
-                />
-              </div>
-            )}
+            <div className="mb-10 rounded-xl overflow-hidden">
+              <img 
+                src={post.image || "/attached_assets/GoogleMeetBot.jpeg"} 
+                alt={post.title}
+                className="w-full h-auto object-cover"
+              />
+            </div>
 
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
 
