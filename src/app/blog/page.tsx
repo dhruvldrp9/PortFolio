@@ -1,141 +1,105 @@
 "use client";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+
+import React, { useState } from "react";
 import PageBackground from "@/components/layout/page-background";
 import BlogCard from "@/components/blog/blog-card";
-import { Button, Input } from "@/components/ui/button"; // Assuming Button and Input are in the same directory. Adjust as needed.
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input"; // Corrected import path
 import { Book, Filter, Search, Tag } from "lucide-react";
+import blogPosts from "@/data/blog-posts.json";
+import { motion } from "framer-motion";
+import Link from "next/link";
 
-const categories = ["AI", "Cybersecurity"]; // Placeholder category data
+const categories = ["AI", "Cybersecurity"]; // Categories
 
-const posts = [
-  // Placeholder blog post data.  Replace with your actual data.
-  { id: 1, title: "AI Ethics", category: "AI", content: "Sample AI Ethics content" },
-  { id: 2, title: "Cybersecurity Threats", category: "Cybersecurity", content: "Sample Cybersecurity content" },
-  { id: 3, title: "Machine Learning", category: "AI", content: "Sample Machine Learning content" },
-  { id: 4, title: "Data Privacy", category: "Cybersecurity", content: "Sample Data Privacy content" }
-];
-
-
-export default function Blog() {
-  const [filter, setFilter] = useState("all");
+export default function BlogPage() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
-  const filteredPosts = posts.filter((post) => {
-    const matchesCategory = filter === "all" || post.category === filter;
-    const matchesSearch = post.title.toLowerCase().includes(searchQuery.toLowerCase());
-    return matchesCategory && matchesSearch;
+  const filteredPosts = blogPosts.filter((post) => {
+    const matchesQuery = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+                       post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesCategory = selectedCategory ? post.category === selectedCategory : true;
+    return matchesQuery && matchesCategory;
   });
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   return (
-    <div className="bg-background min-h-screen">
-      <div className="container mx-auto px-4 py-16">
-        <PageBackground
-          title="Articles & Insights"
-          subtitle="Thoughts and explorations in AI, cybersecurity, and technology"
-        />
+    <div className="min-h-screen bg-background text-foreground relative">
+      <PageBackground />
 
-        <div className="mt-16">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between mb-8 gap-6">
-            <div>
-              <h2 className="text-3xl font-bold">Latest Articles</h2>
-              <p className="text-muted-foreground mt-2">
-                Explore my thoughts and insights on AI and Cybersecurity
-              </p>
-            </div>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <div className="relative">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                <Input
-                  placeholder="Search articles..."
-                  className="pl-10 w-full sm:w-64"
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                />
-              </div>
-            </div>
-          </div>
+      <div className="container mx-auto px-4 py-16 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="mb-10"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gradient-primary">Blog</h1>
+          <p className="text-lg text-muted-foreground max-w-3xl">
+            Thoughts, insights, and deep dives into AI, cybersecurity, and tech trends
+          </p>
+        </motion.div>
 
-          <div className="mb-12">
-            <div className="flex flex-wrap gap-2">
+        <div className="mb-10">
+          <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Input
+                placeholder="Search articles..."
+                className="pl-10"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
+            <div className="flex gap-2 flex-wrap">
               <Button
-                variant={filter === "all" ? "default" : "outline"}
+                variant={selectedCategory === null ? "default" : "outline"}
                 size="sm"
-                onClick={() => setFilter("all")}
-                className="rounded-full"
+                onClick={() => setSelectedCategory(null)}
+                className="flex items-center gap-2"
               >
+                <Book className="h-4 w-4" />
                 All
               </Button>
               {categories.map((category) => (
                 <Button
                   key={category}
-                  variant={filter === category ? "default" : "outline"}
+                  variant={selectedCategory === category ? "default" : "outline"}
                   size="sm"
-                  onClick={() => setFilter(category)}
-                  className="rounded-full"
+                  onClick={() => setSelectedCategory(category)}
+                  className="flex items-center gap-2"
                 >
+                  {category === "AI" ? (
+                    <Tag className="h-4 w-4" />
+                  ) : (
+                    <Filter className="h-4 w-4" />
+                  )}
                   {category}
                 </Button>
               ))}
             </div>
           </div>
-
-          {filteredPosts.length === 0 ? (
-            <div className="text-center py-20">
-              <Book className="h-16 w-16 mx-auto text-muted-foreground opacity-30" />
-              <h3 className="text-xl font-medium mt-4">No articles found</h3>
-              <p className="text-muted-foreground mt-2">Try adjusting your search or filter criteria</p>
-              <Button
-                variant="outline"
-                className="mt-4"
-                onClick={() => {
-                  setFilter("all");
-                  setSearchQuery("");
-                }}
-              >
-                Clear filters
-              </Button>
-            </div>
-          ) : (
-            <motion.div
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-            >
-              {filteredPosts.map((post, index) => (
-                <motion.div
-                  key={post.id}
-                  variants={itemVariants}
-                  transition={{ delay: index * 0.1 }}
-                >
-                  <BlogCard post={post} />
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
         </div>
+
+        {filteredPosts.length > 0 ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filteredPosts.map((post) => (
+              <motion.div
+                key={post.id}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.1 }}
+              >
+                <BlogCard post={post} />
+              </motion.div>
+            ))}
+          </div>
+        ) : (
+          <div className="text-center py-20">
+            <h3 className="text-xl font-medium mb-2">No articles found</h3>
+            <p className="text-muted-foreground">Try adjusting your search or filters</p>
+          </div>
+        )}
       </div>
     </div>
   );
