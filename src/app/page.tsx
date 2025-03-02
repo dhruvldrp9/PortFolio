@@ -11,6 +11,11 @@ import {
   Database,
   Code,
   BrainCircuit,
+  FileCode2,
+  FileImage,
+  Shield,
+  ShieldAlert,
+  Scale,
 } from "lucide-react";
 import ProjectCard from "@/components/projects/project-card";
 import BlogCard from "@/components/blog/blog-card";
@@ -175,7 +180,7 @@ export default function Home() {
             {[
               {
                 title: "Machine Learning",
-                icon: Network,
+                icon: BrainCircuit,
                 skills: ["Pandas", "Numpy", "Scikit-learn"],
               },
               {
@@ -185,22 +190,22 @@ export default function Home() {
               },
               {
                 title: "Natural Language Processing",
-                icon: Database,
+                icon: FileCode2,
                 skills: ["AI Agents", "RAG", "Custom Language Models"],
               },
               {
                 title: "Computer Vision",
-                icon: Code,
+                icon: FileImage,
                 skills: ["OpenCV", "Object Detection", "Image Processing"],
               },
               {
                 title: "Network Security",
-                icon: Code,
+                icon: Network,
                 skills: ["Penetration Testing", "Firewall Config", "IDS/IPS"],
               },
               {
                 title: "SOC Operations",
-                icon: Brain,
+                icon: Shield,
                 skills: [
                   "SIEM Tools",
                   "Incident Response",
@@ -209,12 +214,12 @@ export default function Home() {
               },
               {
                 title: "Threat Intelligence",
-                icon: Network,
+                icon: ShieldAlert,
                 skills: ["Malware Analysis", "Threat Hunting", "OSINT"],
               },
               {
                 title: "Security Compliance",
-                icon: Database,
+                icon: Scale,
                 skills: ["GDPR", "ISO 27001", "Security Audits"],
               },
             ].map((category, index) => (
