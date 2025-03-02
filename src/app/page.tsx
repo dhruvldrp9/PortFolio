@@ -343,17 +343,17 @@ export default function Home() {
       </section>
 
       {/* About Me Section */}
-      <section className="py-12 relative overflow-hidden">
+      <section className="py-20 relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            className="mb-8 text-center"
+            className="mb-10 text-center"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5 }}
           >
             <motion.h2
-              className="text-3xl font-bold mb-4 inline-block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+              className="text-4xl font-bold mb-6 inline-block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -363,29 +363,29 @@ export default function Home() {
             </motion.h2>
           </motion.div>
 
-          <div className="max-w-4xl mx-auto">
+          <div className="max-w-5xl mx-auto">
             <motion.div
-              className="bg-card/60 backdrop-blur-sm border border-border/50 rounded-xl p-8 shadow-lg"
+              className="bg-card/60 backdrop-blur-sm border border-border/50 rounded-xl p-10 shadow-lg"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              <motion.p className="text-lg leading-relaxed text-muted-foreground mb-6">
+              <motion.p className="text-xl leading-relaxed text-muted-foreground mb-8">
                 {PROFILE.bio}
               </motion.p>
               
-              <div className="flex flex-wrap gap-3 mt-4">
-                <div className="flex items-center text-primary-foreground bg-primary/10 px-3 py-1 rounded-full text-sm">
-                  <BrainCircuit className="w-4 h-4 mr-2" />
+              <div className="flex flex-wrap gap-4 mt-6">
+                <div className="flex items-center text-primary-foreground bg-primary/10 px-4 py-2 rounded-full text-base">
+                  <BrainCircuit className="w-5 h-5 mr-2" />
                   <span>AI Engineer</span>
                 </div>
-                <div className="flex items-center text-accent-foreground bg-accent/10 px-3 py-1 rounded-full text-sm">
-                  <Shield className="w-4 h-4 mr-2" />
+                <div className="flex items-center text-accent-foreground bg-accent/10 px-4 py-2 rounded-full text-base">
+                  <Shield className="w-5 h-5 mr-2" />
                   <span>Cybersecurity Specialist</span>
                 </div>
-                <div className="flex items-center text-muted-foreground bg-muted/50 px-3 py-1 rounded-full text-sm">
-                  <Server className="w-4 h-4 mr-2" />
+                <div className="flex items-center text-muted-foreground bg-muted/50 px-4 py-2 rounded-full text-base">
+                  <Server className="w-5 h-5 mr-2" />
                   <span>{PROFILE.location}</span>
                 </div>
               </div>
@@ -593,59 +593,31 @@ export default function Home() {
                 </motion.div>
               </div>
               
-              {/* Projects Slider - Auto-scrolling Left to Right */}
+              {/* Projects Grid - Fixed */}
               <motion.div
-                className="overflow-hidden rounded-xl"
+                className="mt-6"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="carousel-container">
-                  <motion.div
-                    className="flex items-center py-4 px-16 pb-6 carousel-track"
-                    animate={{ 
-                      x: ["-50%", "0%"], 
-                    }}
-                    transition={{ 
-                      x: {
-                        duration: 20,
-                        repeat: Infinity,
-                        repeatType: "loop",
-                        ease: "linear"
-                      }
-                    }}
-                  >
-                    {/* First set of projects */}
-                    {projects?.slice(0, 6).map((project, index) => (
-                      <motion.div
-                        key={`${project.id}-1-${index}`}
-                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
-                        whileHover={{ 
-                          scale: 1.03, 
-                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                          transition: { duration: 0.2 } 
-                        }}
-                      >
-                        <ProjectCard project={project} />
-                      </motion.div>
-                    ))}
-                    
-                    {/* Duplicated set for continuous effect */}
-                    {projects?.slice(0, 6).map((project, index) => (
-                      <motion.div
-                        key={`${project.id}-2-${index}`}
-                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
-                        whileHover={{ 
-                          scale: 1.03, 
-                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                          transition: { duration: 0.2 } 
-                        }}
-                      >
-                        <ProjectCard project={project} />
-                      </motion.div>
-                    ))}
-                  </motion.div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {projects?.slice(0, 6).map((project, index) => (
+                    <motion.div
+                      key={`${project.id}-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ 
+                        scale: 1.03, 
+                        boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                        transition: { duration: 0.2 } 
+                      }}
+                    >
+                      <ProjectCard project={project} />
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </div>
@@ -677,59 +649,31 @@ export default function Home() {
                 </motion.div>
               </div>
               
-              {/* Articles Slider - Auto-scrolling Right to Left */}
+              {/* Articles Grid - Fixed */}
               <motion.div
-                className="overflow-hidden rounded-xl"
+                className="mt-6"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="carousel-container">
-                  <motion.div
-                    className="flex items-center py-4 px-16 pb-6 carousel-track"
-                    animate={{ 
-                      x: ["0%", "-50%"], 
-                    }}
-                    transition={{ 
-                      x: {
-                        duration: 20,
-                        repeat: Infinity,
-                        repeatType: "loop",
-                        ease: "linear"
-                      } 
-                    }}
-                  >
-                    {/* First set of articles */}
-                    {blogPosts?.slice(0, 6).map((post, index) => (
-                      <motion.div
-                        key={`${post.id}-1-${index}`}
-                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
-                        whileHover={{ 
-                          scale: 1.03, 
-                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                          transition: { duration: 0.2 } 
-                        }}
-                      >
-                        <BlogCard post={post} />
-                      </motion.div>
-                    ))}
-                    
-                    {/* Duplicated set for continuous effect */}
-                    {blogPosts?.slice(0, 6).map((post, index) => (
-                      <motion.div
-                        key={`${post.id}-2-${index}`}
-                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
-                        whileHover={{ 
-                          scale: 1.03, 
-                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                          transition: { duration: 0.2 } 
-                        }}
-                      >
-                        <BlogCard post={post} />
-                      </motion.div>
-                    ))}
-                  </motion.div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {blogPosts?.slice(0, 6).map((post, index) => (
+                    <motion.div
+                      key={`${post.id}-${index}`}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1 }}
+                      whileHover={{ 
+                        scale: 1.03, 
+                        boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                        transition: { duration: 0.2 } 
+                      }}
+                    >
+                      <BlogCard post={post} />
+                    </motion.div>
+                  ))}
                 </div>
               </motion.div>
             </div>
