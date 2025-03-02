@@ -1,44 +1,9 @@
 "use client";
-import { education } from "../../data/education.json";
-import TimelineItem from "@/components/education/timeline-item";
-import Heading from "@/components/ui/heading";
 import { motion } from "framer-motion";
 import PageBackground from "@/components/layout/page-background";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { School, Calendar, BookOpen, Award } from "lucide-react";
-
-const EDUCATION = [
-  {
-    institution: "University of Technology",
-    degree: "Master of Science in Artificial Intelligence",
-    dates: "2018 - 2020",
-    achievements: [
-      "Published research on Deep Reinforcement Learning",
-      "Best Thesis Award in AI Applications"
-    ],
-    coursework: [
-      "Deep Learning",
-      "Computer Vision",
-      "Natural Language Processing",
-      "Reinforcement Learning"
-    ]
-  },
-  {
-    institution: "Tech College",
-    degree: "Bachelor of Computer Science",
-    dates: "2014 - 2018",
-    achievements: [
-      "AI/ML Research Assistant",
-      "Published paper on Neural Networks"
-    ],
-    coursework: [
-      "Machine Learning Fundamentals",
-      "Statistical Learning",
-      "Python for Data Science",
-      "Mathematics for ML"
-    ]
-  }
-];
+import { education } from "../../data/education.json";
 
 export default function Education() {
   const containerVariants = {
@@ -76,7 +41,7 @@ export default function Education() {
           animate="visible"
           variants={containerVariants}
         >
-          {EDUCATION.map((edu, index) => (
+          {education.map((edu, index) => (
             <motion.div key={index} variants={itemVariants}>
               <Card className="overflow-hidden border border-border/50 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
                 <CardHeader className="flex flex-row items-center gap-4 border-b border-border/50 bg-muted/30">

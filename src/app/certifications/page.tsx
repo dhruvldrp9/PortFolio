@@ -3,74 +3,8 @@ import { motion } from "framer-motion";
 import PageBackground from "@/components/layout/page-background";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { 
-  Award, 
-  Calendar, 
-  ExternalLink, 
-  Shield, 
-  Brain, 
-  Database, 
-  Globe 
-} from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
-
-const CERTIFICATIONS = [
-  {
-    title: "AI Engineering and Large Language Models",
-    issuer: "DeepLearning.AI",
-    date: "2023",
-    image: "/ai-cert.png",
-    type: "AI",
-    description: "Advanced concepts in LLM development, fine-tuning, and deployment strategies",
-    link: "#"
-  },
-  {
-    title: "TensorFlow Developer Certification",
-    issuer: "Google",
-    date: "2022",
-    image: "/tensorflow-cert.png",
-    type: "AI",
-    description: "Building and deploying machine learning models using TensorFlow",
-    link: "#"
-  },
-  {
-    title: "Certified Information Systems Security Professional (CISSP)",
-    issuer: "ISC²",
-    date: "2023",
-    image: "/cissp-cert.png",
-    type: "Security",
-    description: "Industry-leading certification for information security professionals",
-    link: "#"
-  },
-  {
-    title: "Certified Ethical Hacker (CEH)",
-    issuer: "EC-Council",
-    date: "2022",
-    image: "/ceh-cert.png",
-    type: "Security",
-    description: "Advanced skills in ethical hacking, penetration testing, and security assessments",
-    link: "#"
-  },
-  {
-    title: "Azure AI Fundamentals",
-    issuer: "Microsoft",
-    date: "2022",
-    image: "/azure-ai-cert.png",
-    type: "AI",
-    description: "AI concepts, Azure services for machine learning and cognitive services",
-    link: "#"
-  },
-  {
-    title: "CompTIA Security+",
-    issuer: "CompTIA",
-    date: "2021",
-    image: "/security-plus-cert.png",
-    type: "Security",
-    description: "Foundational cybersecurity skills with emphasis on hands-on practical security",
-    link: "#"
-  }
-];
+import { Award, Calendar, ExternalLink, Shield, Brain } from "lucide-react";
+import { certifications } from "../../data/certifications.json";
 
 export default function Certifications() {
   const containerVariants = {
@@ -97,72 +31,60 @@ export default function Certifications() {
   return (
     <div className="bg-background min-h-screen">
       <div className="container mx-auto px-4 py-16">
-        <PageBackground 
-          title="Certifications & Credentials" 
-          subtitle="Professional qualifications and industry certifications"
+        <PageBackground
+          title="Certifications & Credentials"
+          subtitle="Professional qualifications in AI and cybersecurity"
         />
 
-        <motion.div 
-          className="mt-16 grid gap-6 md:grid-cols-2 lg:grid-cols-3"
-          variants={containerVariants}
+        <motion.div
+          className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3"
           initial="hidden"
           animate="visible"
+          variants={containerVariants}
         >
-          {CERTIFICATIONS.map((cert, index) => (
-            <motion.div 
-              key={index}
-              variants={itemVariants} 
-              whileHover={{ y: -5 }}
-              transition={{ duration: 0.2 }}
-            >
-              <Card className="h-full overflow-hidden border border-border/50 bg-card/60 backdrop-blur-sm hover:shadow-lg hover:shadow-primary/10 transition-all duration-300">
-                <CardHeader className="relative pb-0">
-                  <div className="absolute top-4 right-4 rounded-full px-3 py-1 text-xs font-medium bg-muted/80 backdrop-blur-sm">
-                    {cert.type === "AI" ? (
-                      <span className="flex items-center text-primary">
-                        <Brain className="mr-1 h-3 w-3" />
-                        AI & ML
-                      </span>
-                    ) : (
-                      <span className="flex items-center text-accent">
-                        <Shield className="mr-1 h-3 w-3" />
-                        Security
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex items-center justify-center py-6">
-                    <div className="h-16 w-16 rounded-full bg-primary/10 flex items-center justify-center">
-                      {cert.type === "AI" ? (
-                        <Brain className="h-8 w-8 text-primary" />
+          {certifications.map((cert, index) => {
+            const isAI = cert.name.toLowerCase().includes("ai") || 
+                         cert.name.toLowerCase().includes("machine learning") || 
+                         cert.name.toLowerCase().includes("data");
+
+            return (
+              <motion.div key={index} variants={itemVariants}>
+                <Card className="h-full overflow-hidden border border-border/50 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
+                  <CardHeader className="border-b border-border/50 bg-muted/30 flex items-center gap-3 p-4">
+                    <div className={`rounded-full ${isAI ? "bg-primary/10" : "bg-accent/10"} p-2`}>
+                      {isAI ? (
+                        <Brain className="h-5 w-5 text-primary" />
                       ) : (
-                        <Shield className="h-8 w-8 text-accent" />
+                        <Shield className="h-5 w-5 text-accent" />
                       )}
                     </div>
-                  </div>
-                  <h3 className="text-center text-lg font-semibold leading-tight">{cert.title}</h3>
-                  <div className="mt-2 flex items-center justify-center text-sm text-muted-foreground">
-                    <Globe className="mr-2 h-4 w-4" />
-                    {cert.issuer}
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-4">
-                  <p className="text-sm text-muted-foreground">{cert.description}</p>
-                  <div className="mt-4 inline-flex items-center text-xs text-muted-foreground">
-                    <Calendar className="mr-1 h-3 w-3" />
-                    Issued: {cert.date}
-                  </div>
-                </CardContent>
-                <CardFooter>
-                  <Button asChild variant="outline" className="w-full" size="sm">
-                    <Link href={cert.link} target="_blank">
-                      <ExternalLink className="mr-2 h-4 w-4" />
-                      View Credential
-                    </Link>
-                  </Button>
-                </CardFooter>
-              </Card>
-            </motion.div>
-          ))}
+                    <div>
+                      <h3 className="text-lg font-medium line-clamp-1">{cert.name}</h3>
+                      <p className="text-sm text-muted-foreground">{cert.organization}</p>
+                    </div>
+                  </CardHeader>
+                  <CardContent className="p-5">
+                    <p className="text-muted-foreground text-sm mb-3 flex items-center">
+                      <Calendar className="mr-2 h-4 w-4 text-muted-foreground" />
+                      {new Date(cert.date_achieved).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long'
+                      })}
+                    </p>
+                    <p className="text-sm text-muted-foreground line-clamp-3">{cert.description}</p>
+                  </CardContent>
+                  <CardFooter className="p-4 border-t border-border/50 bg-muted/10">
+                    <a href={cert.verification_url} target="_blank" rel="noopener noreferrer" className="w-full">
+                      <Button variant="outline" className="w-full group" size="sm">
+                        <span>Verify</span>
+                        <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      </Button>
+                    </a>
+                  </CardFooter>
+                </Card>
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </div>
