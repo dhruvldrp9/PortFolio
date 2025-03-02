@@ -8,11 +8,11 @@ import React from "react";
 
 export default function Footer() {
   return (
-    <footer className="w-full border-t bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <footer className="w-full bg-black">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-4">
           {/* Contact Information */}
-          <div className="space-y-4">
+          <div className="space-y-4"> 
             <h3 className="text-lg font-semibold bg-gradient-to-r from-foreground to-foreground bg-clip-text text-transparent">
               Contact
             </h3>

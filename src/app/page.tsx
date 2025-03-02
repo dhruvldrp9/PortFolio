@@ -175,18 +175,38 @@ export default function Home() {
             {[
               {
                 title: "Machine Learning",
-                icon: Brain,
+                icon: Network,
                 skills: ["TensorFlow", "PyTorch", "Scikit-learn"],
               },
               {
                 title: "Deep Learning",
-                icon: Network,
+                icon: Brain,
                 skills: ["Neural Networks", "CNN", "Transformers"],
               },
               {
                 title: "Computer Vision",
                 icon: Code,
                 skills: ["OpenCV", "Object Detection", "Image Processing"],
+              },
+              {
+                title: "MLOps",
+                icon: Database,
+                skills: ["CI/CD", "Model Monitoring", "Deployment"],
+              },
+              {
+                title: "MLOps",
+                icon: Database,
+                skills: ["CI/CD", "Model Monitoring", "Deployment"],
+              },
+              {
+                title: "MLOps",
+                icon: Database,
+                skills: ["CI/CD", "Model Monitoring", "Deployment"],
+              },
+              {
+                title: "MLOps",
+                icon: Database,
+                skills: ["CI/CD", "Model Monitoring", "Deployment"],
               },
               {
                 title: "MLOps",

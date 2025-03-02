@@ -2,7 +2,8 @@
   "projects": [
     {
       "id": 1,
-      "title": "AI Image Generator",
+      "title": "Google Meet Bot",
+      "short_description": "",
       "description": "A deep learning model that generates images from textual descriptions",
       "technologies": "Python, PyTorch, FastAPI",
       "image_url": "https://example.com/ai-image-gen.jpg",
@@ -12,7 +13,107 @@
     },
     {
       "id": 2,
-      "title": "AI Image Generator",
+      "title": "DocuQuest",
+      "short_description": "",
+      "description": "A deep learning model that generates images from textual descriptions",
+      "technologies": "Python, PyTorch, FastAPI",
+      "image_url": "https://example.com/ai-image-gen.jpg",
+      "github_url": "https://github.com/username/ai-image-gen",
+      "live_url": "https://ai-image-gen.demo.com",
+      "created_at": "2024-01-10T10:00:00Z"
+    },
+    {
+      "id": 3,
+      "title": "DeepFake Audio Detection",
+      "short_description": "",
+      "description": "A deep learning model that generates images from textual descriptions",
+      "technologies": "Python, PyTorch, FastAPI",
+      "image_url": "https://example.com/ai-image-gen.jpg",
+      "github_url": "https://github.com/username/ai-image-gen",
+      "live_url": "https://ai-image-gen.demo.com",
+      "created_at": "2024-01-10T10:00:00Z"
+    },
+    {
+      "id": 4,
+      "title": "AI Based Intrusion Detection System",
+      "short_description": "",
+      "description": "A deep learning model that generates images from textual descriptions",
+      "technologies": "Python, PyTorch, FastAPI",
+      "image_url": "https://example.com/ai-image-gen.jpg",
+      "github_url": "https://github.com/username/ai-image-gen",
+      "live_url": "https://ai-image-gen.demo.com",
+      "created_at": "2024-01-10T10:00:00Z"
+    },
+    {
+      "id": 5,
+      "title": "News Agent",
+      "short_description": "",
+      "description": "A deep learning model that generates images from textual descriptions",
+      "technologies": "Python, PyTorch, FastAPI",
+      "image_url": "https://example.com/ai-image-gen.jpg",
+      "github_url": "https://github.com/username/ai-image-gen",
+      "live_url": "https://ai-image-gen.demo.com",
+      "created_at": "2024-01-10T10:00:00Z"
+    },
+    {
+      "id": 6,
+      "title": "Stock Market Price Prediction",
+      "short_description": "",
+      "description": "A deep learning model that generates images from textual descriptions",
+      "technologies": "Python, PyTorch, FastAPI",
+      "image_url": "https://example.com/ai-image-gen.jpg",
+      "github_url": "https://github.com/username/ai-image-gen",
+      "live_url": "https://ai-image-gen.demo.com",
+      "created_at": "2024-01-10T10:00:00Z"
+    },
+    {
+      "id": 7,
+      "title": "Stock Market Price Prediction",
+      "short_description": "",
+      "description": "A deep learning model that generates images from textual descriptions",
+      "technologies": "Python, PyTorch, FastAPI",
+      "image_url": "https://example.com/ai-image-gen.jpg",
+      "github_url": "https://github.com/username/ai-image-gen",
+      "live_url": "https://ai-image-gen.demo.com",
+      "created_at": "2024-01-10T10:00:00Z"
+    },
+    {
+      "id": 8,
+      "title": "Stock Market Price Prediction",
+      "short_description": "",
+      "description": "A deep learning model that generates images from textual descriptions",
+      "technologies": "Python, PyTorch, FastAPI",
+      "image_url": "https://example.com/ai-image-gen.jpg",
+      "github_url": "https://github.com/username/ai-image-gen",
+      "live_url": "https://ai-image-gen.demo.com",
+      "created_at": "2024-01-10T10:00:00Z"
+    },
+    {
+      "id": 9,
+      "title": "Stock Market Price Prediction",
+      "short_description": "",
+      "description": "A deep learning model that generates images from textual descriptions",
+      "technologies": "Python, PyTorch, FastAPI",
+      "image_url": "https://example.com/ai-image-gen.jpg",
+      "github_url": "https://github.com/username/ai-image-gen",
+      "live_url": "https://ai-image-gen.demo.com",
+      "created_at": "2024-01-10T10:00:00Z"
+    },
+    {
+      "id": 10,
+      "title": "Stock Market Price Prediction",
+      "short_description": "",
+      "description": "A deep learning model that generates images from textual descriptions",
+      "technologies": "Python, PyTorch, FastAPI",
+      "image_url": "https://example.com/ai-image-gen.jpg",
+      "github_url": "https://github.com/username/ai-image-gen",
+      "live_url": "https://ai-image-gen.demo.com",
+      "created_at": "2024-01-10T10:00:00Z"
+    },
+    {
+      "id": 11,
+      "title": "Stock Market Price Prediction",
+      "short_description": "",
       "description": "A deep learning model that generates images from textual descriptions",
       "technologies": "Python, PyTorch, FastAPI",
       "image_url": "https://example.com/ai-image-gen.jpg",
