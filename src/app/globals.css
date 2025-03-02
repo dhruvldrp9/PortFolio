@@ -19,7 +19,18 @@
   scrollbar-width: none;  /* Firefox */
 }
 
-/* Removed carousel styles */
+/* Carousel animations */
+.carousel-container {
+  width: 100%;
+  overflow: hidden;
+  position: relative;
+}
+
+.carousel-track {
+  will-change: transform;
+  width: fit-content;
+  transition: transform 1s ease-in-out; /* Added smooth transition */
+}
 
 body {
   @apply font-sans antialiased text-base;

@@ -343,7 +343,42 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* No Highlights Section */}
+      {/* Highlights Section */}
+      <section className="py-12 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            className="mb-8 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+          >
+            <motion.h2
+              className="text-3xl font-bold mb-4 inline-block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+            >
+              Latest Highlights
+            </motion.h2>
+            <motion.p
+              className="text-muted-foreground max-w-2xl mx-auto"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: 0.3 }}
+            >
+              Recent achievements, awards, and notable updates
+            </motion.p>
+          </motion.div>
+
+          {/* Auto-sliding carousel */}
+          <div className="max-w-4xl mx-auto">
+            <HighlightsCarousel />
+          </div>
+        </div>
+      </section>
 
       {/* Skills Section */}
       <section className="py-24 relative overflow-hidden">
@@ -544,34 +579,59 @@ export default function Home() {
                 </motion.div>
               </div>
               
-              {/* Projects Grid */}
+              {/* Projects Slider - Auto-scrolling Left to Right */}
               <motion.div
+                className="overflow-hidden"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {projects?.slice(0, 6).map((project, index) => (
-                    <motion.div
-                      key={`${project.id}-${index}`}
-                      className="h-full"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { delay: index * 0.1 }
-                      }}
-                      viewport={{ once: true }}
-                      whileHover={{ 
-                        scale: 1.03, 
-                        boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                        transition: { duration: 0.2 } 
-                      }}
-                    >
-                      <ProjectCard project={project} />
-                    </motion.div>
-                  ))}
+                <div className="carousel-container">
+                  <motion.div
+                    className="flex items-center py-4 px-2 pb-6 carousel-track"
+                    animate={{ 
+                      x: ["-50%", "0%"], 
+                    }}
+                    transition={{ 
+                      x: {
+                        duration: 20,
+                        repeat: Infinity,
+                        repeatType: "loop",
+                        ease: "linear"
+                      }
+                    }}
+                  >
+                    {/* First set of projects */}
+                    {projects?.slice(0, 6).map((project, index) => (
+                      <motion.div
+                        key={`${project.id}-1-${index}`}
+                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
+                        whileHover={{ 
+                          scale: 1.03, 
+                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                          transition: { duration: 0.2 } 
+                        }}
+                      >
+                        <ProjectCard project={project} />
+                      </motion.div>
+                    ))}
+                    
+                    {/* Duplicated set for continuous effect */}
+                    {projects?.slice(0, 6).map((project, index) => (
+                      <motion.div
+                        key={`${project.id}-2-${index}`}
+                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
+                        whileHover={{ 
+                          scale: 1.03, 
+                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                          transition: { duration: 0.2 } 
+                        }}
+                      >
+                        <ProjectCard project={project} />
+                      </motion.div>
+                    ))}
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
@@ -603,34 +663,59 @@ export default function Home() {
                 </motion.div>
               </div>
               
-              {/* Articles Grid */}
+              {/* Articles Slider - Auto-scrolling Right to Left */}
               <motion.div
+                className="overflow-hidden rounded-xl"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {blogPosts?.slice(0, 6).map((post, index) => (
-                    <motion.div
-                      key={`${post.id}-${index}`}
-                      className="h-full"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ 
-                        opacity: 1, 
-                        y: 0,
-                        transition: { delay: index * 0.1 }
-                      }}
-                      viewport={{ once: true }}
-                      whileHover={{ 
-                        scale: 1.03, 
-                        boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                        transition: { duration: 0.2 } 
-                      }}
-                    >
-                      <BlogCard post={post} />
-                    </motion.div>
-                  ))}
+                <div className="carousel-container">
+                  <motion.div
+                    className="flex items-center py-4 px-2 pb-6 carousel-track"
+                    animate={{ 
+                      x: ["0%", "-50%"], 
+                    }}
+                    transition={{ 
+                      x: {
+                        duration: 20,
+                        repeat: Infinity,
+                        repeatType: "loop",
+                        ease: "linear"
+                      } 
+                    }}
+                  >
+                    {/* First set of articles */}
+                    {blogPosts?.slice(0, 6).map((post, index) => (
+                      <motion.div
+                        key={`${post.id}-1-${index}`}
+                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
+                        whileHover={{ 
+                          scale: 1.03, 
+                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                          transition: { duration: 0.2 } 
+                        }}
+                      >
+                        <BlogCard post={post} />
+                      </motion.div>
+                    ))}
+                    
+                    {/* Duplicated set for continuous effect */}
+                    {blogPosts?.slice(0, 6).map((post, index) => (
+                      <motion.div
+                        key={`${post.id}-2-${index}`}
+                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
+                        whileHover={{ 
+                          scale: 1.03, 
+                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                          transition: { duration: 0.2 } 
+                        }}
+                      >
+                        <BlogCard post={post} />
+                      </motion.div>
+                    ))}
+                  </motion.div>
                 </div>
               </motion.div>
             </div>
