@@ -27,6 +27,8 @@ import React, { useState, useEffect } from "react";
 import { projects } from "../data/projects.json";
 import { posts as blogPosts } from "../data/blog-posts.json";
 import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("ai");
@@ -139,6 +141,8 @@ export default function Home() {
       skills: ["GDPR", "ISO 27001", "Security Audits"],
     },
   ];
+
+  const latestBlogPosts = blogPosts.slice(0,3);
 
   return (
     <div className="bg-background min-h-screen">
