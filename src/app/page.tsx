@@ -206,7 +206,7 @@ export default function Home() {
 
               <div className="space-y-4">
                 <motion.h1
-                  className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl text-foreground my-10 py-2"
+                  className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground my-10 py-2"
                   variants={itemVariants}
                 >
                   <span className="inline-block text-foreground">
