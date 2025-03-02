@@ -19,8 +19,8 @@ export default function ProjectDetails() {
 
   useEffect(() => {
     if (id) {
-      // Find the current project
-      const currentProject = projects.find((p) => p.id === id);
+      // Find the current project - handle both string and number IDs
+      const currentProject = projects.find((p) => p.id.toString() === id.toString());
       if (currentProject) {
         setProject(currentProject);
 
@@ -28,7 +28,7 @@ export default function ProjectDetails() {
         const related = projects
           .filter(
             (p) => 
-              p.id !== id && 
+              p.id.toString() !== id.toString() && 
               p.category === currentProject.category
           )
           .slice(0, 3);
@@ -41,7 +41,16 @@ export default function ProjectDetails() {
   if (!project) {
     return (
       <div className="container mx-auto px-4 py-16">
-        <div className="text-center">Loading project details...</div>
+        <div className="flex flex-col items-center justify-center py-20">
+          <h1 className="text-3xl font-bold mb-4">Project Not Found</h1>
+          <p className="text-muted-foreground mb-8">The project you're looking for doesn't exist or has been removed.</p>
+          <Link href="/projects">
+            <Button>
+              <ArrowLeft className="mr-2 h-4 w-4" />
+              Back to Projects
+            </Button>
+          </Link>
+        </div>
       </div>
     );
   }
