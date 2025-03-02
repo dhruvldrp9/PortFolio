@@ -579,7 +579,7 @@ export default function Home() {
                 </motion.div>
               </div>
               
-              {/* Projects Slider */}
+              {/* Projects Slider - Auto-scrolling Right to Left */}
               <motion.div
                 className="overflow-hidden"
                 initial={{ opacity: 0 }}
@@ -588,24 +588,24 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
               >
                 <motion.div
-                  className="flex space-x-6 py-4 px-2 overflow-x-auto pb-6 scrollbar-hide"
-                  initial={{ x: 100 }}
-                  whileInView={{ x: 0 }}
-                  viewport={{ once: true }}
+                  className="flex space-x-6 py-4 px-2 overflow-hidden pb-6"
+                  animate={{ 
+                    x: [0, -2000], 
+                  }}
                   transition={{ 
-                    type: "spring", 
-                    stiffness: 60,
-                    damping: 20 
+                    x: {
+                      duration: 40,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      ease: "linear"
+                    }
                   }}
                 >
-                  {projects?.slice(0, 6).map((project, index) => (
+                  {/* Doubled project items for continuous loop effect */}
+                  {[...projects?.slice(0, 6), ...projects?.slice(0, 6)].map((project, index) => (
                     <motion.div
-                      key={project.id}
-                      className="w-full sm:w-[350px] flex-shrink-0"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
+                      key={`${project.id}-${index}`}
+                      className="w-[300px] sm:w-[350px] mx-3 flex-shrink-0"
                       whileHover={{ 
                         scale: 1.03, 
                         boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
@@ -646,7 +646,7 @@ export default function Home() {
                 </motion.div>
               </div>
               
-              {/* Articles Slider */}
+              {/* Articles Slider - Auto-scrolling Left to Right */}
               <motion.div
                 className="overflow-hidden rounded-xl"
                 initial={{ opacity: 0 }}
@@ -655,24 +655,24 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
               >
                 <motion.div
-                  className="flex space-x-6 py-4 px-2 overflow-x-auto pb-6 scrollbar-hide"
-                  initial={{ x: -100 }}
-                  whileInView={{ x: 0 }}
-                  viewport={{ once: true }}
+                  className="flex space-x-6 py-4 px-2 overflow-hidden pb-6"
+                  animate={{ 
+                    x: [-2000, 0], 
+                  }}
                   transition={{ 
-                    type: "spring", 
-                    stiffness: 60,
-                    damping: 20 
+                    x: {
+                      duration: 40,
+                      repeat: Infinity,
+                      repeatType: "loop",
+                      ease: "linear"
+                    } 
                   }}
                 >
-                  {blogPosts?.slice(0, 6).map((post, index) => (
+                  {/* Doubled blog items for continuous loop effect */}
+                  {[...blogPosts?.slice(0, 6), ...blogPosts?.slice(0, 6)].map((post, index) => (
                     <motion.div
-                      key={post.id}
-                      className="w-full sm:w-[350px] flex-shrink-0"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
+                      key={`${post.id}-${index}`}
+                      className="w-[300px] sm:w-[350px] mx-3 flex-shrink-0"
                       whileHover={{ 
                         scale: 1.03, 
                         boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
