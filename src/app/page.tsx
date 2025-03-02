@@ -150,7 +150,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-20">
+      <section className="relative overflow-hidden py-10">
         <div className="absolute inset-0">
           <motion.div 
             className="absolute inset-0 opacity-10"
@@ -193,7 +193,7 @@ export default function Home() {
           variants={containerVariants}
         >
           <div className="grid gap-12 md:grid-cols-2 md:items-center">
-            <div className="space-y-8 relative z-10">
+            <div className="space-y-4 relative z-10">
               <motion.div
                 className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent"
                 variants={itemVariants}
@@ -207,7 +207,7 @@ export default function Home() {
 
               <div className="space-y-4">
                 <motion.h1
-                  className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground"
+                  className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-5xl text-foreground my-10 py-2"
                   variants={itemVariants}
                 >
                   <span className="inline-block text-foreground">
