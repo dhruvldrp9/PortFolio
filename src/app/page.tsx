@@ -579,7 +579,7 @@ export default function Home() {
                 </motion.div>
               </div>
               
-              {/* Projects Slider - Auto-scrolling Right to Left */}
+              {/* Projects Slider - Auto-scrolling Left to Right */}
               <motion.div
                 className="overflow-hidden"
                 initial={{ opacity: 0 }}
@@ -591,7 +591,7 @@ export default function Home() {
                   <motion.div
                     className="flex items-center py-4 px-2 pb-6 carousel-track"
                     animate={{ 
-                      x: ["0%", "-50%"], 
+                      x: ["-50%", "0%"], 
                     }}
                     transition={{ 
                       x: {
@@ -663,7 +663,7 @@ export default function Home() {
                 </motion.div>
               </div>
               
-              {/* Articles Slider - Auto-scrolling Left to Right */}
+              {/* Articles Slider - Auto-scrolling Right to Left */}
               <motion.div
                 className="overflow-hidden rounded-xl"
                 initial={{ opacity: 0 }}
@@ -675,7 +675,7 @@ export default function Home() {
                   <motion.div
                     className="flex items-center py-4 px-2 pb-6 carousel-track"
                     animate={{ 
-                      x: ["-50%", "0%"], 
+                      x: ["0%", "-50%"], 
                     }}
                     transition={{ 
                       x: {
