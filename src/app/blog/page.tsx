@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -18,7 +17,7 @@ export default function BlogPage() {
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
 
   const filteredPosts = blogPosts.filter((post) => {
-    const matchesQuery = post.title.toLowerCase().includes(searchQuery.toLowerCase()) || 
+    const matchesQuery = post.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
                        post.excerpt.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesCategory = selectedCategory ? post.category === selectedCategory : true;
     return matchesQuery && matchesCategory;
@@ -37,7 +36,7 @@ export default function BlogPage() {
         >
           <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gradient-primary">Blog</h1>
           <p className="text-lg text-muted-foreground max-w-3xl">
-            Thoughts, insights, and deep dives into AI, cybersecurity, and tech trends
+            Exploring the fascinating worlds of AI, cybersecurity, and the ever-evolving tech landscape.
           </p>
         </motion.div>
 
@@ -87,7 +86,7 @@ export default function BlogPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: 0.1 }}
               >
-                <BlogCard post={post} />
+                <BlogCard post={post} /> {/* Assuming BlogCard handles rendering without images */}
               </motion.div>
             ))}
           </div>

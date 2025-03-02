@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState, useEffect } from "react";
@@ -84,20 +83,21 @@ export default function BlogPostPage() {
               </div>
             </div>
 
-            <div className="mb-10 rounded-xl overflow-hidden">
-              <img 
-                src={post.image || "/attached_assets/GoogleMeetBot.jpeg"} 
-                alt={post.title}
-                className="w-full h-auto object-cover"
-              />
-            </div>
 
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
 
-            <div className="prose prose-lg dark:prose-invert max-w-none">
-              {post.content.split('\n\n').map((paragraph: string, index: number) => (
-                <p key={index}>{paragraph}</p>
-              ))}
+            <div className="prose dark:prose-invert lg:prose-lg max-w-none prose-p:text-lg prose-p:leading-relaxed prose-p:my-6 prose-headings:text-foreground prose-a:text-primary">
+              {post.content.split('\n\n').map((paragraph, idx) => {
+                // Check if paragraph is a heading
+                if (paragraph.startsWith('## ')) {
+                  return <h2 key={idx} className="text-2xl font-bold mt-10 mb-4">{paragraph.replace('## ', '')}</h2>;
+                }
+                // Check if paragraph is a subheading
+                if (paragraph.startsWith('### ')) {
+                  return <h3 key={idx} className="text-xl font-semibold mt-8 mb-3">{paragraph.replace('### ', '')}</h3>;
+                }
+                return <p key={idx} className="text-foreground/90">{paragraph}</p>;
+              })}
             </div>
 
             <div className="mt-12 pt-8 border-t border-border">
