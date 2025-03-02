@@ -16,7 +16,9 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
   useEffect(() => {
     // Find the post with the matching ID from the imported data
     const postId = parseInt(params.id);
-    const foundPost = blogPostsData.posts?.find(p => p.id === postId);
+    const foundPost = Array.isArray(blogPostsData) 
+      ? blogPostsData.find(p => p.id === postId)
+      : blogPostsData.posts?.find(p => p.id === postId);
     
     if (foundPost) {
       setPost(foundPost);

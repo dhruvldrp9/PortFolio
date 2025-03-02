@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useState } from "react";
@@ -16,9 +15,9 @@ import blogPostsData from "@/data/blog-posts.json";
 export default function BlogPage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
-  
+
   const categories = ["AI", "Cybersecurity"]; // Placeholder category data
-  
+
   // Access posts from blog-posts.json
   const posts = blogPostsData.posts || [];
 
@@ -72,7 +71,7 @@ export default function BlogPage() {
               onChange={(e) => setSearchTerm(e.target.value)}
             />
           </div>
-          
+
           <div className="flex gap-2 flex-wrap">
             <Button
               variant={selectedCategory === null ? "default" : "outline"}
@@ -83,7 +82,7 @@ export default function BlogPage() {
               <Filter className="w-4 h-4" />
               All
             </Button>
-            
+
             {categories.map((category) => (
               <Button
                 key={category}
