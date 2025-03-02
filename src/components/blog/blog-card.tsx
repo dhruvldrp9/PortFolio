@@ -1,6 +1,6 @@
 
 import React from "react";
-import { Calendar, Clock, ArrowUpRight, Tag } from "lucide-react";
+import { Calendar, Clock, ArrowUpRight } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import Link from "next/link";
 import { motion } from "framer-motion";
@@ -18,39 +18,46 @@ interface BlogCardProps {
   post: BlogPost;
 }
 
-export default function BlogCard({ post }: BlogCardProps) {
+const BlogCard = ({ post }: BlogCardProps) => {
   return (
-    <Link href={`/blog/${post.id}`}>
-      <Card className="h-full hover:shadow-lg transition-all duration-300 overflow-hidden group border-muted/60 bg-card/40 backdrop-blur-sm hover:bg-card/60">
+    <Link href={`/blog/${post.id}`} className="block h-full">
+      <Card className="overflow-hidden h-full border-none shadow-md bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
         <CardContent className="p-6">
-          <div className="flex items-center mb-3 gap-2">
-            <span className="inline-flex items-center rounded-full px-2 py-1 text-xs bg-primary/10 text-primary">
-              <Tag className="w-3 h-3 mr-1" />
+          <div className="flex justify-between items-start mb-4">
+            <span className="inline-block bg-primary/10 text-primary text-xs font-semibold px-2.5 py-1 rounded">
               {post.category}
             </span>
-            <span className="text-sm text-muted-foreground flex items-center">
-              <Clock className="w-3 h-3 mr-1" />
-              {post.reading_time} min read
-            </span>
+            <div className="flex items-center text-xs text-muted-foreground">
+              <Calendar className="w-3 h-3 mr-1" />
+              <span>{post.created_at}</span>
+            </div>
           </div>
           
-          <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+          <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
             {post.title}
-            <ArrowUpRight className="w-4 h-4 inline ml-1 opacity-0 group-hover:opacity-100 transition-opacity" />
           </h3>
           
-          <p className="text-muted-foreground line-clamp-3">{post.excerpt}</p>
+          <p className="text-muted-foreground text-sm mb-4 line-clamp-3">
+            {post.excerpt}
+          </p>
           
-          <div className="mt-4 text-sm text-muted-foreground">
-            <Calendar className="w-3 h-3 inline mr-1" />
-            {new Date(post.created_at).toLocaleDateString('en-US', {
-              year: 'numeric',
-              month: 'short',
-              day: 'numeric'
-            })}
+          <div className="flex justify-between items-center pt-3 border-t border-border/50">
+            <div className="flex items-center text-xs text-muted-foreground">
+              <Clock className="w-3 h-3 mr-1" />
+              <span>{post.reading_time} min read</span>
+            </div>
+            <motion.div 
+              className="text-primary"
+              whileHover={{ x: 3 }}
+              transition={{ duration: 0.2 }}
+            >
+              <ArrowUpRight className="w-4 h-4" />
+            </motion.div>
           </div>
         </CardContent>
       </Card>
     </Link>
   );
-}
+};
+
+export default BlogCard;
