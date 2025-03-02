@@ -5,7 +5,7 @@ import PageBackground from "@/components/layout/page-background";
 import BlogCard from "@/components/blog/blog-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Book, Filter, Search, Tag } from "lucide-react";
+import { Filter, Search, Tag } from "lucide-react";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
