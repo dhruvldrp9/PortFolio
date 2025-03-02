@@ -46,13 +46,9 @@ const BlogCard = ({ post }: BlogCardProps) => {
               <Clock className="w-3 h-3 mr-1" />
               <span>{post.reading_time} min read</span>
             </div>
-            <motion.div 
-              className="text-primary"
-              whileHover={{ x: 3 }}
-              transition={{ duration: 0.2 }}
-            >
+            <span className="text-primary">
               <ArrowUpRight className="w-4 h-4" />
-            </motion.div>
+            </span>
           </div>
         </CardContent>
       </Card>
