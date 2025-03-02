@@ -7,12 +7,15 @@ import TiltCard from "@/components/ui/tilt-card";
 import { motion } from "framer-motion";
 
 export default function ProjectCard({ project }: any) {
-  if (!project || !project.id) {
+  if (!project) {
     return null;
   }
   
+  // Handle case where project or project.id might be undefined
+  try {
+  
   return (
-    <Link href={`/projects/${project.id}`}>
+    <Link href={project.id ? `/projects/${project.id}` : "#"}>
       <TiltCard>
         <Card className="group relative h-full cursor-pointer overflow-hidden">
           <div className="relative">
@@ -67,4 +70,8 @@ export default function ProjectCard({ project }: any) {
       </TiltCard>
     </Link>
   );
+  } catch (error) {
+    console.error("Error rendering project card:", error);
+    return null;
+  }
 }
