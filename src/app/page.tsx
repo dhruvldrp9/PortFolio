@@ -587,35 +587,52 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <motion.div
-                  className="flex space-x-6 py-4 px-2 overflow-hidden pb-6"
-                  animate={{ 
-                    x: [0, -2000], 
-                  }}
-                  transition={{ 
-                    x: {
-                      duration: 40,
-                      repeat: Infinity,
-                      repeatType: "loop",
-                      ease: "linear"
-                    }
-                  }}
-                >
-                  {/* Doubled project items for continuous loop effect */}
-                  {[...projects?.slice(0, 6), ...projects?.slice(0, 6)].map((project, index) => (
-                    <motion.div
-                      key={`${project.id}-${index}`}
-                      className="w-[300px] sm:w-[350px] mx-3 flex-shrink-0"
-                      whileHover={{ 
-                        scale: 1.03, 
-                        boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                        transition: { duration: 0.2 } 
-                      }}
-                    >
-                      <ProjectCard project={project} />
-                    </motion.div>
-                  ))}
-                </motion.div>
+                <div className="carousel-container">
+                  <motion.div
+                    className="flex items-center py-4 px-2 pb-6 carousel-track"
+                    animate={{ 
+                      x: ["0%", "-50%"], 
+                    }}
+                    transition={{ 
+                      x: {
+                        duration: 20,
+                        repeat: Infinity,
+                        repeatType: "loop",
+                        ease: "linear"
+                      }
+                    }}
+                  >
+                    {/* First set of projects */}
+                    {projects?.slice(0, 6).map((project, index) => (
+                      <motion.div
+                        key={`${project.id}-1-${index}`}
+                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
+                        whileHover={{ 
+                          scale: 1.03, 
+                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                          transition: { duration: 0.2 } 
+                        }}
+                      >
+                        <ProjectCard project={project} />
+                      </motion.div>
+                    ))}
+                    
+                    {/* Duplicated set for continuous effect */}
+                    {projects?.slice(0, 6).map((project, index) => (
+                      <motion.div
+                        key={`${project.id}-2-${index}`}
+                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
+                        whileHover={{ 
+                          scale: 1.03, 
+                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                          transition: { duration: 0.2 } 
+                        }}
+                      >
+                        <ProjectCard project={project} />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
               </motion.div>
             </div>
 
@@ -654,35 +671,52 @@ export default function Home() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5 }}
               >
-                <motion.div
-                  className="flex space-x-6 py-4 px-2 overflow-hidden pb-6"
-                  animate={{ 
-                    x: [-2000, 0], 
-                  }}
-                  transition={{ 
-                    x: {
-                      duration: 40,
-                      repeat: Infinity,
-                      repeatType: "loop",
-                      ease: "linear"
-                    } 
-                  }}
-                >
-                  {/* Doubled blog items for continuous loop effect */}
-                  {[...blogPosts?.slice(0, 6), ...blogPosts?.slice(0, 6)].map((post, index) => (
-                    <motion.div
-                      key={`${post.id}-${index}`}
-                      className="w-[300px] sm:w-[350px] mx-3 flex-shrink-0"
-                      whileHover={{ 
-                        scale: 1.03, 
-                        boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                        transition: { duration: 0.2 } 
-                      }}
-                    >
-                      <BlogCard post={post} />
-                    </motion.div>
-                  ))}
-                </motion.div>
+                <div className="carousel-container">
+                  <motion.div
+                    className="flex items-center py-4 px-2 pb-6 carousel-track"
+                    animate={{ 
+                      x: ["-50%", "0%"], 
+                    }}
+                    transition={{ 
+                      x: {
+                        duration: 20,
+                        repeat: Infinity,
+                        repeatType: "loop",
+                        ease: "linear"
+                      } 
+                    }}
+                  >
+                    {/* First set of articles */}
+                    {blogPosts?.slice(0, 6).map((post, index) => (
+                      <motion.div
+                        key={`${post.id}-1-${index}`}
+                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
+                        whileHover={{ 
+                          scale: 1.03, 
+                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                          transition: { duration: 0.2 } 
+                        }}
+                      >
+                        <BlogCard post={post} />
+                      </motion.div>
+                    ))}
+                    
+                    {/* Duplicated set for continuous effect */}
+                    {blogPosts?.slice(0, 6).map((post, index) => (
+                      <motion.div
+                        key={`${post.id}-2-${index}`}
+                        className="w-[300px] sm:w-[350px] mx-6 flex-shrink-0"
+                        whileHover={{ 
+                          scale: 1.03, 
+                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                          transition: { duration: 0.2 } 
+                        }}
+                      >
+                        <BlogCard post={post} />
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
               </motion.div>
             </div>
           </div>
