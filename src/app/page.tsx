@@ -149,7 +149,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-2">
+      <section className="relative overflow-hidden py-0 min-h-screen flex items-center">
         <div className="absolute inset-0">
           <motion.div
             className="absolute inset-0 opacity-10"
@@ -186,12 +186,12 @@ export default function Home() {
         </div>
 
         <motion.div
-          className="container mx-auto px-4 sm:px-6 lg:px-8 min-h-[calc(100vh-4rem)] flex flex-col justify-center items-center"
+          className="container mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col justify-center items-center"
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={containerVariants}
         >
-          <div className="grid gap-12 md:grid-cols-2 md:items-center">
+          <div className="grid gap-12 md:grid-cols-2 md:items-center w-full">
             <div className="space-y-4 relative z-10">
               <motion.div
                 className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent"
@@ -272,7 +272,7 @@ export default function Home() {
             </div>
 
             <motion.div
-              className="relative mx-auto w-full max-w-md aspect-square"
+              className="relative mx-auto w-full max-w-xl aspect-square"
               variants={scaleInVariants}
             >
               <motion.div
@@ -595,7 +595,7 @@ export default function Home() {
               
               {/* Projects Slider - Auto-scrolling Left to Right */}
               <motion.div
-                className="overflow-hidden"
+                className="overflow-hidden rounded-xl"
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 viewport={{ once: true }}
@@ -603,7 +603,7 @@ export default function Home() {
               >
                 <div className="carousel-container">
                   <motion.div
-                    className="flex items-center py-4 px-2 pb-6 carousel-track"
+                    className="flex items-center py-4 px-16 pb-6 carousel-track"
                     animate={{ 
                       x: ["-50%", "0%"], 
                     }}
@@ -687,7 +687,7 @@ export default function Home() {
               >
                 <div className="carousel-container">
                   <motion.div
-                    className="flex items-center py-4 px-2 pb-6 carousel-track"
+                    className="flex items-center py-4 px-16 pb-6 carousel-track"
                     animate={{ 
                       x: ["0%", "-50%"], 
                     }}
