@@ -1,6 +1,5 @@
 
-{
-  "posts": [
+[
     {
       "id": 1,
       "title": "The Rise of AI-Powered Threat Detection Systems",
@@ -56,4 +55,3 @@
       "created_at": "2024-04-25T10:00:00Z"
     }
   ]
-}

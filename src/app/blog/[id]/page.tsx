@@ -1,6 +1,7 @@
+
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
@@ -8,14 +9,30 @@ import PageBackground from "@/components/layout/page-background";
 import { Button } from "@/components/ui/button";
 import blogPosts from "@/data/blog-posts.json";
 import Link from "next/link";
-import {useEffect, useState} from "react"; //Import from original file
-
 
 export default function BlogPostPage() {
   const params = useParams();
   const id = params.id as string;
+  const [isLoading, setIsLoading] = useState(true);
+  const [post, setPost] = useState<any>(null);
 
-  const post = blogPosts.find(post => post.id === id);
+  useEffect(() => {
+    // Find the post with the matching ID
+    const foundPost = blogPosts.find(post => post.id === id);
+    setPost(foundPost);
+    setIsLoading(false);
+  }, [id]);
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-background text-foreground relative flex items-center justify-center">
+        <PageBackground />
+        <div className="text-center">
+          <h1 className="text-3xl font-bold mb-4">Loading blog post...</h1>
+        </div>
+      </div>
+    );
+  }
 
   if (!post) {
     return (
@@ -78,7 +95,7 @@ export default function BlogPostPage() {
             <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
 
             <div className="prose prose-lg dark:prose-invert max-w-none">
-              {post.content.split('\n\n').map((paragraph, idx) => (
+              {post.content.split('\n\n').map((paragraph: string, idx: number) => (
                 <p key={idx} className="mb-4">{paragraph}</p>
               ))}
             </div>

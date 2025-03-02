@@ -1,3 +1,4 @@
+
 "use client";
 
 import React, { useState } from "react";
@@ -40,44 +41,39 @@ export default function BlogPage() {
           </p>
         </motion.div>
 
-        <div className="mb-10">
-          <div className="flex flex-col md:flex-row gap-4 items-stretch md:items-center">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
-              <Input
-                placeholder="Search articles..."
-                className="pl-10"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-              />
-            </div>
-            <div className="flex gap-2 flex-wrap">
+        <div className="mb-10 flex flex-col md:flex-row gap-4 items-start">
+          <div className="relative w-full md:w-auto flex-1 mb-4 md:mb-0">
+            <Search className="absolute left-3 top-3 h-4 w-4 text-muted-foreground" />
+            <Input
+              placeholder="Search articles..."
+              className="pl-10"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+          </div>
+          
+          <div className="flex flex-wrap gap-2">
+            <Button
+              variant={selectedCategory === null ? "default" : "outline"}
+              size="sm"
+              onClick={() => setSelectedCategory(null)}
+              className="flex items-center gap-1"
+            >
+              <Book className="h-4 w-4" />
+              All
+            </Button>
+            {categories.map((category) => (
               <Button
-                variant={selectedCategory === null ? "default" : "outline"}
+                key={category}
+                variant={selectedCategory === category ? "default" : "outline"}
                 size="sm"
-                onClick={() => setSelectedCategory(null)}
-                className="flex items-center gap-2"
+                onClick={() => setSelectedCategory(category)}
+                className="flex items-center gap-1"
               >
-                <Book className="h-4 w-4" />
-                All
+                <Tag className="h-4 w-4" />
+                {category}
               </Button>
-              {categories.map((category) => (
-                <Button
-                  key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
-                  size="sm"
-                  onClick={() => setSelectedCategory(category)}
-                  className="flex items-center gap-2"
-                >
-                  {category === "AI" ? (
-                    <Tag className="h-4 w-4" />
-                  ) : (
-                    <Filter className="h-4 w-4" />
-                  )}
-                  {category}
-                </Button>
-              ))}
-            </div>
+            ))}
           </div>
         </div>
 
