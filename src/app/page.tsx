@@ -27,7 +27,6 @@ import React, { useState, useEffect } from "react";
 import { projects } from "../data/projects.json";
 import { posts as blogPosts } from "../data/blog-posts.json";
 import Link from "next/link";
-import HighlightsCarousel from "@/components/home/highlights-carousel";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("ai");
@@ -341,43 +340,6 @@ export default function Home() {
             </motion.div>
           </div>
         </motion.div>
-      </section>
-
-      {/* Highlights Section */}
-      <section className="py-12 relative overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="mb-8 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
-            <motion.h2
-              className="text-3xl font-bold mb-4 inline-block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
-            >
-              Latest Highlights
-            </motion.h2>
-            <motion.p
-              className="text-muted-foreground max-w-2xl mx-auto"
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.3 }}
-            >
-              Recent achievements, awards, and notable updates
-            </motion.p>
-          </motion.div>
-
-          {/* Auto-sliding carousel */}
-          <div className="max-w-4xl mx-auto">
-            <HighlightsCarousel />
-          </div>
-        </div>
       </section>
 
       {/* Skills Section */}
