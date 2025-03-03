@@ -4,7 +4,7 @@ import PageBackground from "@/components/layout/page-background";
 import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Award, Calendar, ExternalLink, Shield, Brain } from "lucide-react";
-import certifications from "../../data/certifications.json";
+import { certifications } from "../../data/certifications.json";
 
 export default function Certifications() {
   const containerVariants = {
