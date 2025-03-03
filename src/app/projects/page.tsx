@@ -62,7 +62,7 @@ export default function Projects() {
             </div>
 
             <div className="flex flex-wrap gap-2 justify-start md:justify-end">
-              {["all", "AI", "Cybersecurity", "Web"].map((category) => (
+              {["all", "AI", "Cybersecurity", "BlockChain", "Automation"].map((category) => (
                 <Button
                   key={category}
                   size="sm"
