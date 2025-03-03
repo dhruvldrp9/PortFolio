@@ -25,7 +25,7 @@ import BlogCard from "@/components/blog/blog-card";
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useEffect } from "react";
 import { projects } from "../data/projects.json";
-import { posts as blogPosts } from "../data/blog-posts.json";
+import blogPosts from "../data/blog-posts.json";
 import Link from "next/link";
 
 export default function Home() {
@@ -658,7 +658,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {blogPosts?.slice(0, 3).map((post, index) => (
+                  {blogPosts && blogPosts.slice(0, 3).map((post, index) => (
                     <motion.div
                       key={`${post.id}-${index}`}
                       initial={{ opacity: 0, y: 20 }}
