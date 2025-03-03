@@ -1,4 +1,3 @@
-
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -17,12 +16,12 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
     // Find the post with the matching ID from the imported data
     const postId = parseInt(params.id);
     const posts = Array.isArray(blogPostsData) ? blogPostsData : [];
-    const foundPost = posts.find(p => p.id === postId);
-    
+    const foundPost = posts.find((p) => p.id === postId);
+
     if (foundPost) {
       setPost(foundPost);
     }
-    
+
     setLoading(false);
   }, [params.id]);
 
@@ -64,7 +63,7 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
                 Back to Blog
               </Button>
             </Link>
-            
+
             <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-6">
               <span className="flex items-center">
                 <Calendar className="mr-1 h-4 w-4" />
@@ -76,17 +75,23 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">{post.title}</h1>
+            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+              {post.title}
+            </h1>
 
             <div className="inline-block bg-primary/10 text-primary text-sm font-semibold px-3 py-1 rounded-full mb-8">
               {post.category}
             </div>
           </div>
 
-          <div className="prose prose-lg dark:prose-invert max-w-full">
-            {post.content.split('\n\n').map((paragraph: string, index: number) => (
-              <p key={index} className="mb-4">{paragraph}</p>
-            ))}
+          <div className="prose prose-lg dark:prose-invert max-w-full text-gray-300">
+            {post.content
+              .split("\n\n")
+              .map((paragraph: string, index: number) => (
+                <p key={index} className="mb-4">
+                  {paragraph}
+                </p>
+              ))}
           </div>
         </motion.div>
       </div>
