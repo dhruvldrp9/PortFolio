@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import PageBackground from "@/components/layout/page-background";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { School, Calendar, BookOpen, Award } from "lucide-react";
-import { education } from "../../data/education.json";
+import education from "../../data/education.json";
 
 export default function Education() {
   const containerVariants = {
