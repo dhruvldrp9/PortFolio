@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 
 "use client";
 import { useEffect, useRef, useState } from "react";
@@ -17,7 +18,7 @@ export default function NeuralNetwork() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [nodes, setNodes] = useState<Node[]>([]);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-  const requestRef = useRef<number>();
+  const requestRef = useRef<number>(null);
   const controls = useAnimation();
 
   useEffect(() => {
@@ -56,7 +57,7 @@ export default function NeuralNetwork() {
         do {
           targetIndex = Math.floor(Math.random() * nodeCount);
         } while (targetIndex === i || node.connections.includes(targetIndex));
-        
+
         node.connections.push(targetIndex);
       }
     });
@@ -75,7 +76,7 @@ export default function NeuralNetwork() {
         duration: 20,
         repeat: Infinity,
         ease: "linear",
-      }
+      },
     });
 
     return () => {
@@ -95,52 +96,53 @@ export default function NeuralNetwork() {
 
     const animate = () => {
       ctx.clearRect(0, 0, dimensions.width, dimensions.height);
-      
+
       // Update nodes position
       const updatedNodes = [...nodes];
       updatedNodes.forEach((node, i) => {
         // Update position based on velocity
         node.x += node.vx;
         node.y += node.vy;
-        
+
         // Bounce off walls
         if (node.x < 0 || node.x > dimensions.width) node.vx *= -1;
         if (node.y < 0 || node.y > dimensions.height) node.vy *= -1;
-        
+
         // Draw connections
         ctx.strokeStyle = "rgba(16, 185, 129, 0.1)";
-        node.connections.forEach(targetIndex => {
+        node.connections.forEach((targetIndex) => {
           const target = updatedNodes[targetIndex];
           const distance = Math.sqrt(
             Math.pow(target.x - node.x, 2) + Math.pow(target.y - node.y, 2)
           );
-          
+
           // Only draw connections within a certain distance
           if (distance < 200) {
             // Fade connections based on distance
             const opacity = 1 - distance / 200;
             ctx.strokeStyle = `rgba(16, 185, 129, ${opacity * 0.2})`;
-            
+
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
             ctx.lineTo(target.x, target.y);
             ctx.stroke();
           }
         });
-        
+
         // Draw nodes
-        ctx.fillStyle = i % 3 === 0 ? "rgba(0, 112, 243, 0.5)" : "rgba(16, 185, 129, 0.5)";
+        ctx.fillStyle =
+          i % 3 === 0 ? "rgba(0, 112, 243, 0.5)" : "rgba(16, 185, 129, 0.5)";
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         ctx.fill();
       });
-      
+
       setNodes(updatedNodes);
       requestRef.current = requestAnimationFrame(animate);
     };
-    
+
     requestRef.current = requestAnimationFrame(animate);
-    
+
     return () => {
       if (requestRef.current) {
         cancelAnimationFrame(requestRef.current);
@@ -150,10 +152,7 @@ export default function NeuralNetwork() {
 
   return (
     <div ref={containerRef} className="fixed inset-0 -z-10 overflow-hidden">
-      <motion.div 
-        className="absolute inset-0" 
-        animate={controls}
-      />
+      <motion.div className="absolute inset-0" animate={controls} />
       <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-10" />
       <canvas
         ref={canvasRef}

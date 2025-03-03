@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 
 import React, { useEffect, useState } from "react";
@@ -8,7 +9,7 @@ import PageBackground from "@/components/layout/page-background";
 import { motion } from "framer-motion";
 import blogPostsData from "@/data/blog-posts.json";
 
-export default function BlogPostPage({ params }: { params: { id: string } }) {
+export default function BlogPostPage({ params }: any) {
   const [post, setPost] = useState<any>(null);
   const [loading, setLoading] = useState(true);
 
@@ -48,7 +49,7 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
-      <PageBackground />
+      <PageBackground title={""} />
 
       <div className="container mx-auto pt-16 md:pt-24 pb-12 md:pb-16 px-4 relative z-10">
         <motion.div
@@ -58,7 +59,10 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
         >
           <div className="mb-6 md:mb-8">
             <Link href="/blog">
-              <Button variant="ghost" className="group mb-4 text-sm md:text-base">
+              <Button
+                variant="ghost"
+                className="group mb-4 text-sm md:text-base"
+              >
                 <ArrowLeft className="mr-2 h-3 w-3 md:h-4 md:w-4 transition-transform group-hover:-translate-x-1" />
                 Back to Blog
               </Button>

@@ -15,7 +15,6 @@ import {
   FileImage,
   Shield,
   ShieldAlert,
-  Scale,
   Lock,
   Server,
   Terminal,
@@ -540,7 +539,7 @@ export default function Home() {
                       </ul>
                     </motion.div>
                   </motion.div>
-                ),
+                )
               )}
             </motion.div>
           </AnimatePresence>
@@ -658,22 +657,23 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {blogPosts && blogPosts.slice(0, 3).map((post, index) => (
-                    <motion.div
-                      key={`${post.id}-${index}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{
-                        scale: 1.03,
-                        boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                        transition: { duration: 0.2 },
-                      }}
-                    >
-                      <BlogCard post={post} />
-                    </motion.div>
-                  ))}
+                  {blogPosts &&
+                    blogPosts.slice(0, 3).map((post, index) => (
+                      <motion.div
+                        key={`${post.id}-${index}`}
+                        initial={{ opacity: 0, y: 20 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
+                        transition={{ delay: index * 0.1 }}
+                        whileHover={{
+                          scale: 1.03,
+                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
+                          transition: { duration: 0.2 },
+                        }}
+                      >
+                        <BlogCard post={post} />
+                      </motion.div>
+                    ))}
                 </div>
               </motion.div>
             </div>

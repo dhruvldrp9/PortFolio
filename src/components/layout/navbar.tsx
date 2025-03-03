@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Github, Menu, Linkedin, Mail, Brain, Shield, X } from "lucide-react";
+import { Github, Menu, Linkedin, Mail, Brain } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -10,7 +10,7 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { NAVIGATION_ITEMS, PROFILE } from "@/lib/constants";
 

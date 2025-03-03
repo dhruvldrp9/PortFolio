@@ -1,10 +1,8 @@
 "use client";
-import { useState } from "react";
 import { motion } from "framer-motion";
 import PageBackground from "@/components/layout/page-background";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Mail, MessageCircle, User, Github, Linkedin, ArrowRight, ExternalLink } from "lucide-react";
+import { Mail, Github, Linkedin, ExternalLink } from "lucide-react";
 import { PROFILE } from "@/lib/constants";
 
 export default function Contact() {
@@ -53,7 +51,7 @@ export default function Contact() {
       action: PROFILE.github,
       color: "text-gray-800 dark:text-gray-200",
       bgColor: "bg-gray-800/10 dark:bg-gray-200/10",
-    }
+    },
   ];
 
   return (
@@ -70,39 +68,50 @@ export default function Contact() {
           animate="visible"
           className="mt-16"
         >
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="max-w-3xl mx-auto text-center mb-12"
           >
-            <h2 className="text-2xl font-semibold mb-4">Let's Connect</h2>
+            <h2 className="text-2xl font-semibold mb-4">{`Let's Connect`}</h2>
             <p className="text-muted-foreground">
-              I'm always open to new opportunities, collaborations, or just a friendly chat about AI and cybersecurity.
-              Feel free to reach out through any of the channels below.
+              {`I'm always open to new opportunities, collaborations, or just a
+              friendly chat about AI and cybersecurity. Feel free to reach out
+              through any of the channels below.`}
             </p>
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto"
           >
-            {contactMethods.map((method, index) => (
+            {contactMethods.map((method) => (
               <motion.div
                 key={method.title}
                 variants={itemVariants}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className="h-full"
               >
-                <Card className={`h-full border border-border/50 bg-card/60 backdrop-blur-sm hover:border-primary/50 transition-all duration-300`}>
+                <Card
+                  className={`h-full border border-border/50 bg-card/60 backdrop-blur-sm hover:border-primary/50 transition-all duration-300`}
+                >
                   <CardContent className="p-6 flex flex-col h-full">
-                    <div className={`w-12 h-12 rounded-full ${method.bgColor} flex items-center justify-center mb-4`}>
+                    <div
+                      className={`w-12 h-12 rounded-full ${method.bgColor} flex items-center justify-center mb-4`}
+                    >
                       <method.icon className={`h-6 w-6 ${method.color}`} />
                     </div>
                     <h3 className="text-xl font-medium mb-2">{method.title}</h3>
-                    <p className="text-muted-foreground mb-4 flex-grow">{method.description}</p>
-                    <a 
-                      href={method.action} 
+                    <p className="text-muted-foreground mb-4 flex-grow">
+                      {method.description}
+                    </p>
+                    <a
+                      href={method.action}
                       target={method.title !== "Email" ? "_blank" : undefined}
-                      rel={method.title !== "Email" ? "noopener noreferrer" : undefined}
+                      rel={
+                        method.title !== "Email"
+                          ? "noopener noreferrer"
+                          : undefined
+                      }
                       className="group inline-flex items-center text-primary hover:text-primary/80 transition-colors"
                     >
                       Connect
@@ -114,14 +123,14 @@ export default function Contact() {
             ))}
           </motion.div>
 
-          <motion.div 
+          <motion.div
             variants={itemVariants}
             className="mt-16 max-w-3xl mx-auto text-center bg-card/60 backdrop-blur-sm border border-border/50 rounded-lg p-8"
           >
             <h3 className="text-xl font-semibold mb-4">Response Time</h3>
             <p className="text-muted-foreground">
-              I typically respond to messages within 24-48 hours. For urgent matters, 
-              email is usually the fastest way to reach me.
+              I typically respond to messages within 24-48 hours. For urgent
+              matters, email is usually the fastest way to reach me.
             </p>
           </motion.div>
         </motion.div>

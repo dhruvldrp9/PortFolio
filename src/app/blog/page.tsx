@@ -5,9 +5,8 @@ import PageBackground from "@/components/layout/page-background";
 import BlogCard from "@/components/blog/blog-card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Book, Filter, Search, Tag } from "lucide-react";
+import { Filter, Search, Tag } from "lucide-react";
 import { motion } from "framer-motion";
-import Link from "next/link";
 
 // Import blog posts data
 import blogPostsData from "@/data/blog-posts.json";
@@ -23,19 +22,24 @@ export default function BlogPage() {
 
   // Filter posts based on search and category
   const filteredPosts = posts.filter((post) => {
-    const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                         post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesCategory = selectedCategory ? post.category === selectedCategory : true;
+    const matchesSearch =
+      post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      post.excerpt.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = selectedCategory
+      ? post.category === selectedCategory
+      : true;
     return matchesSearch && matchesCategory;
   });
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
-      <PageBackground />
+      <PageBackground title={""} />
 
       <div className="container mx-auto pt-24 pb-16 px-4 relative z-10">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2 text-center md:text-left">Blog</h1>
+          <h1 className="text-4xl font-bold mb-2 text-center md:text-left">
+            Blog
+          </h1>
           <p className="text-muted-foreground text-center md:text-left">
             Thoughts, insights, and perspectives on technology
           </p>
@@ -66,7 +70,9 @@ export default function BlogPage() {
               {categories.map((category) => (
                 <Button
                   key={category}
-                  variant={selectedCategory === category ? "default" : "outline"}
+                  variant={
+                    selectedCategory === category ? "default" : "outline"
+                  }
                   size="sm"
                   onClick={() => setSelectedCategory(category)}
                 >
@@ -79,7 +85,9 @@ export default function BlogPage() {
         </div>
 
         {filteredPosts.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2"> {/* Changed to use grid for mobile */}
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            {" "}
+            {/* Changed to use grid for mobile */}
             {filteredPosts.map((post) => (
               <motion.div
                 key={post.id}
@@ -94,7 +102,9 @@ export default function BlogPage() {
         ) : (
           <div className="text-center py-20 bg-card/30 backdrop-blur-sm rounded-lg">
             <h3 className="text-xl font-medium mb-2">No articles found</h3>
-            <p className="text-muted-foreground">Try adjusting your search or filters</p>
+            <p className="text-muted-foreground">
+              Try adjusting your search or filters
+            </p>
           </div>
         )}
       </div>
