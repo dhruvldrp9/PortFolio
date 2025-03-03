@@ -94,9 +94,13 @@ export default function ProjectDetails() {
                 {project.image_url && (
                   <div className="relative aspect-video w-full">
                     <img
-                      src={project.image_url}
+                      src={project.image_url.startsWith('/') ? project.image_url : `/${project.image_url}`}
                       alt={project.title}
                       className="w-full h-full object-cover"
+                      onError={(e) => {
+                        console.error("Failed to load image:", project.image_url);
+                        e.currentTarget.style.display = 'none';
+                      }}
                     />
                   </div>
                 )}
