@@ -31,7 +31,7 @@
       "short_description": "A machine learning-based system for predicting security threats in network traffic by analyzing historical data and identifying anomalies.",
       "description": "This project focuses on predicting potential security threats in network traffic using machine learning techniques. By analyzing pre-recorded network data, the system detects patterns and anomalies that may indicate cyber threats. The pipeline includes data preprocessing, feature extraction, and classification of network traffic as normal or malicious. It also provides intuitive visualizations for network behavior analysis and evaluates model performance for accuracy and reliability. Built with Python, Scikit-Learn, Pandas, NumPy, and visualization tools like Matplotlib and Seaborn, this project enhances cybersecurity by enabling proactive threat detection and response.",
       "technologies": "Python, sk-learn, Machine Learning",
-      "image_url": "/attached_assets/AI_Based_IDS.jpeg",
+      "image_url": "/attached_assets/AI_Based_IDS_New.jpeg",
       "github_url": "https://github.com/dhruvldrp9/AI-Based-IDS",
       "live_url": "",
       "category": "Cybersecurity",
