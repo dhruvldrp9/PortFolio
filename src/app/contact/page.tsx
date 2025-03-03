@@ -1,60 +1,13 @@
-
 "use client";
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
 import PageBackground from "@/components/layout/page-background";
-import {
-  Form,
-  FormControl,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
-import { Send, Mail, MessageCircle, User, Github, Linkedin } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Mail, MessageCircle, User, Github, Linkedin, ArrowRight, ExternalLink } from "lucide-react";
 import { PROFILE } from "@/lib/constants";
 
-const contactSchema = z.object({
-  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
-  email: z.string().email({ message: "Please enter a valid email address." }),
-  subject: z.string().min(5, { message: "Subject must be at least 5 characters." }),
-  message: z.string().min(10, { message: "Message must be at least 10 characters." }),
-});
-
-type ContactForm = z.infer<typeof contactSchema>;
-
 export default function Contact() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSubmitted, setIsSubmitted] = useState(false);
-
-  const form = useForm<ContactForm>({
-    resolver: zodResolver(contactSchema),
-    defaultValues: {
-      name: "",
-      email: "",
-      subject: "",
-      message: "",
-    },
-  });
-
-  const handleSubmit = (data: ContactForm) => {
-    setIsSubmitting(true);
-    // Simulate API call
-    setTimeout(() => {
-      console.log("Form data:", data);
-      setIsSubmitting(false);
-      setIsSubmitted(true);
-      form.reset();
-    }, 1500);
-  };
-
   const containerVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -76,236 +29,100 @@ export default function Contact() {
     },
   };
 
+  const contactMethods = [
+    {
+      icon: Mail,
+      title: "Email",
+      description: "Send me an email directly",
+      action: `mailto:${PROFILE.email}`,
+      color: "text-blue-500",
+      bgColor: "bg-blue-500/10",
+    },
+    {
+      icon: Linkedin,
+      title: "LinkedIn",
+      description: "Connect with me on LinkedIn",
+      action: PROFILE.linkedin,
+      color: "text-blue-600",
+      bgColor: "bg-blue-600/10",
+    },
+    {
+      icon: Github,
+      title: "GitHub",
+      description: "Check out my projects and code",
+      action: PROFILE.github,
+      color: "text-gray-800 dark:text-gray-200",
+      bgColor: "bg-gray-800/10 dark:bg-gray-200/10",
+    }
+  ];
+
   return (
     <div className="bg-background min-h-screen">
       <div className="container mx-auto px-4 py-16">
         <PageBackground
           title="Get in Touch"
-          subtitle="Have questions or interested in working together? Reach out!"
+          subtitle="Connect with me through any of these channels"
         />
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="mt-16 grid gap-10 md:grid-cols-2"
+          className="mt-16"
         >
-          {/* Contact Info */}
-          <motion.div variants={itemVariants}>
-            <Card className="h-full bg-card/60 backdrop-blur-sm border border-border/50">
-              <CardContent className="p-8 flex flex-col h-full">
-                <motion.h2
-                  className="text-2xl font-semibold mb-6"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  Contact Information
-                </motion.h2>
-                <motion.p
-                  className="text-muted-foreground mb-8"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  Feel free to reach out for collaboration opportunities, project inquiries, or just to say hello! I'll try to respond within 24-48 hours.
-                </motion.p>
-
-                <div className="space-y-6 mt-auto">
-                  <motion.div
-                    className="flex items-start gap-4"
-                    variants={itemVariants}
-                  >
-                    <div className="rounded-full bg-primary/10 p-3">
-                      <Mail className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium">Email</h3>
-                      <a
-                        href={`mailto:${PROFILE.email}`}
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {PROFILE.email}
-                      </a>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="flex items-start gap-4"
-                    variants={itemVariants}
-                  >
-                    <div className="rounded-full bg-primary/10 p-3">
-                      <User className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium">Location</h3>
-                      <p className="text-muted-foreground">{PROFILE.location}</p>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="flex items-start gap-4"
-                    variants={itemVariants}
-                  >
-                    <div className="rounded-full bg-primary/10 p-3">
-                      <Github className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium">GitHub</h3>
-                      <a
-                        href={PROFILE.github}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {PROFILE.github.replace("https://github.com/", "@")}
-                      </a>
-                    </div>
-                  </motion.div>
-
-                  <motion.div
-                    className="flex items-start gap-4"
-                    variants={itemVariants}
-                  >
-                    <div className="rounded-full bg-primary/10 p-3">
-                      <Linkedin className="h-5 w-5 text-primary" />
-                    </div>
-                    <div>
-                      <h3 className="font-medium">LinkedIn</h3>
-                      <a
-                        href={PROFILE.linkedin}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors"
-                      >
-                        {PROFILE.linkedin.replace("https://www.linkedin.com/in/", "@")}
-                      </a>
-                    </div>
-                  </motion.div>
-                </div>
-              </CardContent>
-            </Card>
+          <motion.div 
+            variants={itemVariants}
+            className="max-w-3xl mx-auto text-center mb-12"
+          >
+            <h2 className="text-2xl font-semibold mb-4">Let's Connect</h2>
+            <p className="text-muted-foreground">
+              I'm always open to new opportunities, collaborations, or just a friendly chat about AI and cybersecurity.
+              Feel free to reach out through any of the channels below.
+            </p>
           </motion.div>
 
-          {/* Contact Form */}
-          <motion.div variants={itemVariants}>
-            <Card className="bg-card/60 backdrop-blur-sm border border-border/50">
-              <CardContent className="p-8">
-                {isSubmitted ? (
-                  <motion.div
-                    className="flex flex-col items-center justify-center py-12 text-center"
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ type: "spring", stiffness: 200, damping: 20 }}
-                  >
-                    <div className="rounded-full bg-primary/20 p-4 mb-6">
-                      <MessageCircle className="h-8 w-8 text-primary" />
+          <motion.div 
+            variants={itemVariants}
+            className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto"
+          >
+            {contactMethods.map((method, index) => (
+              <motion.div
+                key={method.title}
+                variants={itemVariants}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className="h-full"
+              >
+                <Card className={`h-full border border-border/50 bg-card/60 backdrop-blur-sm hover:border-primary/50 transition-all duration-300`}>
+                  <CardContent className="p-6 flex flex-col h-full">
+                    <div className={`w-12 h-12 rounded-full ${method.bgColor} flex items-center justify-center mb-4`}>
+                      <method.icon className={`h-6 w-6 ${method.color}`} />
                     </div>
-                    <h2 className="text-2xl font-semibold mb-4">Message Sent!</h2>
-                    <p className="text-muted-foreground max-w-md">
-                      Thank you for reaching out. I'll get back to you as soon as possible.
-                    </p>
-                    <Button
-                      className="mt-8"
-                      onClick={() => setIsSubmitted(false)}
+                    <h3 className="text-xl font-medium mb-2">{method.title}</h3>
+                    <p className="text-muted-foreground mb-4 flex-grow">{method.description}</p>
+                    <a 
+                      href={method.action} 
+                      target={method.title !== "Email" ? "_blank" : undefined}
+                      rel={method.title !== "Email" ? "noopener noreferrer" : undefined}
+                      className="group inline-flex items-center text-primary hover:text-primary/80 transition-colors"
                     >
-                      Send Another Message
-                    </Button>
-                  </motion.div>
-                ) : (
-                  <>
-                    <motion.h2
-                      className="text-2xl font-semibold mb-6"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 0.2 }}
-                    >
-                      Send a Message
-                    </motion.h2>
-                    <Form {...form}>
-                      <form
-                        onSubmit={form.handleSubmit(handleSubmit)}
-                        className="space-y-6"
-                      >
-                        <div className="grid gap-6 md:grid-cols-2">
-                          <FormField
-                            control={form.control}
-                            name="name"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Name</FormLabel>
-                                <FormControl>
-                                  <Input placeholder="Your name" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                          <FormField
-                            control={form.control}
-                            name="email"
-                            render={({ field }) => (
-                              <FormItem>
-                                <FormLabel>Email</FormLabel>
-                                <FormControl>
-                                  <Input placeholder="Your email" {...field} />
-                                </FormControl>
-                                <FormMessage />
-                              </FormItem>
-                            )}
-                          />
-                        </div>
-                        <FormField
-                          control={form.control}
-                          name="subject"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Subject</FormLabel>
-                              <FormControl>
-                                <Input placeholder="Subject" {...field} />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <FormField
-                          control={form.control}
-                          name="message"
-                          render={({ field }) => (
-                            <FormItem>
-                              <FormLabel>Message</FormLabel>
-                              <FormControl>
-                                <Textarea
-                                  placeholder="Your message"
-                                  rows={5}
-                                  {...field}
-                                />
-                              </FormControl>
-                              <FormMessage />
-                            </FormItem>
-                          )}
-                        />
-                        <Button
-                          type="submit"
-                          className="w-full group relative overflow-hidden"
-                          disabled={isSubmitting}
-                        >
-                          <span className="relative z-10 flex items-center">
-                            {isSubmitting ? "Sending..." : "Send Message"}
-                            <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                          </span>
-                          <motion.span
-                            className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            initial={{ opacity: 0 }}
-                            whileHover={{ opacity: 1 }}
-                          />
-                        </Button>
-                      </form>
-                    </Form>
-                  </>
-                )}
-              </CardContent>
-            </Card>
+                      Connect
+                      <ExternalLink className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </a>
+                  </CardContent>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div 
+            variants={itemVariants}
+            className="mt-16 max-w-3xl mx-auto text-center bg-card/60 backdrop-blur-sm border border-border/50 rounded-lg p-8"
+          >
+            <h3 className="text-xl font-semibold mb-4">Response Time</h3>
+            <p className="text-muted-foreground">
+              I typically respond to messages within 24-48 hours. For urgent matters, 
+              email is usually the fastest way to reach me.
+            </p>
           </motion.div>
         </motion.div>
       </div>
