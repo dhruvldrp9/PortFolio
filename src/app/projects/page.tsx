@@ -3,7 +3,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import PageBackground from "@/components/layout/page-background";
 import ProjectCard from "@/components/projects/project-card";
-import { projects } from "../../data/projects.json";
+import projects from "../../data/projects.json";
 import { Button } from "@/components/ui/button";
 import { Database, Filter, Search, Tag } from "lucide-react";
 
