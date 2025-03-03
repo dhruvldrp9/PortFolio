@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import PageBackground from "@/components/layout/page-background";
-import { projects } from "../../../data/projects.json";
+import projects from "../../../data/projects.json";
 import ProjectCard from "@/components/projects/project-card";
 
 export default function ProjectDetails() {
