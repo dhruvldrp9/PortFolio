@@ -49,7 +49,7 @@ export default function Projects() {
 
         <div className="mt-16">
           {/* Search and Filter Controls */}
-          <div className="mb-12 grid gap-6 md:grid-cols-[1fr_auto]">
+          <div className="mb-8 md:mb-12 flex flex-col gap-4 md:grid md:grid-cols-[1fr_auto]">
             <div className="relative">
               <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
@@ -61,21 +61,21 @@ export default function Projects() {
               />
             </div>
 
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 justify-start md:justify-end">
               {["all", "AI", "Cybersecurity", "Web"].map((category) => (
                 <Button
                   key={category}
                   size="sm"
                   variant={filter === category ? "default" : "outline"}
                   onClick={() => setFilter(category)}
-                  className="flex items-center gap-1"
+                  className="flex items-center gap-1 text-xs md:text-sm"
                 >
                   {category === "all" ? (
-                    <Database className="h-4 w-4" />
+                    <Database className="h-3 w-3 md:h-4 md:w-4" />
                   ) : category === "AI" ? (
-                    <Tag className="h-4 w-4" />
+                    <Tag className="h-3 w-3 md:h-4 md:w-4" />
                   ) : (
-                    <Filter className="h-4 w-4" />
+                    <Filter className="h-3 w-3 md:h-4 md:w-4" />
                   )}
                   {category === "all" ? "All Projects" : category}
                 </Button>
@@ -88,7 +88,7 @@ export default function Projects() {
             variants={containerVariants}
             initial="hidden"
             animate="visible"
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-3"
+            className="grid gap-6 md:gap-8 grid-cols-1 md:grid-cols-2 lg:grid-cols-3"
           >
             <AnimatePresence>
               {filteredProjects.map((project, index) => (

@@ -35,8 +35,8 @@ export default function BlogPage() {
 
       <div className="container mx-auto pt-24 pb-16 px-4 relative z-10">
         <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2">Blog</h1>
-          <p className="text-muted-foreground">
+          <h1 className="text-4xl font-bold mb-2 text-center md:text-left">Blog</h1>
+          <p className="text-muted-foreground text-center md:text-left">
             Thoughts, insights, and perspectives on technology
           </p>
         </div>
@@ -79,7 +79,7 @@ export default function BlogPage() {
         </div>
 
         {filteredPosts.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="grid grid-cols-1 gap-6 md:grid-cols-2"> {/* Changed to use grid for mobile */}
             {filteredPosts.map((post) => (
               <motion.div
                 key={post.id}

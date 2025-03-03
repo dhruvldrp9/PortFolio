@@ -26,11 +26,11 @@ export default function PageBackground({ title, subtitle }: PageBackgroundProps)
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5, delay: 0.2 }}
       >
-        <h1 className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        <h1 className="text-3xl md:text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent px-2">
           {title}
         </h1>
         {subtitle && (
-          <p className="mt-4 text-xl text-muted-foreground max-w-2xl mx-auto">
+          <p className="mt-3 md:mt-4 text-sm md:text-base lg:text-xl text-muted-foreground max-w-2xl mx-auto px-2">
             {subtitle}
           </p>
         )}

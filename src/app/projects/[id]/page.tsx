@@ -143,11 +143,11 @@ export default function ProjectDetails() {
                   {/* Key Features */}
                   {project.features && project.features.length > 0 && (
                     <section>
-                      <h2 className="text-2xl font-bold mb-4">Key Features</h2>
-                      <ul className="grid gap-3 text-muted-foreground">
+                      <h2 className="text-xl md:text-2xl font-bold mb-4">Key Features</h2>
+                      <ul className="grid gap-3 text-muted-foreground text-sm md:text-base">
                         {project.features.map((feature, index) => (
                           <li key={index} className="flex items-start gap-2">
-                            <span className="text-primary mt-1">•</span>
+                            <span className="text-primary mt-1 flex-shrink-0">•</span>
                             <span>{feature}</span>
                           </li>
                         ))}
@@ -158,8 +158,8 @@ export default function ProjectDetails() {
                   {/* Challenges */}
                   {project.challenges && (
                     <section>
-                      <h2 className="text-2xl font-bold mb-4">Challenges & Solutions</h2>
-                      <div className="text-muted-foreground leading-relaxed space-y-4">
+                      <h2 className="text-xl md:text-2xl font-bold mb-4">Challenges & Solutions</h2>
+                      <div className="text-muted-foreground leading-relaxed space-y-4 text-sm md:text-base">
                         <p>{project.challenges}</p>
                       </div>
                     </section>
@@ -170,7 +170,7 @@ export default function ProjectDetails() {
 
             <div className="space-y-8 relative z-10">
               {/* Project Details */}
-              <section className="border border-border/50 rounded-lg p-6 bg-card/60 backdrop-blur-sm space-y-6 sticky top-24">
+              <section className="border border-border/50 rounded-lg p-4 md:p-6 bg-card/60 backdrop-blur-sm space-y-4 md:space-y-6 sticky top-24">
                 <div>
                   <h3 className="text-sm font-medium text-muted-foreground mb-2">Project Category</h3>
                   {project.category && (

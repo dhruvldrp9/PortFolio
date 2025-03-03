@@ -50,32 +50,32 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
     <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
       <PageBackground />
 
-      <div className="container mx-auto pt-24 pb-16 px-4 relative z-10">
+      <div className="container mx-auto pt-16 md:pt-24 pb-12 md:pb-16 px-4 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          <div className="mb-8">
+          <div className="mb-6 md:mb-8">
             <Link href="/blog">
-              <Button variant="ghost" className="group mb-4">
-                <ArrowLeft className="mr-2 h-4 w-4 transition-transform group-hover:-translate-x-1" />
+              <Button variant="ghost" className="group mb-4 text-sm md:text-base">
+                <ArrowLeft className="mr-2 h-3 w-3 md:h-4 md:w-4 transition-transform group-hover:-translate-x-1" />
                 Back to Blog
               </Button>
             </Link>
 
-            <div className="flex items-center space-x-4 text-sm text-muted-foreground mb-6">
+            <div className="flex flex-wrap items-center gap-4 text-xs md:text-sm text-muted-foreground mb-4 md:mb-6">
               <span className="flex items-center">
-                <Calendar className="mr-1 h-4 w-4" />
+                <Calendar className="mr-1 h-3 w-3 md:h-4 md:w-4" />
                 {post.created_at}
               </span>
               <span className="flex items-center">
-                <Clock className="mr-1 h-4 w-4" />
+                <Clock className="mr-1 h-3 w-3 md:h-4 md:w-4" />
                 {post.reading_time} min read
               </span>
             </div>
 
-            <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 md:mb-6">
               {post.title}
             </h1>
 
@@ -84,11 +84,11 @@ export default function BlogPostPage({ params }: { params: { id: string } }) {
             </div>
           </div>
 
-          <div className="prose prose-lg dark:prose-invert max-w-full text-gray-300">
+          <div className="prose prose-sm md:prose-base lg:prose-lg dark:prose-invert max-w-full text-gray-300">
             {post.content
               .split("\n\n")
               .map((paragraph: string, index: number) => (
-                <p key={index} className="mb-4">
+                <p key={index} className="mb-3 md:mb-4 text-sm md:text-base">
                   {paragraph}
                 </p>
               ))}
