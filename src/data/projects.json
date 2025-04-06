@@ -3,6 +3,30 @@
   "projects": [
     {
       "id": 1,
+      "title": "NFSU Chatbot",
+      "short_description": "AI-powered chat assistant tailored specifically for the official website of the National Forensic Sciences University (NFSU).",
+      "description": "I have developed an AI-powered chat assistant tailored specifically for the official website of the National Forensic Sciences University (NFSU). This intelligent assistant is designed to enhance user engagement, streamline information access, and provide instant support to students, faculty, and visitors. Built using advanced Natural Language Processing (NLP) techniques, the chat assistant can understand and respond to a wide range of queries related to admissions, courses, campus facilities, events, departments, research, and more. It delivers accurate and context-aware answers, helping users navigate the website more efficiently without the need to manually search for information.",
+      "technologies": "AI Agent, Python, Groq, OpenAI, Supabase, Flask",
+      "image_url": "/attached_assets/NFSU_Bot.png",
+      "github_url": "https://github.com/dhruvldrp9/",
+      "live_url": "https://nfsubot.dhruv.at/",
+      "category": "AI",
+      "is_live_demo": true
+    },
+    {
+      "id": 2,  
+      "title": "Shield Coin",
+      "short_description": "ShieldCoin is a revolutionary digital currency designed by the NFSU Blockchain Security and Analysis team. It aims to provide unparalleled security and transparency in blockchain transactions, ensuring a safe and efficient digital economy.",
+      "description": "ShieldCoin is a groundbreaking digital currency developed by the NFSU Blockchain Security and Analysis team, aimed at revolutionizing the way blockchain transactions are conducted by prioritizing security, transparency, and speed. Built on robust cryptographic foundations, ShieldCoin ensures that every transaction is secure and tamper-proof, making it a reliable choice for users concerned about digital asset safety. With a public ledger system, it offers full transparency and traceability of transactions while maintaining user anonymity, striking the perfect balance between openness and privacy. ShieldCoin’s optimized blockchain architecture allows for rapid transaction processing, significantly reducing wait times and enhancing the overall user experience. What sets ShieldCoin apart is its community-driven approach, where regular updates and improvements are guided by user feedback, ensuring the platform evolves in alignment with the needs of its users. Moreover, ShieldCoin serves as an educational initiative by NFSU, offering students and researchers hands-on exposure to blockchain technology, cybersecurity, and decentralized systems, making it not only a powerful financial tool but also a living lab for blockchain innovation.",
+      "technologies": "Python, Solidity, Web3, Flask, PostgreSQL",
+      "image_url": "/attached_assets/ShieldCoin.png",
+      "github_url": "https://github.com/Block-Hive/BlockChain_SheildCoin",
+      "live_url": "https://block-hive.github.io/ShieldCoin/#/",
+      "category": "BlockChain",
+      "is_live_demo": true
+    },
+    {
+      "id": 3, 
       "title": "Google Meet Bot",
       "short_description": "A Python bot that automates Google Meet attendance, records audio, and generates meeting insights.",
       "description": "This Python bot automates the entire process of attending Google Meet meetings, from logging into Gmail and joining the meeting to recording the audio and generating valuable insights. It captures and processes the meeting audio to create a summary, extract key points, identify action items, and perform sentiment analysis. The bot leverages speech-to-text conversion, natural language processing (NLP), and AI-driven analysis to deliver a comprehensive report of the meeting, helping users stay informed and organized without manual effort. Ideal for professionals, teams, and organizations, this automation enhances productivity by eliminating the need for manual note-taking and ensuring no critical details are missed.",
@@ -14,7 +38,7 @@
       "is_live_demo": false
     },
     {
-      "id": 2,
+      "id": 4,
       "title": "DocuQuest",
       "short_description": "DocuQuest simplifies PDF analysis by extracting key insights, securely storing data with Supabase, and enabling quick, intelligent searches for answers and ideas.",
       "description": "DocuQuest transforms the way you interact with PDFs, making document analysis smarter and more intuitive. Simply upload your documents, and DocuQuest automatically extracts essential details using advanced AI-driven technology. It securely stores the processed data in Supabase, allowing for fast and efficient retrieval through intelligent search. Whether you're searching for precise answers or exploring broader insights, DocuQuest streamlines the process with cutting-edge tools, helping you uncover valuable information effortlessly. With its seamless integration of retrieval, analysis, and generation, DocuQuest is the perfect solution for researchers, professionals, and teams looking to enhance their document management workflow.",
@@ -26,7 +50,7 @@
       "is_live_demo": true
     },
     {
-      "id": 3,
+      "id": 5,
       "title": "AI Based Intrusion Detection System",
       "short_description": "A machine learning-based system for predicting security threats in network traffic by analyzing historical data and identifying anomalies.",
       "description": "This project focuses on predicting potential security threats in network traffic using machine learning techniques. By analyzing pre-recorded network data, the system detects patterns and anomalies that may indicate cyber threats. The pipeline includes data preprocessing, feature extraction, and classification of network traffic as normal or malicious. It also provides intuitive visualizations for network behavior analysis and evaluates model performance for accuracy and reliability. Built with Python, Scikit-Learn, Pandas, NumPy, and visualization tools like Matplotlib and Seaborn, this project enhances cybersecurity by enabling proactive threat detection and response.",
@@ -38,7 +62,7 @@
       "is_live_demo": false
     },
     {
-      "id": 4,
+      "id": 6,  
       "title": "News Agent",
       "short_description": "News Agent is an AI-powered bot that delivers real-time, personalized news updates using Google SERP API, OpenAI LLM, and web scraping.",
       "description": "News Agent is a smart, AI-driven bot designed to keep users informed with real-time news updates. It fetches, analyzes, and delivers the latest headlines using a combination of Google SERP API, OpenAI LLM, and Selenium-powered web scraping. Whether you need breaking news, trending topics, or personalized news categories, News Agent ensures you stay updated with accurate and relevant information. By leveraging advanced AI and automation, it filters out noise and provides insightful summaries, making it a powerful tool for journalists, researchers, and anyone who values staying ahead in the news cycle.",
@@ -50,7 +74,7 @@
       "is_live_demo": false
     },
     {
-      "id": 5,
+      "id": 7,
       "title": "Stock Market Price Prediction",
       "short_description": "An AI-powered Stock Market Forecasting System with machine learning, real-time data visualization, and predictive insights, featuring a Django-based backend and an interactive dashboard.",
       "description": "This advanced Stock Market Forecasting System harnesses the power of machine learning and real-time data visualization to deliver accurate predictive insights. Built with a Django backend, it features an interactive dashboard using Dash and Plotly, enabling users to analyze stock trends effortlessly. The system dynamically fetches stock prices, applies technical indicators like MACD, RSI, Moving Averages, and Bollinger Bands, and integrates sentiment analysis from news and social media. With customizable alerts for significant price movements, traders and investors can make informed decisions with confidence. Whether for professionals or enthusiasts, this tool brings data-driven market analysis to your fingertips.",
@@ -62,7 +86,7 @@
       "is_live_demo": false
     },
     {
-      "id": 6,
+      "id": 8,
       "title": "Network Security Analysis Platform",
       "short_description": "A cutting-edge network security analysis platform with real-time threat detection, visualization, and machine learning-based anomaly detection.",
       "description": "The Network Security Analysis Platform is an advanced system designed to monitor and analyze network traffic in real time, leveraging packet capture, machine learning, and multi-tool security rule integrations (Suricata, Snort, Zeek). It supports both simulation and real-network tracking modes, allowing users to test with pre-recorded data or capture live traffic. The platform features an interactive dashboard with real-time updates, ML-based anomaly detection, and comprehensive PDF report generation, offering insights into security incidents, network performance, and actionable recommendations. Built with Python, PostgreSQL, and libpcap, this platform provides a powerful toolkit for cybersecurity professionals to detect and mitigate threats effectively.",
@@ -74,7 +98,7 @@
       "is_live_demo": false
     },
     {
-      "id": 7,
+      "id": 9,
       "title": "Food Token Management",
       "short_description": "A decentralized food token management app using Ethereum smart contracts, with a FastAPI backend and Flask frontend.",
       "description": "The Food Token App is a decentralized application (dApp) designed for managing food tokens on the Ethereum blockchain. It leverages smart contracts for secure and transparent transactions, with a FastAPI-powered backend and a Flask-based frontend. The system integrates Hardhat for blockchain development, enabling seamless smart contract deployment and interaction. Users can access the application via an intuitive web interface, while the backend ensures smooth API communication with the blockchain. Key security measures, including environment variable management, input validation, and secure CORS policies, safeguard the system. Built with Python, Solidity, and Web3, this dApp offers a scalable and secure solution for food token management.",
@@ -86,7 +110,7 @@
       "is_live_demo": false
     },
     {
-      "id": 8,
+      "id": 10,
       "title": "Doctor Appointment System",
       "short_description": "An AI-powered doctor appointment system using Flask, OpenAI, and Eleven Labs for automated booking and intelligent communication.",
       "description": "The Doctor Appointment System is an AI-driven platform that streamlines appointment scheduling and patient-doctor communication. Built with Flask, it integrates OpenAI for intelligent conversation handling, an Intelligent Agent for automated decision-making, and Eleven Labs for voice-based interactions. The system features an automated communication bot that assists patients in booking appointments, providing reminders, and answering queries. With a user-friendly interface and seamless backend processing, it enhances efficiency for both patients and healthcare providers. By leveraging AI-driven automation, this system ensures a smooth, interactive, and hassle-free appointment management experience.",
@@ -98,7 +122,7 @@
       "is_live_demo": false
     },
     {
-      "id": 9,
+      "id": 11,
       "title": "Web Scraper",
       "short_description": "A powerful, Python-based web scraper with a Streamlit interface for extracting text, links, documents, and images with OCR support.",
       "description": "The Web Scraper is a robust and flexible Python-based tool designed for efficient and controlled web content extraction. Built with Streamlit, it provides an intuitive interface for users to scrape and download webpage text, hyperlinks, documents (PDF, DOCX, CSV, Excel), and images with OCR-based text extraction. Leveraging Beautiful Soup for parsing, spaCy for text processing, and PyTesseract for image recognition, the scraper ensures high accuracy and efficiency. The tool includes intelligent encoding detection, logging, strict error handling, and safe file storage. Security measures ensure ethical scraping by respecting robots.txt guidelines. Whether for research, data collection, or automation, this tool simplifies web scraping while maintaining ethical standards.",
