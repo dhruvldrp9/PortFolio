@@ -46,17 +46,6 @@ export default function Home() {
     },
   };
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   const fadeInVariants = {
     hidden: { opacity: 0 },
     visible: {
@@ -695,30 +684,5 @@ export default function Home() {
         </div>
       </section>
     </div>
-  );
-}
-
-function TypewriterSubtitle({ text }: { text: string }) {
-  const [displayed, setDisplayed] = useState("");
-  const [showCursor, setShowCursor] = useState(true);
-  useEffect(() => {
-    let i = 0;
-    setDisplayed("");
-    setShowCursor(true);
-    const interval = setInterval(() => {
-      setDisplayed((prev) => prev + text[i]);
-      i++;
-      if (i >= text.length) {
-        clearInterval(interval);
-        setTimeout(() => setShowCursor(false), 1200);
-      }
-    }, 40);
-    return () => clearInterval(interval);
-  }, [text]);
-  return (
-    <span className="text-xl text-foreground/80 font-medium flex items-center min-h-[2.5rem]">
-      {displayed}
-      {showCursor && <span className="animate-pulse ml-1">|</span>}
-    </span>
   );
 }
