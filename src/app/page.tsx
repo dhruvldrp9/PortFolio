@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 "use client";
-import { PROFILE, STOCK_IMAGES } from "@/lib/constants";
+import { PROFILE } from "@/lib/constants";
 import { Button } from "@/components/ui/button";
 import {
   Github,
@@ -23,7 +23,7 @@ import ProjectCard from "@/components/projects/project-card";
 import BlogCard from "@/components/blog/blog-card";
 import { motion, AnimatePresence } from "framer-motion";
 import React, { useState, useEffect } from "react";
-import { projects } from "../data/projects.json";
+import projects from "../data/projects.json";
 import blogPosts from "../data/blog-posts.json";
 import Link from "next/link";
 
@@ -63,19 +63,6 @@ export default function Home() {
       opacity: 1,
       transition: {
         duration: 0.8,
-      },
-    },
-  };
-
-  const scaleInVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
       },
     },
   };
@@ -498,7 +485,7 @@ export default function Home() {
                 transition={{ duration: 0.5 }}
               >
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {projects?.slice(0, 3).map((project, index) => (
+                  {projects.projects?.slice(0, 3).map((project, index) => (
                     <motion.div
                       key={`${project.id}-${index}`}
                       initial={{ opacity: 0, y: 20 }}
