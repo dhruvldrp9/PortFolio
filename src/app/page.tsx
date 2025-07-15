@@ -178,48 +178,115 @@ export default function Home() {
           variants={containerVariants}
         >
           {/* Left: Text Content */}
-          <div className="flex-1 flex flex-col items-start justify-center max-w-xl w-full space-y-6">
+          <div className="flex-1 flex flex-col items-start justify-center max-w-xl w-full space-y-6 relative overflow-visible">
+            {/* Animated Gradient Background */}
             <motion.div
-              className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-sm font-medium text-foreground"
-              variants={itemVariants}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
-              <BrainCircuit className="mr-2 h-5 w-5" />
-              <span className="mr-2">{PROFILE.title}</span>
-              <Shield className="h-4 w-4" />
+              className="absolute -inset-8 z-0 rounded-3xl bg-gradient-to-br from-[#181818]/60 via-[#000]/80 to-[#181818]/60 blur-2xl opacity-70"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 1.2 }}
+            />
+            {/* Animated Name */}
+            <motion.div className="w-full group" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: 'easeOut' }}>
+              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground mb-2">
+                {PROFILE.name}
+              </h1>
+              <motion.div
+                className="h-1 w-24 rounded-full mb-4 bg-foreground"
+                initial={{ scaleX: 0 }}
+                animate={{ scaleX: 1 }}
+                transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
+                style={{ transformOrigin: 'left' }}
+              />
+              <motion.p
+                className="text-xl text-foreground font-medium mt-2"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
+              >
+                {PROFILE.title}
+              </motion.p>
             </motion.div>
-            <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground"
-              variants={itemVariants}
-            >
-              {PROFILE.name}
-            </motion.h1>
-            <motion.p
-              className="text-xl text-foreground/80 max-w-2xl"
-              variants={itemVariants}
-            >
-              {PROFILE.title}
-            </motion.p>
-            <div className="flex flex-col sm:flex-row gap-4 w-full">
-              <Button className="w-full sm:w-auto bg-muted text-foreground hover:bg-primary hover:text-background border border-border">
-                Get in Touch <Network className="ml-2" />
-              </Button>
-              <Button variant="outline" className="w-full sm:w-auto">
-                View Projects <Database className="ml-2" />
-              </Button>
+            {/* Buttons */}
+            <div className="flex flex-col sm:flex-row gap-4 w-full z-10">
+              <motion.button
+                className="w-full sm:w-auto bg-muted border border-border px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 relative overflow-hidden group-hover:text-foreground text-foreground/30 transition-colors duration-300 shadow-lg"
+                whileHover={{ y: -4, boxShadow: "0 8px 32px 0 #18181844" }}
+                whileTap={{ scale: 0.97 }}
+              >
+                Get in Touch
+                <motion.span
+                  className="inline-block"
+                  whileHover={{ rotate: 20, scale: 1.2 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Network className="ml-2 group-hover:text-foreground text-foreground/50 transition-colors duration-300" />
+                </motion.span>
+                <motion.div
+                  className="absolute inset-0 border-2 border-transparent group-hover:border-gradient-to-r group-hover:from-primary group-hover:to-accent rounded-lg pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
+              <motion.button
+                className="w-full sm:w-auto border border-border px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 relative overflow-hidden group-hover:text-foreground text-foreground/30 transition-colors duration-300 bg-transparent"
+                whileHover={{ y: -4, boxShadow: "0 8px 32px 0 #18181844" }}
+                whileTap={{ scale: 0.97 }}
+              >
+                View Projects
+                <motion.span
+                  className="inline-block"
+                  whileHover={{ rotate: -20, scale: 1.2 }}
+                  transition={{ type: "spring", stiffness: 300 }}
+                >
+                  <Database className="ml-2 group-hover:text-foreground text-foreground/50 transition-colors duration-300" />
+                </motion.span>
+                <motion.div
+                  className="absolute inset-0 border-2 border-transparent group-hover:border-gradient-to-r group-hover:from-primary group-hover:to-accent rounded-lg pointer-events-none"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </motion.button>
             </div>
-            <div className="flex gap-4 mt-4">
-              <a href={PROFILE.github} target="_blank" rel="noopener noreferrer" className="rounded-full bg-muted p-3 text-foreground hover:bg-primary hover:text-background transition-colors">
-                <Github className="h-6 w-6" />
-              </a>
-              <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" className="rounded-full bg-muted p-3 text-foreground hover:bg-primary hover:text-background transition-colors">
-                <Linkedin className="h-6 w-6" />
-              </a>
-              <a href={`mailto:${PROFILE.email}`} className="rounded-full bg-muted p-3 text-foreground hover:bg-primary hover:text-background transition-colors">
-                <Mail className="h-6 w-6" />
-              </a>
-            </div>
+            {/* Social Icons */}
+            <motion.div
+              className="flex gap-4 mt-4 z-10"
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.12 } }
+              }}
+            >
+              {[{
+                icon: Github,
+                href: PROFILE.github
+              }, {
+                icon: Linkedin,
+                href: PROFILE.linkedin
+              }, {
+                icon: Mail,
+                href: `mailto:${PROFILE.email}`
+              }].map(({ icon: Icon, href }, i) => (
+                <motion.a
+                  key={i}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-muted p-3 group-hover:text-foreground text-foreground/50 hover:text-foreground transition-colors duration-300 shadow-lg"
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
+                  }}
+                  whileHover={{ scale: 1.15, rotate: i === 0 ? -10 : i === 2 ? 10 : 0, boxShadow: "0 0 16px #fff8" }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <Icon className="h-6 w-6" />
+                </motion.a>
+              ))}
+            </motion.div>
           </div>
           {/* Right: Profile Image */}
           <div className="flex-1 flex items-center justify-center">
@@ -565,5 +632,30 @@ export default function Home() {
         </div>
       </section>
     </div>
+  );
+}
+
+function TypewriterSubtitle({ text }: { text: string }) {
+  const [displayed, setDisplayed] = useState("");
+  const [showCursor, setShowCursor] = useState(true);
+  useEffect(() => {
+    let i = 0;
+    setDisplayed("");
+    setShowCursor(true);
+    const interval = setInterval(() => {
+      setDisplayed((prev) => prev + text[i]);
+      i++;
+      if (i >= text.length) {
+        clearInterval(interval);
+        setTimeout(() => setShowCursor(false), 1200);
+      }
+    }, 40);
+    return () => clearInterval(interval);
+  }, [text]);
+  return (
+    <span className="text-xl text-foreground/80 font-medium flex items-center min-h-[2.5rem]">
+      {displayed}
+      {showCursor && <span className="animate-pulse ml-1">|</span>}
+    </span>
   );
 }
