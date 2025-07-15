@@ -144,11 +144,11 @@ export default function Home() {
       {/* Animated Grid Background */}
       <div className="fixed inset-0 -z-10">
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#1e293b_1px,transparent_1px),linear-gradient(to_bottom,#1e293b_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_80%_50%_at_50%_0%,#000_70%,transparent_110%)] opacity-20" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/50 to-background opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#181818] via-[#000000] to-[#181818] opacity-80" />
       </div>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-0 min-h-screen flex items-center">
+      <section className="relative overflow-hidden py-0 min-h-screen flex items-center justify-center">
         <div className="absolute inset-0">
           <motion.div
             className="absolute inset-0 opacity-10"
@@ -163,8 +163,8 @@ export default function Home() {
             >
               <defs>
                 <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
-                  <stop offset="0%" stopColor="#0070f3" />
-                  <stop offset="100%" stopColor="#10b981" />
+                  <stop offset="0%" stopColor="#181818" />
+                  <stop offset="100%" stopColor="#000000" />
                 </linearGradient>
               </defs>
               <rect width="100%" height="100%" fill="none" />
@@ -185,158 +185,64 @@ export default function Home() {
         </div>
 
         <motion.div
-          className="container mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col justify-center items-center"
+          className="container mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center justify-center gap-12 -mt-16"
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={containerVariants}
         >
-          <div className="grid gap-12 md:grid-cols-2 md:items-center w-full">
-            <div className="space-y-4 relative z-10">
-              <motion.div
-                className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-sm font-medium text-accent"
-                variants={itemVariants}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <BrainCircuit className="mr-2 h-5 w-5" />
-                <span className="mr-2">{PROFILE.title}</span>
-                <Shield className="h-4 w-4" />
-              </motion.div>
-
-              <div className="space-y-4">
-                <motion.h1
-                  className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl text-foreground my-10 py-2"
-                  variants={itemVariants}
-                >
-                  <span className="inline-block text-foreground">
-                    {PROFILE.name}
-                  </span>
-                </motion.h1>
-                <motion.p
-                  className="text-xl text-muted-foreground max-w-2xl"
-                  variants={itemVariants}
-                >
-                  {PROFILE.title}
-                </motion.p>
-              </div>
-
-              <motion.div
-                className="flex flex-col sm:flex-row gap-4 relative z-20"
-                variants={itemVariants}
-              >
-                <Link href="/contact">
-                  <Button
-                    size="lg"
-                    className="group w-full relative overflow-hidden"
-                  >
-                    <span className="relative z-10">Get in Touch</span>
-                    <motion.span
-                      className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      initial={{ opacity: 0 }}
-                      whileHover={{ opacity: 1 }}
-                    />
-                    <Network className="ml-2 relative z-10 transition-transform group-hover:scale-110" />
-                  </Button>
-                </Link>
-                <Link href="/projects">
-                  <Button size="lg" variant="outline" className="group w-full">
-                    View Projects
-                    <Database className="ml-2 transition-transform group-hover:scale-110" />
-                  </Button>
-                </Link>
-              </motion.div>
-
-              <motion.div className="flex gap-4" variants={itemVariants}>
-                {[
-                  { icon: Github, href: PROFILE.github },
-                  { icon: Linkedin, href: PROFILE.linkedin },
-                  { icon: Mail, href: `mailto:${PROFILE.email}` },
-                ].map(({ icon: Icon, href }, index) => (
-                  <motion.a
-                    key={href}
-                    href={href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-full bg-muted p-3 text-foreground transition-colors hover:bg-primary hover:text-foreground"
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                  >
-                    <Icon className="h-6 w-6" />
-                  </motion.a>
-                ))}
-              </motion.div>
-            </div>
-
+          {/* Left: Text Content */}
+          <div className="flex-1 flex flex-col items-start justify-center max-w-xl w-full space-y-6">
             <motion.div
-              className="relative mx-auto w-full max-w-xl aspect-square"
-              variants={scaleInVariants}
+              className="inline-flex items-center rounded-full border border-accent/30 bg-accent/10 px-4 py-1.5 text-sm font-medium text-foreground"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
             >
-              <motion.div
-                className="absolute inset-0 rounded-full bg-gradient-to-tr from-primary to-accent opacity-30 blur-3xl"
-                animate={{
-                  scale: [1, 1.1, 1],
-                }}
-                transition={{
-                  duration: 8,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                }}
-              />
-              <motion.div
-                className="relative rounded-full border-4 border-primary/20 p-2 bg-muted/30 backdrop-blur-sm"
-                animate={{
-                  y: [0, -20, 0],
-                  rotate: [0, 5, 0],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              >
-                <img
-                  src={STOCK_IMAGES.profile}
-                  alt={PROFILE.name}
-                  className="h-full w-full rounded-full object-cover"
-                />
-
-                {/* Animated Elements */}
-                <motion.div
-                  className="absolute -top-4 -right-4 h-16 w-16 rounded-full bg-primary/20 backdrop-blur-sm flex items-center justify-center"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, 10, 0],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    delay: 1,
-                  }}
-                >
-                  <Shield className="h-8 w-8 text-primary" />
-                </motion.div>
-
-                <motion.div
-                  className="absolute -bottom-4 -left-4 h-16 w-16 rounded-full bg-accent/20 backdrop-blur-sm flex items-center justify-center"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    rotate: [0, -10, 0],
-                  }}
-                  transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    delay: 0.5,
-                  }}
-                >
-                  <Brain className="h-8 w-8 text-accent" />
-                </motion.div>
-              </motion.div>
+              <BrainCircuit className="mr-2 h-5 w-5" />
+              <span className="mr-2">{PROFILE.title}</span>
+              <Shield className="h-4 w-4" />
             </motion.div>
+            <motion.h1
+              className="text-5xl md:text-6xl lg:text-7xl font-bold text-foreground"
+              variants={itemVariants}
+            >
+              {PROFILE.name}
+            </motion.h1>
+            <motion.p
+              className="text-xl text-foreground/80 max-w-2xl"
+              variants={itemVariants}
+            >
+              {PROFILE.title}
+            </motion.p>
+            <div className="flex flex-col sm:flex-row gap-4 w-full">
+              <Button className="w-full sm:w-auto bg-muted text-foreground hover:bg-primary hover:text-background border border-border">
+                Get in Touch <Network className="ml-2" />
+              </Button>
+              <Button variant="outline" className="w-full sm:w-auto">
+                View Projects <Database className="ml-2" />
+              </Button>
+            </div>
+            <div className="flex gap-4 mt-4">
+              <a href={PROFILE.github} target="_blank" rel="noopener noreferrer" className="rounded-full bg-muted p-3 text-foreground hover:bg-primary hover:text-background transition-colors">
+                <Github className="h-6 w-6" />
+              </a>
+              <a href={PROFILE.linkedin} target="_blank" rel="noopener noreferrer" className="rounded-full bg-muted p-3 text-foreground hover:bg-primary hover:text-background transition-colors">
+                <Linkedin className="h-6 w-6" />
+              </a>
+              <a href={`mailto:${PROFILE.email}`} className="rounded-full bg-muted p-3 text-foreground hover:bg-primary hover:text-background transition-colors">
+                <Mail className="h-6 w-6" />
+              </a>
+            </div>
+          </div>
+          {/* Right: Profile Image */}
+          <div className="flex-1 flex items-center justify-center">
+            <div className="relative rounded-full border-4 border-primary/20 p-2 bg-muted/30 backdrop-blur-sm scale-150 max-w-xs w-full">
+              <img
+                src="/attached_assets/ProfilePicBlack.png"
+                alt={PROFILE.name}
+                className="h-full w-full rounded-full object-cover"
+              />
+            </div>
           </div>
         </motion.div>
       </section>
@@ -352,7 +258,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <motion.h2
-              className="text-4xl font-bold mb-6 inline-block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+              className="text-4xl font-bold mb-6 inline-block text-foreground"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -404,7 +310,7 @@ export default function Home() {
             transition={{ duration: 0.5 }}
           >
             <motion.h2
-              className="text-3xl font-bold mb-4 inline-block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent"
+              className="text-3xl font-bold mb-4 inline-block text-foreground"
               initial={{ opacity: 0, scale: 0.9 }}
               whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
@@ -413,23 +319,18 @@ export default function Home() {
               Expertise in AI & Cybersecurity
             </motion.h2>
             <motion.p
-              className="text-muted-foreground max-w-2xl mx-auto"
+              className="text-foreground/80 max-w-2xl mx-auto"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: 0.3 }}
             >
-              Specialized in developing cutting-edge AI solutions while ensuring
-              robust security measures
+              Specialized in developing cutting-edge AI solutions while ensuring robust security measures
             </motion.p>
 
             <div className="flex justify-center mt-8 space-x-4">
               <motion.button
-                className={`px-6 py-2 rounded-full ${
-                  activeSection === "ai"
-                    ? "bg-primary text-white"
-                    : "bg-muted text-muted-foreground"
-                } transition-all duration-300`}
+                className={`px-6 py-2 rounded-full ${activeSection === "ai" ? "bg-primary text-background" : "bg-muted text-foreground"} transition-all duration-300`}
                 onClick={() => setActiveSection("ai")}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -441,11 +342,7 @@ export default function Home() {
               </motion.button>
 
               <motion.button
-                className={`px-6 py-2 rounded-full ${
-                  activeSection === "cyber"
-                    ? "bg-accent text-white"
-                    : "bg-muted text-muted-foreground"
-                } transition-all duration-300`}
+                className={`px-6 py-2 rounded-full ${activeSection === "cyber" ? "bg-primary text-background" : "bg-muted text-foreground"} transition-all duration-300`}
                 onClick={() => setActiveSection("cyber")}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -556,7 +453,7 @@ export default function Home() {
             whileInView="visible"
             viewport={{ once: true }}
           >
-            <h2 className="text-3xl font-bold mb-4 inline-block bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+            <h2 className="text-3xl font-bold mb-4 inline-block text-foreground">
               Featured Work
             </h2>
             <p className="text-muted-foreground max-w-2xl mx-auto">

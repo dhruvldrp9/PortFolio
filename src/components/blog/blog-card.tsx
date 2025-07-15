@@ -24,7 +24,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
       <Card className="overflow-hidden h-full border-none shadow-md bg-card/50 backdrop-blur-sm hover:shadow-lg transition-all duration-300">
         <CardContent className="p-6">
           <div className="flex justify-between items-start mb-4">
-            <span className="inline-block bg-primary/10 text-primary text-xs font-semibold px-2.5 py-1 rounded">
+            <span className="inline-block bg-[#181818]/10 text-[#ffffff] text-xs font-semibold px-2.5 py-1 rounded">
               {post.category}
             </span>
             <div className="flex items-center text-xs text-muted-foreground">
@@ -33,7 +33,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
             </div>
           </div>
           
-          <h3 className="text-xl font-semibold mb-3 group-hover:text-primary transition-colors">
+          <h3 className="text-xl font-semibold mb-3 group-hover:text-[#ffffff] transition-colors">
             {post.title}
           </h3>
           
@@ -47,7 +47,7 @@ const BlogCard = ({ post }: BlogCardProps) => {
               <span>{post.reading_time} min read</span>
             </div>
             <motion.div 
-              className="text-primary"
+              className="text-[#ffffff]"
               whileHover={{ x: 3 }}
               transition={{ duration: 0.2 }}
             >

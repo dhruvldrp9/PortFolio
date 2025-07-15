@@ -32,7 +32,7 @@ export default function BlogPage() {
   });
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background to-background/80">
+    <div className="min-h-screen bg-gradient-to-b from-[#181818] to-[#000000]">
       <PageBackground title={""} />
 
       <div className="container mx-auto pt-24 pb-16 px-4 relative z-10">

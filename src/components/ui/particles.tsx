@@ -45,12 +45,12 @@ export default function ParticlesBackground() {
   }, []);
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#102235]">
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#1A237E]/10 to-[#102235]/40" />
+    <div className="fixed inset-0 -z-10 overflow-hidden bg-[#181818]">
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-[#181818]/10 to-[#000000]/40" />
       {particles.map((particle, index) => (
         <motion.div
           key={particle.id}
-          className="absolute rounded-full bg-[#00BCD4]"
+          className="absolute rounded-full bg-[#ffffff]"
           style={{
             width: particle.size,
             height: particle.size,

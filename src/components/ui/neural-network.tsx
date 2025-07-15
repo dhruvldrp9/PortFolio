@@ -67,10 +67,10 @@ export default function NeuralNetwork() {
     // Start gradient animation
     controls.start({
       background: [
-        "radial-gradient(circle at 30% 20%, rgba(0, 112, 243, 0.15), rgba(16, 185, 129, 0.05) 60%, transparent 70%)",
-        "radial-gradient(circle at 70% 60%, rgba(16, 185, 129, 0.15), rgba(0, 112, 243, 0.05) 60%, transparent 70%)",
-        "radial-gradient(circle at 40% 80%, rgba(0, 112, 243, 0.15), rgba(16, 185, 129, 0.05) 60%, transparent 70%)",
-        "radial-gradient(circle at 30% 20%, rgba(0, 112, 243, 0.15), rgba(16, 185, 129, 0.05) 60%, transparent 70%)",
+        "radial-gradient(circle at 30% 20%, rgba(24,24,24,0.15), rgba(0,0,0,0.05) 60%, transparent 70%)",
+        "radial-gradient(circle at 70% 60%, rgba(24,24,24,0.15), rgba(0,0,0,0.05) 60%, transparent 70%)",
+        "radial-gradient(circle at 40% 80%, rgba(24,24,24,0.15), rgba(0,0,0,0.05) 60%, transparent 70%)",
+        "radial-gradient(circle at 30% 20%, rgba(24,24,24,0.15), rgba(0,0,0,0.05) 60%, transparent 70%)",
       ],
       transition: {
         duration: 20,
@@ -109,7 +109,7 @@ export default function NeuralNetwork() {
         if (node.y < 0 || node.y > dimensions.height) node.vy *= -1;
 
         // Draw connections
-        ctx.strokeStyle = "rgba(16, 185, 129, 0.1)";
+        ctx.strokeStyle = "rgba(24,24,24,0.1)";
         node.connections.forEach((targetIndex) => {
           const target = updatedNodes[targetIndex];
           const distance = Math.sqrt(
@@ -120,7 +120,7 @@ export default function NeuralNetwork() {
           if (distance < 200) {
             // Fade connections based on distance
             const opacity = 1 - distance / 200;
-            ctx.strokeStyle = `rgba(16, 185, 129, ${opacity * 0.2})`;
+            ctx.strokeStyle = `rgba(24,24,24,${opacity * 0.2})`;
 
             ctx.beginPath();
             ctx.moveTo(node.x, node.y);
@@ -130,8 +130,7 @@ export default function NeuralNetwork() {
         });
 
         // Draw nodes
-        ctx.fillStyle =
-          i % 3 === 0 ? "rgba(0, 112, 243, 0.5)" : "rgba(16, 185, 129, 0.5)";
+        ctx.fillStyle = i % 3 === 0 ? "rgba(255,255,255,0.5)" : "rgba(24,24,24,0.5)";
         ctx.beginPath();
         ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
         ctx.fill();

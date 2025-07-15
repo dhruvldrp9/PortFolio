@@ -12,7 +12,7 @@ export default function Footer() {
           {/* Profile Section */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
-              <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-primary to-accent">
+              <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-b from-[#181818] to-[#000000]">
                 <motion.div
                   className="absolute inset-0 flex items-center justify-center"
                   animate={{

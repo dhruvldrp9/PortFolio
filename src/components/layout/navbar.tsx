@@ -128,10 +128,13 @@ export default function Navbar() {
               <span className="sr-only">Email</span>
             </motion.a>
             <Link href="/contact" className="ml-1">
-              <Button size="sm" className="group relative overflow-hidden">
+              <Button
+                size="sm"
+                className={`group relative overflow-hidden ${pathname === "/contact" ? "bg-muted text-foreground border border-border" : "bg-primary text-background hover:bg-muted hover:text-foreground"}`}
+              >
                 <span className="relative z-10">Contact</span>
                 <motion.span
-                  className="absolute inset-0 bg-gradient-to-r from-primary to-accent opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                 />
