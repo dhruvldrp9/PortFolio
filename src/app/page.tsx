@@ -303,53 +303,116 @@ export default function Home() {
 
       {/* About Me Section */}
       <section className="py-20 relative overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            className="mb-10 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-          >
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
+          {/* Left: Animated Icon */}
+          <div className="flex-1 flex justify-center items-center min-w-[320px] min-h-[320px]">
+            <motion.div
+              className="rounded-full bg-muted/40 p-12 shadow-2xl flex items-center justify-center"
+              animate={{ y: [0, -16, 0] }}
+              transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+            >
+              {/* Animated SVG Avatar with Bigger Smile and Eyes */}
+              <motion.svg
+                width="200"
+                height="200"
+                viewBox="0 0 140 140"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                {/* Head */}
+                <circle cx="70" cy="56" r="36" fill="#fff" stroke="#181818" strokeWidth="3" />
+                {/* Body */}
+                <rect x="54" y="92" width="32" height="40" rx="16" fill="#181818" />
+                {/* Left Arm (static) */}
+                <rect x="24" y="92" width="24" height="10" rx="5" fill="#181818" />
+                {/* Right Arm (waving) */}
+                <motion.rect
+                  x="92"
+                  y="92"
+                  width="24"
+                  height="10"
+                  rx="5"
+                  fill="#181818"
+                  style={{ originX: 0.1, originY: 0.5 }}
+                  animate={{ rotate: [0, 25, -10, 25, 0] }}
+                  transition={{ duration: 2, repeat: Infinity, repeatType: 'loop', ease: 'easeInOut' }}
+                />
+                {/* Face (bigger eyes & smile) */}
+                <ellipse cx="60" cy="56" rx="5" ry="6" fill="#181818" />
+                <ellipse cx="80" cy="56" rx="5" ry="6" fill="#181818" />
+                <path d="M58 70 Q70 88 82 70" stroke="#181818" strokeWidth="3" fill="none" strokeLinecap="round" />
+              </motion.svg>
+            </motion.div>
+          </div>
+          {/* Right: Bio and Chips - Make content box larger and bolder */}
+          <div className="flex-1 flex flex-col items-start justify-center gap-8 max-w-2xl min-w-[340px] p-8 bg-background/80 rounded-3xl shadow-2xl">
             <motion.h2
-              className="text-4xl font-bold mb-6 inline-block text-foreground"
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              className="text-4xl font-bold mb-2 text-foreground"
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.6 }}
             >
               About Me
             </motion.h2>
-          </motion.div>
-
-          <div className="max-w-7xl mx-auto">
-            <motion.div
-              className="bg-card/60 backdrop-blur-sm border border-border/50 rounded-xl p-10 shadow-lg"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
+            <motion.p
+              className="text-xl leading-relaxed text-foreground/80 mb-4"
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <motion.p className="text-xl leading-relaxed text-muted-foreground mb-8">
-                {PROFILE.bio}
-              </motion.p>
-
-              <div className="flex flex-wrap gap-4 mt-6">
-                <div className="flex items-center text-primary-foreground bg-primary/10 px-4 py-2 rounded-full text-base">
-                  <BrainCircuit className="w-5 h-5 mr-2" />
-                  <span>AI Engineer</span>
-                </div>
-                <div className="flex items-center text-accent-foreground bg-accent/10 px-4 py-2 rounded-full text-base">
-                  <Shield className="w-5 h-5 mr-2" />
-                  <span>Cybersecurity Specialist</span>
-                </div>
-                <div className="flex items-center text-muted-foreground bg-muted/50 px-4 py-2 rounded-full text-base">
-                  <Server className="w-5 h-5 mr-2" />
-                  <span>{PROFILE.location}</span>
-                </div>
-              </div>
-            </motion.div>
+              {PROFILE.bio.split(/(AI|cybersecurity|engineer|specialist|research|innovation|security|machine learning|deep learning|blockchain|automation|cloud|data|NFSU)/gi).map((word, i) =>
+                [
+                  'AI', 'cybersecurity', 'engineer', 'specialist', 'research', 'innovation', 'security', 'machine learning', 'deep learning', 'blockchain', 'automation', 'cloud', 'data', 'NFSU'
+                ].includes(word) ? (
+                  <motion.span
+                    key={i}
+                    className="font-semibold text-primary cursor-pointer hover:text-accent transition-colors duration-200"
+                    whileHover={{ scale: 1.1 }}
+                  >
+                    {word}
+                  </motion.span>
+                ) : (
+                  <span key={i}>{word}</span>
+                )
+              )}
+            </motion.p>
+            <div className="flex flex-wrap gap-4 mt-2">
+              <motion.div
+                whileHover={{ scale: 1.08, boxShadow: '0 2px 16px #10b98133' }}
+                className="flex items-center text-primary-foreground bg-primary/10 px-4 py-2 rounded-full text-base font-medium cursor-pointer transition-all duration-200"
+              >
+                <BrainCircuit className="w-5 h-5 mr-2" />
+                AI Engineer
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.08, boxShadow: '0 2px 16px #6366f1aa' }}
+                className="flex items-center text-accent-foreground bg-accent/10 px-4 py-2 rounded-full text-base font-medium cursor-pointer transition-all duration-200"
+              >
+                <Shield className="w-5 h-5 mr-2" />
+                Cybersecurity Specialist
+              </motion.div>
+              <motion.div
+                whileHover={{ scale: 1.08, boxShadow: '0 2px 16px #64748b88' }}
+                className="flex items-center text-muted-foreground bg-muted/50 px-4 py-2 rounded-full text-base font-medium cursor-pointer transition-all duration-200"
+              >
+                <Server className="w-5 h-5 mr-2" />
+                {PROFILE.location}
+              </motion.div>
+            </div>
           </div>
+        </div>
+        {/* Section background pattern */}
+        <div className="absolute inset-0 -z-10 pointer-events-none">
+          <svg width="100%" height="100%" className="opacity-10" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <pattern id="about-bg" width="60" height="60" patternUnits="userSpaceOnUse">
+                <circle cx="30" cy="30" r="1.5" fill="#fff" />
+              </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#about-bg)" />
+          </svg>
         </div>
       </section>
 
