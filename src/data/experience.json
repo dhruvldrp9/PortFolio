@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "role": "Intern, Cybersecurity",
+    "company": "TCAAI, IIT Bombay",
+    "company_logo": "Experience/TCAAI.jpg",
+    "location": "Bombay",
+    "start_date": "2025-05",
+    "end_date": "Present",
+    "description": "Working with the Cybersecurity team on Project Vajra at IIT Bombay, focused on endpoint detection and response (EDR).",
+    "achievements": [
+      "Remaking the existing C++ backend to address OpenSSL dependency and build stability issues.",
+      "Enhancing system resilience by refactoring components for secure, scalable performance in high-throughput environments.",
+      "Developing a malware-specific anti-evasion playground to emulate realistic VM environments and detect evasive behavior.",
+      "Assisting in backend improvements using C++ and Python to support real-time telemetry ingestion and threat detection.",
+      "Actively involved in debugging, optimization, and team code reviews to ensure robust, production-grade system design."
+    ],
+    "technologies": ["C++", "Python", "Cybersecurity", "EDR"]
+  },
+  {
+    "id": 2,
+    "role": "AI Intern",
+    "company": "Krishu AI",
+    "company_logo": "",
+    "location": "Gurugram, Haryana",
+    "start_date": "2025-01",
+    "end_date": "2025-06",
+    "description": "Built and trained AI models to automate key steps in the loan processing workflow, including document verification and risk assessment, improving accuracy and speed of loan evaluations.",
+    "achievements": [
+      "Worked with machine learning and NLP to enhance user interactions and support smarter decision-making within the lending process.",
+      "Designed and implemented chatbots and virtual assistants to support borrower communication, making it easier for users to get answers, submit documents, and navigate the loan application process more smoothly.",
+      "Contributed to the development of automation workflows, helping integrate AI-driven tools into existing systems and streamline operations across the platform."
+    ],
+    "technologies": ["Python", "Machine Learning", "NLP", "Automation"]
+  },
+  {
+    "id": 3,
+    "role": "Software Development Intern",
+    "company": "Virtual Reality Systems",
+    "company_logo": "Experience/VRS.png",
+    "location": "Gandhinagar",
+    "start_date": "2024-01",
+    "end_date": "2024-07",
+    "description": "Built AI-powered solutions to process and summarize complex datasets, improving how teams retrieve and understand key information using modern machine learning techniques.",
+    "achievements": [
+      "Led the integration of AI capabilities into the Odoo ERP platform as a third-party app, automating repetitive workflows and supporting smoother system performance.",
+      "Partnered with cross-functional teams to design scalable AI models tailored to business needs, helping unlock insights and improve day-to-day operational efficiency.",
+      "Streamlined machine learning pipelines and introduced AI-driven automation tools that made business processes more efficient and supported better decision-making across teams."
+    ],
+    "technologies": ["Python", "AI", "Odoo ERP", "Automation"]
+  }
+] 

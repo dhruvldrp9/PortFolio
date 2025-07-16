@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Github, Menu, Linkedin, Mail, Brain } from "lucide-react";
+import { Github, Menu, Linkedin, Mail, Brain, Download } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -48,20 +48,7 @@ export default function Navbar() {
               href="/"
               className="flex items-center gap-2 transition-transform hover:scale-105"
             >
-              <motion.div
-                className="rounded-full bg-primary/10 p-1"
-                animate={{
-                  rotate: [0, 10, 0, -10, 0],
-                }}
-                transition={{
-                  duration: 5,
-                  repeat: Infinity,
-                  repeatType: "loop",
-                  ease: "easeInOut",
-                }}
-              >
-                <Brain className="h-6 w-6 text-primary" />
-              </motion.div>
+              <img src="/ProfilePicBlack.jpeg" alt="DP Logo" className="h-10 w-10 rounded-full bg-primary/10 p-1" />
               <span className="text-xl font-bold tracking-tight">
                 {PROFILE.name}
               </span>
@@ -138,6 +125,16 @@ export default function Navbar() {
                   initial={{ opacity: 0 }}
                   whileHover={{ opacity: 1 }}
                 />
+              </Button>
+            </Link>
+            <Link href="Dhruv_AI_Resume.pdf" target="_blank" rel="noopener noreferrer" download>
+              <Button
+                size="sm"
+                variant="outline"
+                className="flex items-center gap-2"
+              >
+                <Download className="h-4 w-4" />
+                Resume
               </Button>
             </Link>
             <Sheet>

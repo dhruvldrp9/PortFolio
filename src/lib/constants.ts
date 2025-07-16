@@ -12,6 +12,7 @@ export const PROFILE = {
 
 export const NAVIGATION_ITEMS = [
   { label: "Home", path: "/" },
+  { label: "Experience", path: "/experience" },
   { label: "Education", path: "/education" },
   { label: "Projects", path: "/projects" },
   { label: "Certifications", path: "/certifications" },

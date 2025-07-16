@@ -100,7 +100,7 @@ export default function ProjectDetails() {
               {/* Main Content */}
               <div className="border border-border/50 rounded-lg overflow-hidden bg-card/60 backdrop-blur-sm">
                 {project.image_url && (
-                  <div className="relative aspect-video w-full">
+                  <div className="relative w-full flex justify-center items-center bg-background">
                     <img
                       src={
                         project.image_url.startsWith("/")
@@ -108,7 +108,8 @@ export default function ProjectDetails() {
                           : `/${project.image_url}`
                       }
                       alt={project.title}
-                      className="w-full h-full object-cover"
+                      className="max-w-3xl w-full h-auto rounded-xl border border-border/30 shadow-lg object-contain mx-auto"
+                      style={{ display: 'block' }}
                       onError={(e) => {
                         console.error(
                           "Failed to load image:",
@@ -147,7 +148,7 @@ export default function ProjectDetails() {
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        <Button size="sm">
+                        <Button size="sm" className="text-black">
                           <ExternalLink className="mr-2 h-4 w-4" />
                           Live Demo
                         </Button>
