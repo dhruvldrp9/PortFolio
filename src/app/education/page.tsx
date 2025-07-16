@@ -4,29 +4,9 @@ import PageBackground from "@/components/layout/page-background";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { School, Calendar, BookOpen, Award } from "lucide-react";
 import { education } from "../../data/education.json";
+import TimelineItem from "@/components/education/timeline-item";
 
 export default function Education() {
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.5,
-      },
-    },
-  };
-
   return (
     <div className="bg-background min-h-screen">
       <div className="container mx-auto px-4 py-16">
@@ -34,69 +14,38 @@ export default function Education() {
           title="Education & Learning Journey" 
           subtitle="Academic background and continuous learning in AI & Cybersecurity"
         />
-
-        <motion.div
-          className="mt-16 grid gap-12"
-          initial="hidden"
-          animate="visible"
-          variants={containerVariants}
-        >
-          {education.map((edu, index) => (
-            <motion.div key={index} variants={itemVariants}>
-              <Card className="overflow-hidden border border-border/50 bg-card/60 backdrop-blur-sm transition-all duration-300 hover:shadow-lg hover:shadow-primary/5">
-                <CardHeader className="flex flex-row items-center gap-4 border-b border-border/50 bg-muted/30">
-                  <div className="rounded-full bg-primary/10 p-3">
-                    <School className="h-6 w-6 text-primary" />
+        <div className="relative mt-24 flex flex-col items-center">
+          {/* Vertical timeline line - always visible, behind cards */}
+          <div className="absolute left-1/2 top-0 bottom-0 w-1 bg-gradient-to-b from-primary/40 via-primary/80 to-primary/40 rounded-full shadow-lg z-0 border border-primary/30" style={{ transform: 'translateX(-50%)' }} />
+          <div className="w-full max-w-9xl flex flex-col gap-20 z-10 px-2 md:px-8">
+            {education.map((edu, idx) => (
+              <div key={edu.id} className="relative flex min-h-[220px]">
+                {/* Timeline dot - outside the card, aligned with card top */}
+                <motion.div
+                  className={`absolute top-8 md:top-12 left-1/2 -translate-x-1/2 z-20`}
+                  initial={{ scale: 0, opacity: 0 }}
+                  whileInView={{ scale: 1, opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ type: 'spring', stiffness: 300, damping: 20, delay: idx * 0.2 }}
+                >
+                  <div className="w-8 h-8 rounded-full bg-primary shadow-lg flex items-center justify-center ring-4 ring-background border-2 border-primary">
+                    <School className="h-5 w-5 text-primary-foreground" />
                   </div>
-                  <div>
-                    <CardTitle className="text-xl">{edu.institution}</CardTitle>
-                    <p className="text-muted-foreground flex items-center mt-1">
-                      <Calendar className="mr-2 h-4 w-4" />
-                      {edu.dates}
-                    </p>
-                  </div>
-                </CardHeader>
-                <CardContent className="grid gap-8 p-6 md:grid-cols-2">
-                  <div>
-                    <h3 className="flex items-center text-lg font-medium mb-4">
-                      <BookOpen className="mr-2 h-5 w-5 text-primary" />
-                      Degree
-                    </h3>
-                    <p className="text-muted-foreground">{edu.degree}</p>
-
-                    <h3 className="flex items-center text-lg font-medium mb-4 mt-6">
-                      <Award className="mr-2 h-5 w-5 text-primary" />
-                      Achievements
-                    </h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      {edu.achievements.map((achievement, idx) => (
-                        <li key={idx} className="flex gap-2">
-                          <span className="text-primary">•</span>
-                          {achievement}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  <div>
-                    <h3 className="flex items-center text-lg font-medium mb-4">
-                      <BookOpen className="mr-2 h-5 w-5 text-primary" />
-                      Key Coursework
-                    </h3>
-                    <ul className="space-y-2 text-muted-foreground">
-                      {edu.coursework.map((course, idx) => (
-                        <li key={idx} className="flex gap-2">
-                          <span className="text-primary">•</span>
-                          {course}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </motion.div>
+                </motion.div>
+                {/* Timeline card - offset left/right for alternating effect on desktop, centered on mobile */}
+                <div className={`w-full md:w-1/2 ${idx % 2 === 0 ? 'md:ml-auto md:pl-16' : 'md:mr-auto md:pr-16'} z-10`}>
+                  <TimelineItem
+                    institution={edu.institution}
+                    degree={edu.degree}
+                    dates={edu.dates}
+                    achievements={edu.achievements}
+                    coursework={edu.coursework}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

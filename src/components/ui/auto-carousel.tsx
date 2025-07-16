@@ -9,15 +9,17 @@ import { Circle } from "lucide-react";
 type AutoCarouselProps = {
   className?: string;
   interval?: number;
+  slidesToShow?: number;
   children: React.ReactNode;
 };
 
 export const AutoCarousel = ({
   className,
   interval = 5000,
+  slidesToShow = 1,
   children,
 }: AutoCarouselProps) => {
-  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start" });
+  const [emblaRef, emblaApi] = useEmblaCarousel({ loop: true, align: "start", slidesToScroll: 1 });
   const [selectedIndex, setSelectedIndex] = React.useState(0);
   const [slideCount, setSlideCount] = React.useState(0);
 
@@ -51,7 +53,13 @@ export const AutoCarousel = ({
   return (
     <div className={cn("relative", className)}>
       <div className="overflow-hidden rounded-lg" ref={emblaRef}>
-        <div className="flex">{children}</div>
+        <div className="flex">{
+          React.Children.map(children, child =>
+            React.cloneElement(child as React.ReactElement, {
+              slidesToShow
+            })
+          )
+        }</div>
       </div>
       
       {/* Dots indicators */}
@@ -83,11 +91,16 @@ export const AutoCarousel = ({
 
 export const AutoCarouselItem = ({ 
   className, 
+  slidesToShow = 1,
   ...props 
-}: React.HTMLAttributes<HTMLDivElement>) => {
+}: React.HTMLAttributes<HTMLDivElement> & { slidesToShow?: number }) => {
   return (
     <div
-      className={cn("min-w-0 flex-shrink-0 flex-grow-0 basis-full", className)}
+      className={cn(
+        "min-w-0 flex-shrink-0 flex-grow-0",
+        slidesToShow === 3 ? "basis-1/3" : "basis-full",
+        className
+      )}
       {...props}
     />
   );

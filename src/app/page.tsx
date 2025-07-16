@@ -26,6 +26,7 @@ import React, { useState, useEffect } from "react";
 import projects from "../data/projects.json";
 import blogPosts from "../data/blog-posts.json";
 import Link from "next/link";
+import { AutoCarousel, AutoCarouselItem } from "@/components/ui/auto-carousel";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("ai");
@@ -176,30 +177,32 @@ export default function Home() {
               transition={{ duration: 1.2 }}
             />
             {/* Animated Name */}
-            <motion.div className="w-full group" initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: 'easeOut' }}>
-              <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-foreground mb-2">
+            <div className="w-full group">
+              <motion.h1
+                className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-2 inline-block cursor-pointer"
+                style={{ color: 'var(--foreground)' }}
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, ease: 'easeOut' }}
+                whileHover={{ scale: 1.04, color: '#fff' }}
+              >
                 {PROFILE.name}
-              </h1>
-              <motion.div
-                className="h-1 w-24 rounded-full mb-4 bg-foreground"
-                initial={{ scaleX: 0 }}
-                animate={{ scaleX: 1 }}
-                transition={{ duration: 0.7, delay: 0.2, ease: 'easeOut' }}
-                style={{ transformOrigin: 'left' }}
-              />
+              </motion.h1>
               <motion.p
-                className="text-xl text-foreground font-medium mt-2"
+                className="text-xl font-medium mt-2 inline-block cursor-pointer"
+                style={{ color: 'var(--foreground)' }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.7, delay: 0.4, ease: 'easeOut' }}
+                whileHover={{ color: '#fff', textDecoration: 'underline' }}
               >
                 {PROFILE.title}
               </motion.p>
-            </motion.div>
+            </div>
             {/* Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 w-full z-10">
               <motion.button
-                className="w-full sm:w-auto bg-muted border border-border px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 relative overflow-hidden group-hover:text-foreground text-foreground/30 transition-colors duration-300 shadow-lg"
+                className="w-full sm:w-auto bg-muted border border-border px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 relative overflow-hidden group-hover:text-foreground text-foreground/30 hover:text-foreground transition-colors duration-300 shadow-lg"
                 whileHover={{ y: -4, boxShadow: "0 8px 32px 0 #18181844" }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -209,7 +212,7 @@ export default function Home() {
                   whileHover={{ rotate: 20, scale: 1.2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Network className="ml-2 group-hover:text-foreground text-foreground/50 transition-colors duration-300" />
+                  <Network className="ml-2 group-hover:text-foreground text-foreground/50 hover:text-foreground transition-colors duration-300" />
                 </motion.span>
                 <motion.div
                   className="absolute inset-0 border-2 border-transparent group-hover:border-gradient-to-r group-hover:from-primary group-hover:to-accent rounded-lg pointer-events-none"
@@ -219,7 +222,7 @@ export default function Home() {
                 />
               </motion.button>
               <motion.button
-                className="w-full sm:w-auto border border-border px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 relative overflow-hidden group-hover:text-foreground text-foreground/30 transition-colors duration-300 bg-transparent"
+                className="w-full sm:w-auto border border-border px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 relative overflow-hidden group-hover:text-foreground text-foreground/30 hover:text-foreground transition-colors duration-300 bg-transparent"
                 whileHover={{ y: -4, boxShadow: "0 8px 32px 0 #18181844" }}
                 whileTap={{ scale: 0.97 }}
               >
@@ -229,7 +232,7 @@ export default function Home() {
                   whileHover={{ rotate: -20, scale: 1.2 }}
                   transition={{ type: "spring", stiffness: 300 }}
                 >
-                  <Database className="ml-2 group-hover:text-foreground text-foreground/50 transition-colors duration-300" />
+                  <Database className="ml-2 group-hover:text-foreground text-foreground/50 hover:text-foreground transition-colors duration-300" />
                 </motion.span>
                 <motion.div
                   className="absolute inset-0 border-2 border-transparent group-hover:border-gradient-to-r group-hover:from-primary group-hover:to-accent rounded-lg pointer-events-none"
@@ -468,7 +471,7 @@ export default function Home() {
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.2 }}
-              className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+              className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 items-stretch"
             >
               {(activeSection === "ai" ? aiSkills : cyberSkills).map(
                 (category, index) => (
@@ -490,7 +493,7 @@ export default function Home() {
                     />
 
                     <motion.div
-                      className="p-6 rounded-lg border border-border bg-card transform-style-3d"
+                      className="p-6 rounded-lg border border-border bg-card transform-style-3d min-h-[300px] h-full flex flex-col"
                       whileHover={{
                         rotateX: 5,
                         rotateY: 10,
@@ -596,32 +599,15 @@ export default function Home() {
               </div>
 
               {/* Projects Grid - Fixed - Single Row */}
-              <motion.div
-                className="mt-6"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                  {projects.projects?.slice(0, 3).map((project, index) => (
-                    <motion.div
-                      key={`${project.id}-${index}`}
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: index * 0.1 }}
-                      whileHover={{
-                        scale: 1.03,
-                        boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                        transition: { duration: 0.2 },
-                      }}
-                    >
+              <div className="mt-6">
+                <AutoCarousel interval={3500} slidesToShow={3}>
+                  {projects.projects?.map((project, index) => (
+                    <AutoCarouselItem key={project.id} className="px-2" slidesToShow={3}>
                       <ProjectCard project={project} />
-                    </motion.div>
+                    </AutoCarouselItem>
                   ))}
-                </div>
-              </motion.div>
+                </AutoCarousel>
+              </div>
             </div>
 
             {/* Blog Posts */}
@@ -652,33 +638,16 @@ export default function Home() {
               </div>
 
               {/* Articles Grid - Fixed - Single Row */}
-              <motion.div
-                className="mt-6"
-                initial={{ opacity: 0 }}
-                whileInView={{ opacity: 1 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              <div className="mt-6">
+                <AutoCarousel interval={3500} slidesToShow={3}>
                   {blogPosts &&
-                    blogPosts.slice(0, 3).map((post, index) => (
-                      <motion.div
-                        key={`${post.id}-${index}`}
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: index * 0.1 }}
-                        whileHover={{
-                          scale: 1.03,
-                          boxShadow: "0 10px 30px -15px rgba(0, 0, 0, 0.3)",
-                          transition: { duration: 0.2 },
-                        }}
-                      >
+                    blogPosts.map((post, index) => (
+                      <AutoCarouselItem key={post.id} className="px-2" slidesToShow={3}>
                         <BlogCard post={post} />
-                      </motion.div>
+                      </AutoCarouselItem>
                     ))}
-                </div>
-              </motion.div>
+                </AutoCarousel>
+              </div>
             </div>
           </div>
         </div>
