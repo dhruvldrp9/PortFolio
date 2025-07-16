@@ -261,9 +261,9 @@ export default function Home() {
               }, {
                 icon: Mail,
                 href: `mailto:${PROFILE.email}`
-              }].map(({ icon: Icon, href }, i) => (
+              }].map(({ icon: Icon, href }) => (
                 <motion.a
-                  key={i}
+                  key={href}
                   href={href}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -272,7 +272,7 @@ export default function Home() {
                     hidden: { opacity: 0, y: 20 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.4 } }
                   }}
-                  whileHover={{ scale: 1.15, rotate: i === 0 ? -10 : i === 2 ? 10 : 0, boxShadow: "0 0 16px #fff8" }}
+                  whileHover={{ scale: 1.15, rotate: href.includes('github') ? -10 : href.includes('linkedin') ? 10 : 0, boxShadow: "0 0 16px #fff8" }}
                   whileTap={{ scale: 0.95 }}
                 >
                   <Icon className="h-6 w-6" />
@@ -354,19 +354,19 @@ export default function Home() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              {PROFILE.bio.split(/(AI|cybersecurity|engineer|specialist|research|innovation|security|machine learning|deep learning|blockchain|automation|cloud|data|NFSU)/gi).map((word, i) =>
+              {PROFILE.bio.split(/(AI|cybersecurity|engineer|specialist|research|innovation|security|machine learning|deep learning|blockchain|automation|cloud|data|NFSU)/gi).map((word, _) =>
                 [
                   'AI', 'cybersecurity', 'engineer', 'specialist', 'research', 'innovation', 'security', 'machine learning', 'deep learning', 'blockchain', 'automation', 'cloud', 'data', 'NFSU'
                 ].includes(word) ? (
                   <motion.span
-                    key={i}
+                    key={_}
                     className="font-semibold text-primary cursor-pointer hover:text-accent transition-colors duration-200"
                     whileHover={{ scale: 1.1 }}
                   >
                     {word}
                   </motion.span>
                 ) : (
-                  <span key={i}>{word}</span>
+                  <span key={_}>{word}</span>
                 )
               )}
             </motion.p>
@@ -474,14 +474,14 @@ export default function Home() {
               className="grid gap-8 md:grid-cols-2 lg:grid-cols-4 items-stretch"
             >
               {(activeSection === "ai" ? aiSkills : cyberSkills).map(
-                (category, index) => (
+                (category) => (
                   <motion.div
                     key={category.title}
                     className="relative group perspective-1000"
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ delay: index * 0.1 }}
+                    transition={{ delay: category.title === "Machine Learning" ? 0.1 : category.title === "Deep Learning" ? 0.2 : category.title === "Natural Language Processing" ? 0.3 : 0.4 }}
                     whileHover={{ z: 30 }}
                   >
                     <motion.div
@@ -508,7 +508,7 @@ export default function Home() {
                           duration: 2,
                           repeat: Infinity,
                           repeatType: "reverse",
-                          delay: index * 0.2,
+                          delay: category.title === "Machine Learning" ? 0.2 : category.title === "Deep Learning" ? 0.3 : category.title === "Natural Language Processing" ? 0.4 : 0.5,
                         }}
                       >
                         <category.icon className="h-12 w-12 mb-4 text-primary" />
@@ -519,21 +519,21 @@ export default function Home() {
                       </h3>
 
                       <ul className="space-y-2">
-                        {category.skills.map((skill, idx) => (
+                        {category.skills.map((skill, _) => (
                           <motion.li
                             key={skill}
                             className="flex items-center text-muted-foreground"
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
-                            transition={{ delay: index * 0.1 + idx * 0.05 }}
+                            transition={{ delay: _ * 0.1 + _ * 0.05 }}
                           >
                             <motion.span
                               animate={{ scale: [1, 1.2, 1] }}
                               transition={{
                                 duration: 2,
                                 repeat: Infinity,
-                                delay: idx * 0.3,
+                                delay: _ * 0.3,
                               }}
                               className="mr-2 text-primary"
                             >
@@ -601,7 +601,7 @@ export default function Home() {
               {/* Projects Grid - Fixed - Single Row */}
               <div className="mt-6">
                 <AutoCarousel interval={3500} slidesToShow={3}>
-                  {projects.projects?.map((project, index) => (
+                  {projects.projects?.map((project) => (
                     <AutoCarouselItem key={project.id} className="px-2" slidesToShow={3}>
                       <ProjectCard project={project} />
                     </AutoCarouselItem>
@@ -641,7 +641,7 @@ export default function Home() {
               <div className="mt-6">
                 <AutoCarousel interval={3500} slidesToShow={3}>
                   {blogPosts &&
-                    blogPosts.map((post, index) => (
+                    blogPosts.map((post) => (
                       <AutoCarouselItem key={post.id} className="px-2" slidesToShow={3}>
                         <BlogCard post={post} />
                       </AutoCarouselItem>

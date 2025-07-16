@@ -5,16 +5,30 @@
   import { Button } from "@/components/ui/button";
   import { Badge } from "@/components/ui/badge";
   import Link from "next/link";
+  import Image from 'next/image';
+
+  type Project = {
+    id: number;
+    title: string;
+    short_description?: string;
+    description: string;
+    technologies: string;
+    image_url: string;
+    github_url?: string;
+    live_url?: string;
+    category: string;
+    is_live_demo?: boolean;
+  };
 
   export default function Projects() {
     const [filter, setFilter] = useState("all");
     const [searchQuery, setSearchQuery] = useState("");
 
     // Flattened project list
-    const allProjects: any[] = Array.isArray(projectsData.projects) ? projectsData.projects : (projectsData as any);
+    const allProjects: Project[] = Array.isArray(projectsData.projects) ? projectsData.projects : [];
 
     // Filtered projects
-    const filteredProjects = allProjects.filter((project: any) => {
+    const filteredProjects = allProjects.filter((project: Project) => {
       const matchesCategory = filter === "all" || project.category === filter;
       const matchesSearch = project.title.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
@@ -26,8 +40,7 @@
         "col-span-2 row-span-2", // large square
         "col-span-1 row-span-1", // square
       ];
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      return filteredProjects.map((_: any, i: number) => sizes[i % sizes.length]);
+      return filteredProjects.map((_: Project, i: number) => sizes[i % sizes.length]);
     }, [filteredProjects]);
 
     return (
@@ -49,7 +62,7 @@
               />
             </div>
             <div className="flex flex-wrap gap-2 justify-start md:justify-end">
-              {["all", ...new Set(allProjects.map((p: any) => p.category))].map((category: string) => (
+              {["all", ...new Set(allProjects.map((p: Project) => p.category))].map((category: string) => (
                 <Button
                   key={category}
                   size="sm"
@@ -67,7 +80,7 @@
             className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 auto-rows-[180px] md:auto-rows-[220px] lg:auto-rows-[260px] grid-flow-dense"
             style={{ minHeight: "60vh" }}
           >
-            {filteredProjects.map((project: any, i: number) => (
+            {filteredProjects.map((project: Project, i: number) => (
               <Link
                 key={project.id}
                 href={`/projects/${project.id}`}
@@ -76,10 +89,11 @@
               >
                 {/* Front: Image only */}
                 <div className="absolute inset-0 w-full h-full z-10 group-hover:rotate-y-180 transition-transform duration-500 [transform-style:preserve-3d]">
-                  <img
+                  <Image
                     src={project.image_url}
                     alt={project.title}
-                    className="w-full h-full object-cover object-center"
+                    fill
+                    className="object-cover object-center"
                     style={{ minHeight: 0 }}
                   />
                 </div>

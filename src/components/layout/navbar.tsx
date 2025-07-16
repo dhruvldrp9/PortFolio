@@ -13,6 +13,7 @@ import {
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { NAVIGATION_ITEMS, PROFILE } from "@/lib/constants";
+import Image from 'next/image';
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -48,7 +49,7 @@ export default function Navbar() {
               href="/"
               className="flex items-center gap-2 transition-transform hover:scale-105"
             >
-              <img src="/ProfilePicBlack.jpeg" alt="DP Logo" className="h-10 w-10 rounded-full bg-primary/10 p-1" />
+              <Image src="/ProfilePicBlack.jpeg" alt="DP Logo" width={40} height={40} className="h-10 w-10 rounded-full bg-primary/10 p-1" />
               <span className="text-xl font-bold tracking-tight">
                 {PROFILE.name}
               </span>

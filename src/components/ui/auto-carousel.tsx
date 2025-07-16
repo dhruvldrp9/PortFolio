@@ -55,7 +55,7 @@ export const AutoCarousel = ({
       <div className="overflow-hidden rounded-lg" ref={emblaRef}>
         <div className="flex">{
           React.Children.map(children, child =>
-            React.cloneElement(child as React.ReactElement, {
+            React.cloneElement(child as React.ReactElement<{ slidesToShow?: number }>, {
               slidesToShow
             })
           )
