@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     siteName: "Dhruv Patel | AI/ML Professional",
     images: [
       {
-        url: "/attached_assets/Preview.png", // Path to your OG image
+        url: "https://www.dhruv.at/attached_assets/Preview.png",
         width: 1200,
         height: 630,
         alt: "AI/ML Portfolio Preview",
@@ -35,8 +35,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Professional Portfolio | Dhruv Patel",
-    description: "Explore my AI and ML projects, research, and technical expertise",
-    images: ["/attached_assets/Preview.png"],
+    description: "AI & cybersecurity expert building secure, intelligent systems with LLMs, NLP, and advanced machine learning.",
+    images: ["https://www.dhruv.at/attached_assets/Preview.png"],
   },
 };
 
@@ -59,7 +59,7 @@ export default function RootLayout({
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:url" content="https://www.dhruv.at/" />
         <meta name="twitter:title" content="Professional Portfolio | Dhruv Patel" />
-        <meta name="twitter:description" content="Explore my AI and ML projects, research, and technical expertise" />
+        <meta name="twitter:description" content="AI & cybersecurity expert building secure, intelligent systems with LLMs, NLP, and advanced machine learning." />
         <meta name="twitter:image" content="https://www.dhruv.at/attached_assets/Preview.png" />
       </head>
       <body suppressHydrationWarning={true} className="antialiased">
