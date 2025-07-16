@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react";
 import PageBackground from "@/components/layout/page-background";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardHeader, CardContent } from "@/components/ui/card";
-import { CheckCircle, Award } from "lucide-react";
+import { Card } from "@/components/ui/card";
+import { CheckCircle } from "lucide-react";
 
 export default function Experience() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [experience, setExperience] = useState<any[]>([]);
 
   useEffect(() => {

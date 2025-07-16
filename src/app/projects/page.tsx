@@ -1,13 +1,9 @@
   "use client";
-  import { useState } from "react";
-  import { motion, AnimatePresence } from "framer-motion";
+  import { useState, useMemo } from "react";
   import PageBackground from "@/components/layout/page-background";
-  import ProjectCard from "@/components/projects/project-card";
   import projectsData from '../../data/projects.json';
   import { Button } from "@/components/ui/button";
-  import { Database, Filter, Search, Tag, ExternalLink, Github } from "lucide-react";
   import { Badge } from "@/components/ui/badge";
-  import { useMemo } from "react";
   import Link from "next/link";
 
   export default function Projects() {
@@ -30,8 +26,9 @@
         "col-span-2 row-span-2", // large square
         "col-span-1 row-span-1", // square
       ];
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return filteredProjects.map((_: any, i: number) => sizes[i % sizes.length]);
-    }, [filteredProjects.length]);
+    }, [filteredProjects]);
 
     return (
       <div className="bg-background min-h-screen">
@@ -43,7 +40,6 @@
           {/* Filters */}
           <div className="mb-8 md:mb-12 flex flex-col gap-4 md:grid md:grid-cols-[1fr_auto]">
             <div className="relative">
-              <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
               <input
                 type="text"
                 placeholder="Search projects..."
