@@ -3,7 +3,7 @@
   import { motion, AnimatePresence } from "framer-motion";
   import PageBackground from "@/components/layout/page-background";
   import ProjectCard from "@/components/projects/project-card";
-  import { projects } from "../../data/projects.json";
+  import projectsData from '../../data/projects.json';
   import { Button } from "@/components/ui/button";
   import { Database, Filter, Search, Tag, ExternalLink, Github } from "lucide-react";
   import { Badge } from "@/components/ui/badge";
@@ -15,7 +15,7 @@
     const [searchQuery, setSearchQuery] = useState("");
 
     // Flattened project list
-    const allProjects: any[] = Array.isArray((projects as any).projects) ? (projects as any).projects : (projects as any);
+    const allProjects: any[] = Array.isArray(projectsData.projects) ? projectsData.projects : (projectsData as any);
 
     // Filtered projects
     const filteredProjects = allProjects.filter((project: any) => {

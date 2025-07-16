@@ -3,7 +3,8 @@ import { motion } from "framer-motion";
 import PageBackground from "@/components/layout/page-background";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { School, Calendar, BookOpen, Award } from "lucide-react";
-import { education } from "../../data/education.json";
+import educationData from '../../data/education.json';
+const education = educationData.education;
 import TimelineItem from "@/components/education/timeline-item";
 
 export default function Education() {

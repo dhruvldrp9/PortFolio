@@ -9,7 +9,8 @@ import {
 } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Calendar, ExternalLink, Shield, Brain } from "lucide-react";
-import { certifications } from "../../data/certifications.json";
+import certificationsData from '../../data/certifications.json';
+const certifications = certificationsData.certifications;
 
 export default function Certifications() {
   const containerVariants = {

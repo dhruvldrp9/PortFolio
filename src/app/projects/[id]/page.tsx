@@ -10,7 +10,8 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import PageBackground from "@/components/layout/page-background";
-import { projects } from "../../../data/projects.json";
+import projectsData from '../../../data/projects.json';
+const projects = projectsData.projects;
 
 export default function ProjectDetails() {
   const { id } = useParams<{ id: string }>();
