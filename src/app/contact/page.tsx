@@ -56,7 +56,7 @@ export default function Contact() {
 
   return (
     <div className="bg-background min-h-screen">
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-2 sm:px-4 py-10 sm:py-16">
         <PageBackground
           title="Get in Touch"
           subtitle="Connect with me through any of these channels"
@@ -66,14 +66,14 @@ export default function Contact() {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="mt-16"
+          className="mt-10 sm:mt-16"
         >
           <motion.div
             variants={itemVariants}
-            className="max-w-3xl mx-auto text-center mb-12"
+            className="max-w-3xl mx-auto text-center mb-8 sm:mb-12"
           >
-            <h2 className="text-2xl font-semibold mb-4">{`Let's Connect`}</h2>
-            <p className="text-muted-foreground">
+            <h2 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-4">{`Let's Connect`}</h2>
+            <p className="text-muted-foreground text-sm sm:text-base">
               {`I'm always open to new opportunities, collaborations, or just a
               friendly chat about AI and cybersecurity. Feel free to reach out
               through any of the channels below.`}
@@ -82,7 +82,7 @@ export default function Contact() {
 
           <motion.div
             variants={itemVariants}
-            className="grid gap-6 md:grid-cols-3 max-w-4xl mx-auto"
+            className="grid gap-4 sm:gap-6 md:grid-cols-3 max-w-4xl mx-auto"
           >
             {contactMethods.map((method) => (
               <motion.div
@@ -125,10 +125,10 @@ export default function Contact() {
 
           <motion.div
             variants={itemVariants}
-            className="mt-16 max-w-3xl mx-auto text-center bg-card/60 backdrop-blur-sm border border-border/50 rounded-lg p-8"
+            className="mt-10 sm:mt-16 max-w-3xl mx-auto text-center bg-card/60 backdrop-blur-sm border border-border/50 rounded-lg p-4 sm:p-8"
           >
-            <h3 className="text-xl font-semibold mb-4">Response Time</h3>
-            <p className="text-muted-foreground">
+            <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-4">Response Time</h3>
+            <p className="text-muted-foreground text-sm sm:text-base">
               I typically respond to messages within 24-48 hours. For urgent
               matters, email is usually the fastest way to reach me.
             </p>

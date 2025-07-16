@@ -35,9 +35,9 @@ export default function BlogPage() {
     <div className="min-h-screen bg-gradient-to-b from-[#181818] to-[#000000]">
       <PageBackground title={""} />
 
-      <div className="container mx-auto pt-24 pb-16 px-4 relative z-10">
-        <div className="mb-8">
-          <h1 className="text-4xl font-bold mb-2 text-center md:text-left">
+      <div className="container mx-auto pt-16 sm:pt-24 pb-10 sm:pb-16 px-2 sm:px-4 relative z-10">
+        <div className="mb-6 sm:mb-8">
+          <h1 className="text-3xl sm:text-4xl font-bold mb-2 text-center md:text-left">
             Blog
           </h1>
           <p className="text-muted-foreground text-center md:text-left">
@@ -45,8 +45,8 @@ export default function BlogPage() {
           </p>
         </div>
 
-        <div className="space-y-8 mb-12">
-          <div className="flex flex-col md:flex-row gap-4 items-start md:items-center">
+        <div className="space-y-6 sm:space-y-8 mb-8 sm:mb-12">
+          <div className="flex flex-col md:flex-row gap-3 sm:gap-4 items-start md:items-center">
             <div className="relative w-full md:w-80">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground h-4 w-4" />
               <Input
@@ -57,7 +57,7 @@ export default function BlogPage() {
               />
             </div>
 
-            <div className="flex gap-2 flex-wrap">
+            <div className="flex gap-2 flex-wrap mt-2 md:mt-0">
               <Button
                 variant={selectedCategory === null ? "default" : "outline"}
                 size="sm"
@@ -85,9 +85,7 @@ export default function BlogPage() {
         </div>
 
         {filteredPosts.length > 0 ? (
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-            {" "}
-            {/* Changed to use grid for mobile */}
+          <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2">
             {filteredPosts.map((post) => (
               <motion.div
                 key={post.id}
@@ -100,8 +98,8 @@ export default function BlogPage() {
             ))}
           </div>
         ) : (
-          <div className="text-center py-20 bg-card/30 backdrop-blur-sm rounded-lg">
-            <h3 className="text-xl font-medium mb-2">No articles found</h3>
+          <div className="text-center py-16 sm:py-20 bg-card/30 backdrop-blur-sm rounded-lg">
+            <h3 className="text-lg sm:text-xl font-medium mb-2">No articles found</h3>
             <p className="text-muted-foreground">
               Try adjusting your search or filters
             </p>

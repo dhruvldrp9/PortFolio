@@ -7,8 +7,8 @@ import { Github, Linkedin, Mail, Shield, Brain, Code } from "lucide-react";
 export default function Footer() {
   return (
     <footer className="bg-card/50 border-t border-border/50 backdrop-blur-sm">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+      <div className="container mx-auto px-2 sm:px-4 py-8 sm:py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
           {/* Profile Section */}
           <div className="space-y-4">
             <Link href="/" className="flex items-center space-x-2">
@@ -112,7 +112,7 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
+        <div className="mt-8 sm:mt-12 border-t border-border pt-6 sm:pt-8 text-center text-xs sm:text-sm text-muted-foreground">
           <p>&copy; {new Date().getFullYear()} {PROFILE.name}. All rights reserved.</p>
         </div>
       </div>

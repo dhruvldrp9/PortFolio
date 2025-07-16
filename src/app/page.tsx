@@ -125,7 +125,7 @@ export default function Home() {
       </div>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden py-0 min-h-screen flex items-center justify-center">
+      <section className="relative overflow-hidden py-0 min-h-screen flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 -mt-8 md:-mt-10">
         <div className="absolute inset-0">
           <motion.div
             className="absolute inset-0 opacity-10"
@@ -162,13 +162,13 @@ export default function Home() {
         </div>
 
         <motion.div
-          className="container mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center justify-center gap-12 -mt-16"
+          className="container mx-auto px-4 sm:px-6 lg:px-8 w-full flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12"
           initial="hidden"
           animate={isLoaded ? "visible" : "hidden"}
           variants={containerVariants}
         >
           {/* Left: Text Content */}
-          <div className="flex-1 flex flex-col items-start justify-center max-w-xl w-full space-y-6 relative overflow-visible">
+          <div className="flex-1 flex flex-col items-start justify-center max-w-xl w-full space-y-4 md:space-y-6 relative overflow-visible">
             {/* Animated Gradient Background */}
             <motion.div
               className="absolute -inset-8 z-0 rounded-3xl bg-gradient-to-br from-[#181818]/60 via-[#000]/80 to-[#181818]/60 blur-2xl opacity-70"
@@ -179,7 +179,7 @@ export default function Home() {
             {/* Animated Name */}
             <div className="w-full group">
               <motion.h1
-                className="text-5xl md:text-6xl lg:text-7xl font-extrabold mb-2 inline-block cursor-pointer"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-extrabold mb-2 inline-block cursor-pointer"
                 style={{ color: 'var(--foreground)' }}
                 initial={{ opacity: 0, y: 40 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -189,7 +189,7 @@ export default function Home() {
                 {PROFILE.name}
               </motion.h1>
               <motion.p
-                className="text-xl font-medium mt-2 inline-block cursor-pointer"
+                className="text-base sm:text-lg md:text-xl font-medium mt-2 inline-block cursor-pointer"
                 style={{ color: 'var(--foreground)' }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -200,7 +200,7 @@ export default function Home() {
               </motion.p>
             </div>
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 w-full z-10">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 w-full z-10">
               <motion.button
                 className="w-full sm:w-auto bg-muted border border-border px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 relative overflow-hidden group-hover:text-foreground text-foreground/30 hover:text-foreground transition-colors duration-300 shadow-lg"
                 whileHover={{ y: -4, boxShadow: "0 8px 32px 0 #18181844" }}
@@ -244,7 +244,7 @@ export default function Home() {
             </div>
             {/* Social Icons */}
             <motion.div
-              className="flex gap-4 mt-4 z-10"
+              className="flex gap-3 sm:gap-4 mt-4 z-10"
               initial="hidden"
               animate="visible"
               variants={{
@@ -282,7 +282,7 @@ export default function Home() {
           </div>
           {/* Right: Profile Image */}
           <div className="flex-1 flex items-center justify-center">
-            <div className="relative rounded-full border-4 border-primary/20 p-2 bg-muted/30 backdrop-blur-sm scale-150 max-w-xs w-full">
+            <div className="relative rounded-full border-4 border-primary/20 p-2 bg-muted/30 backdrop-blur-sm scale-150 max-w-[180px] sm:max-w-xs w-full">
               <img
                 src="/attached_assets/ProfilePicBlack.png"
                 alt={PROFILE.name}
@@ -294,10 +294,10 @@ export default function Home() {
       </section>
 
       {/* About Me Section */}
-      <section className="py-20 relative overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-12">
+      <section className="py-12 sm:py-20 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center gap-8 md:gap-12">
           {/* Left: Animated Icon */}
-          <div className="flex-1 flex justify-center items-center min-w-[320px] min-h-[320px]">
+          <div className="flex-1 flex justify-center items-center min-w-[180px] sm:min-w-[320px] min-h-[180px] sm:min-h-[320px] mb-6 md:mb-0">
             <motion.div
               className="rounded-full bg-muted/40 p-12 shadow-2xl flex items-center justify-center"
               animate={{ y: [0, -16, 0] }}
@@ -337,9 +337,9 @@ export default function Home() {
             </motion.div>
           </div>
           {/* Right: Bio and Chips - Make content box larger and bolder */}
-          <div className="flex-1 flex flex-col items-start justify-center gap-8 max-w-2xl min-w-[340px] p-8 bg-background/80 rounded-3xl shadow-2xl">
+          <div className="flex-1 flex flex-col items-start justify-center gap-6 sm:gap-8 max-w-2xl min-w-[200px] sm:min-w-[340px] p-4 sm:p-8 bg-background/80 rounded-3xl shadow-2xl">
             <motion.h2
-              className="text-4xl font-bold mb-2 text-foreground"
+              className="text-2xl sm:text-4xl font-bold mb-2 text-foreground"
               initial={{ opacity: 0, x: -40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
@@ -348,7 +348,7 @@ export default function Home() {
               About Me
             </motion.h2>
             <motion.p
-              className="text-xl leading-relaxed text-foreground/80 mb-4"
+              className="text-base sm:text-xl leading-relaxed text-foreground/80 mb-4"
               initial={{ opacity: 0, x: 40 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
